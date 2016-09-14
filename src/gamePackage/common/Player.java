@@ -1,17 +1,28 @@
 package gamePackage.common;
 
-/**
- * Class to hold player positioning/stamina data.
+/******************************************************************************
+ * Ederin Igharoro
  *
- * @author Maxwell Sanchez
- */
+ * Class to hold player positioning/stamina data.
+ * Modifications: Added a health element (double) to store as data
+ * for the game
+ *
+ * original author Maxwell Sanchez
+ * @author Ederin Igharoro
+ *****************************************************************************/
 public class Player
 {
   public static double xPosition = 1.0;
   public static double yPosition = 1.0;
+
   public static double stamina = 5.0;
   public static double staminaRegen = 0.20;
   public static double maxStamina = 5.0;
+
+  public static double health = 100.0;
+  public static double maxHealth = 100.0;
+
+
   public static double playerSpeed = 2.0;
 
   public static int playerSightRange = 7;

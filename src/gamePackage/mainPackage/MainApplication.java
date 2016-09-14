@@ -572,9 +572,20 @@ public class MainApplication extends Application
             // Player collided with zombie, restart level
             if (totalDistance < 0.3)
             {
-              System.out.println("Restarting due to death!!");
-              level.restartLevel();
-              rebuildLevel();
+
+              if(Player.health > 0.0)
+              {
+                System.out.print("Player got hit, health -5");
+                Player.health+= -5;
+                System.out.println("Health Remaining: "+Player.health);
+              }
+              else
+                {
+                  System.out.println("Restarting due to death!!");
+                  level.restartLevel();
+                  rebuildLevel();
+                }
+              //rebuildLevel();
             }
 
             double desiredPositionX = zombie.positionX - (distanceX / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
