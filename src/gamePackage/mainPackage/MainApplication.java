@@ -173,6 +173,7 @@ public class MainApplication extends Application
       {
         level.nextLevel();
         rebuildLevel();
+        stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
       }
     });
 
@@ -575,9 +576,9 @@ public class MainApplication extends Application
 
               if(Player.health > 0.0)
               {
-                System.out.print("Player got hit, health -5");
+                System.out.print("Player got hit, health -5 ");
                 Player.health+= -5;
-                System.out.println("Health Remaining: "+Player.health);
+                System.out.println("Health Remaining: "+ Player.health);
               }
               else
                 {
