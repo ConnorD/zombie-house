@@ -5,13 +5,17 @@ import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.InputContainer;
 import gamePackage.common.LevelVar;
 import gamePackage.common.Player;
+import gamePackage.common.ZombieData;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
 import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
+import javafx.animation.Animation;
 import javafx.animation.AnimationTimer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
@@ -23,8 +27,10 @@ import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.awt.*;
+import java.util.Timer;
 
 
 /**
@@ -542,6 +548,11 @@ public class MainApplication extends Application
     @Override
     public void handle(long time)
     {
+      Timeline turnTime = new Timeline(new KeyFrame(
+              Duration.millis(1000),
+              ae ->{zombieAttack();}
+      ));
+
       if (frame == 0) lastFrame = time;
       frame++;
       double percentOfSecond = ((double) time - (double) lastFrame) / 2000000000;
@@ -570,23 +581,10 @@ public class MainApplication extends Application
             double distanceY = (zombie.positionY - Player.yPosition);
             double totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
 
-            // Player collided with zombie, restart level
+            // Player collided with zombie, Deduct health
             if (totalDistance < 0.3)
             {
-
-              if(Player.health > 0.0)
-              {
-                System.out.print("Player got hit, health -5 ");
-                Player.health+= -5;
-                System.out.println("Health Remaining: "+ Player.health);
-              }
-              else
-                {
-                  System.out.println("Restarting due to death!!");
-                  level.restartLevel();
-                  rebuildLevel();
-                }
-              //rebuildLevel();
+              zombieAttack();
             }
 
             double desiredPositionX = zombie.positionX - (distanceX / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
@@ -657,6 +655,22 @@ public class MainApplication extends Application
         }
         setupLevel();
         shouldRebuildLevel = false;
+      }
+    }
+
+    public void zombieAttack()
+    {
+      if(Player.health > 0.0)
+      {
+        System.out.print("Player got hit, health -5 ");
+        Player.health+= -ZombieData.dps;
+        System.out.println("Health Remaining: "+ Player.health);
+      }
+      else
+      {
+        System.out.println("Restarting due to death!!");
+        level.restartLevel();
+        rebuildLevel();
       }
     }
   }
