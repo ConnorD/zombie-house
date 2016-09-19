@@ -302,15 +302,18 @@ public class Zombie
             {
               if ((int) this.positionY > i)
               {
-                dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8)))) + ((this.positionY - ((i * 2) + 1.8)) * (this.positionY - ((i * 2) + 1.8))));
+                dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8))))
+                        + ((this.positionY - ((i * 2) + 1.8)) * (this.positionY - ((i * 2) + 1.8))));
               } else if ((int) this.positionY == i)
               {
                 dist = this.positionX - ((j * 2) + 1.8);
               } else
               {
-                dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8)))) + ((this.positionY - ((i * 2) - 0.2)) * ((this.positionY - ((i * 2) - 0.2)))));
+                dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8))))
+                        + ((this.positionY - ((i * 2) - 0.2)) * ((this.positionY - ((i * 2) - 0.2)))));
               }
-            } else if ((int) this.positionX == j)
+            }
+            else if ((int) this.positionX == j)
             {
               if ((int) this.positionY > i)
               {

@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="javafx-preloader" name="GamePreloader">
+    <output-path>$PROJECT_DIR$/out/artifacts/GamePreloader</output-path>
+    <properties id="javafx-preloader-properties">
+      <options>
+        <option name="preloaderClass" value="gamePackage.mainPackage.GamePreloader" />
+      </options>
+    </properties>
+    <root id="archive" name="GamePreloader.jar">
+      <element id="module-output" name="GamePreloader" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/GamePreloader/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

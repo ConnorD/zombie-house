@@ -67,7 +67,6 @@ public class LineWalkZombie extends Zombie
           double curHeading = super.getHeading();
           super.setHeading((180 + curHeading) % 360);
           super.setCollided(false);
-
         }
       }
     }
