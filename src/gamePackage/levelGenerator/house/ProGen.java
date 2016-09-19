@@ -2,7 +2,7 @@ package gamePackage.levelGenerator.house;
 
 import gamePackage.common.Direction;
 import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
+import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.zombies.MasterZombie;
 
 import java.util.ArrayList;
@@ -747,8 +747,8 @@ public class ProGen
       int randY = LevelVar.rand.nextInt(fullY);
       if (LevelVar.house[randX][randY].isEmpty() && LevelVar.house[randX][randY].zone == zoneNum)
       {
-        Player.xPosition = randX;
-        Player.yPosition = randY;
+        PlayerData.xPosition = randX;
+        PlayerData.yPosition = randY;
         playerNotPlaced = false;
       }
     }

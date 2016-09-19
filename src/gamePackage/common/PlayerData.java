@@ -5,11 +5,12 @@ package gamePackage.common;
  *
  * Class to hold player positioning/stamina data.
  *
- * Modifications: Added new data for the player such as health and dps
+ * Modifications: Added new data for the player such as health, dps
+ * and a health bar for the player located in the top of the main screen
  * original author Maxwell Sanchez
  * @author Ederin Igharoro
  *****************************************************************************/
-public class Player
+public class PlayerData
 {
   public static double xPosition = 1.0;
   public static double yPosition = 1.0;
@@ -26,4 +27,6 @@ public class Player
   public static double playerSpeed = 2.0;
 
   public static int playerSightRange = 7;
+
+
 }

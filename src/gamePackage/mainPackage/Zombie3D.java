@@ -1,5 +1,7 @@
 package gamePackage.mainPackage;
 
+import gamePackage.common.StatusBar;
+import gamePackage.common.ZombieData;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.transform.Rotate;
@@ -24,6 +26,8 @@ public class Zombie3D extends Group
   private int frameDirection = 1;
   private static Random random = new Random();
 
+  private StatusBar zombieVitails;
+
   /**
    * Create a Zombie3D by loading in 8 random, contiguous frames,
    * setting the mesh group's scale and Y translation, and preparing
@@ -43,11 +47,13 @@ public class Zombie3D extends Group
         Group zombieModel = fxmlLoader.load();
         zombieModel.setVisible(false);
         getChildren().add(zombieModel);
+
       } catch (Exception e)
       {
         e.printStackTrace();
       }
     }
+
     setScaleX(25);
     setScaleY(25);
     setScaleZ(25);
@@ -57,6 +63,9 @@ public class Zombie3D extends Group
 
     // Make sure zombies are on different frames to avoid "synchronized" movement
     getChildren().get(random.nextInt(MAXIMUM_FRAME)).setVisible(true);
+
+    zombieVitails = new StatusBar(ZombieData.health, 0, -5, -7, 0,0,10,1);
+    getChildren().add(zombieVitails);
   }
 
   public void setType(String zombieType)

@@ -1,7 +1,7 @@
 package gamePackage.levelGenerator.house;
 
 import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
+import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.zombies.Zombie;
 
 import java.util.ArrayList;
@@ -105,6 +105,8 @@ public class Level
     {
       printHouse();
     }
+
+    PlayerData.health = PlayerData.maxHealth;
   }
 
   /**
@@ -129,9 +131,9 @@ public class Level
    */
   private void playerLevelUp()
   {
-    Player.playerSpeed += 0.25;
-    Player.stamina += 1.0;
-    Player.staminaRegen += 0.2;
+    PlayerData.playerSpeed += 0.25;
+    PlayerData.stamina += 1.0;
+    PlayerData.staminaRegen += 0.2;
   }
 
   /**

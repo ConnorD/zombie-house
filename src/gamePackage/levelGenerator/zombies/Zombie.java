@@ -11,7 +11,7 @@
 package gamePackage.levelGenerator.zombies;
 
 import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
+import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
@@ -38,7 +38,7 @@ public class Zombie
    */
   private int zombie_Smell = 15;
   /**
-   * whether or not a Zombie has scent of the Player
+   * whether or not a Zombie has scent of the PlayerData
    */
   private boolean canSmell = false;
   /**
@@ -50,16 +50,16 @@ public class Zombie
    */
   public int zombieID;
   /**
-   * array of Tiles that lead to the Player
+   * array of Tiles that lead to the PlayerData
    */
   public ArrayList<Tile> path = new ArrayList<>();
   /**
-   * a queue to hold Tiles that search for the Player for scent detection
+   * a queue to hold Tiles that search for the PlayerData for scent detection
    */
   public Queue<Tile> bfsQueue = new LinkedList<>();
   /**
    * a priority queue that holds Tiles examined while finding Zombie's path to
-   * Player
+   * PlayerData
    */
   public PriorityQueue<Tile> searchQueue = new PriorityQueue<>(25,
           new Comparator<Tile>()
@@ -359,7 +359,7 @@ public class Zombie
     int numTillDepthIncrease = 0;
     boolean increaseDepth = false;
     ArrayList<Tile> visitedTiles = new ArrayList<>();
-    Tile destTile = LevelVar.house[(int) Player.xPosition][(int) Player.yPosition];
+    Tile destTile = LevelVar.house[(int) PlayerData.xPosition][(int) PlayerData.yPosition];
 
     this.bfsQueue.clear();
     this.bfsQueue.add(this.curTile);
@@ -423,7 +423,7 @@ public class Zombie
   public void calcPath(Tile[][] house)
   {
     ArrayList<Tile> visitedTiles = new ArrayList<>();
-    Tile destTile = house[(int) Player.xPosition][(int) Player.yPosition];
+    Tile destTile = house[(int) PlayerData.xPosition][(int) PlayerData.yPosition];
 
     this.searchQueue.clear();
     this.path.clear();
@@ -459,7 +459,7 @@ public class Zombie
         {
           int xCor = currentTile.neighbors.get(i).xCord;
           int yCor = currentTile.neighbors.get(i).yCord;
-          int distance = ((int) Math.sqrt((xCor - ((int) Player.xPosition)) * (xCor - ((int) Player.xPosition)) + ((yCor - ((int) Player.yPosition)) * (yCor - ((int) Player.yPosition)))));
+          int distance = ((int) Math.sqrt((xCor - ((int) PlayerData.xPosition)) * (xCor - ((int) PlayerData.xPosition)) + ((yCor - ((int) PlayerData.yPosition)) * (yCor - ((int) PlayerData.yPosition)))));
           if (currentTile.neighbors.get(i) instanceof Wall)
           {
             currentTile.neighbors.get(i).setCost(10000);

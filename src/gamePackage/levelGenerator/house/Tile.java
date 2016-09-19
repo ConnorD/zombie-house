@@ -1,7 +1,7 @@
 package gamePackage.levelGenerator.house;
 
 import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
+import gamePackage.common.PlayerData;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -145,8 +145,8 @@ public class Tile
     {
       return;
     }
-    double distFromPlayer = Math.abs(Player.xPosition - xCord) + Math.abs(Player.yPosition - yCord);
-    if (distFromPlayer <= Player.playerSightRange)
+    double distFromPlayer = Math.abs(PlayerData.xPosition - xCord) + Math.abs(PlayerData.yPosition - yCord);
+    if (distFromPlayer <= PlayerData.playerSightRange)
     {
       hasBeenSeen = true;
     }

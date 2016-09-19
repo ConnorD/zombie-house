@@ -2,10 +2,7 @@ package gamePackage.mainPackage;
 
 import gamePackage.audio.AudioFiles;
 import gamePackage.audio.DirectionalPlayer;
-import gamePackage.common.InputContainer;
-import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
-import gamePackage.common.ZombieData;
+import gamePackage.common.*;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
 import gamePackage.levelGenerator.house.Tile;
@@ -17,6 +14,7 @@ import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.*;
 import javafx.scene.image.Image;
@@ -30,7 +28,9 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.Timer;
+import java.util.TimerTask;
 
 
 /**
@@ -39,7 +39,7 @@ import java.util.Timer;
  * <p>
  * WASD used for traditional movement, mouse swivels the camera.
  * <p>
- * Player cannot move through walls, and zombie collisions trigger
+ * PlayerData cannot move through walls, and zombie collisions trigger
  * a level reset.
  *
  * @author Maxwell Sanchez
@@ -84,6 +84,8 @@ public class MainApplication extends Application
   private PerspectiveCamera camera;
   private Group sceneRoot;
 
+  StatusBar vitals;
+
   /**
    * Create a robot to reset the mouse to the middle of the screen.
    */
@@ -98,6 +100,8 @@ public class MainApplication extends Application
       e.printStackTrace();
     }
   }
+
+
 
   /**
    * Called on initial application startup. Setup the camera, point light,
@@ -352,11 +356,17 @@ public class MainApplication extends Application
     for (Zombie zombie : LevelVar.zombieCollection)
     {
       sceneRoot.getChildren().add(zombie.zombie3D);
+
+      /*vitals = new StatusBar(ZombieData.health, 0, zombie.positionX, zombie.positionY, 0,0,60,20);
+      sceneRoot.getChildren().add(vitals);*/
     }
+
 
     // Create a zombie update timer
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
+
+
 
   }
 
@@ -399,24 +409,24 @@ public class MainApplication extends Application
       boolean isRunning = false;
 
       if (Double.isInfinite(displacementScaleFactor)) displacementScaleFactor = 1;
-      if (InputContainer.run && Player.stamina > 0)
+      if (InputContainer.run && PlayerData.stamina > 0)
       {
         displacementScaleFactor *= 2;
-        Player.stamina -= 1.0 / TARGET_FRAMES_PER_SECOND;
+        PlayerData.stamina -= 1.0 / TARGET_FRAMES_PER_SECOND;
         isRunning = true;
       }
 
-      // Player out of stamina
-      else if (Player.stamina <= 0)
+      // PlayerData out of stamina
+      else if (PlayerData.stamina <= 0)
       {
         InputContainer.run = false;
       }
 
-      // Player is not *trying* to run, so allow stamina regeneration
+      // PlayerData is not *trying* to run, so allow stamina regeneration
       if (!InputContainer.run)
       {
-        Player.stamina += Player.staminaRegen / TARGET_FRAMES_PER_SECOND;
-        if (Player.stamina > Player.maxStamina) Player.stamina = Player.maxStamina;
+        PlayerData.stamina += PlayerData.staminaRegen / TARGET_FRAMES_PER_SECOND;
+        if (PlayerData.stamina > PlayerData.maxStamina) PlayerData.stamina = PlayerData.maxStamina;
       }
 
       // How often to play the stepping noise (walking vs running)
@@ -445,10 +455,10 @@ public class MainApplication extends Application
       desiredZDisplacement *= displacementScaleFactor;
 
       // If possible, the position the player indicated they wanted to move to
-      double desiredPlayerXPosition = Player.xPosition + (desiredXDisplacement * (percentOfSecond * Player.playerSpeed));
-      double desiredPlayerYPosition = Player.yPosition + (desiredZDisplacement * (percentOfSecond * Player.playerSpeed));
+      double desiredPlayerXPosition = PlayerData.xPosition + (desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed));
+      double desiredPlayerYPosition = PlayerData.yPosition + (desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed));
 
-      // Player reached the exit
+      // PlayerData reached the exit
       if (LevelVar.house[(int) desiredPlayerXPosition][(int) desiredPlayerYPosition] instanceof Exit)
       {
         System.out.println("next level...");
@@ -458,32 +468,32 @@ public class MainApplication extends Application
       }
 
       // "Unstick" player
-      while (!(LevelVar.house[round(Player.xPosition)][round(Player.yPosition)] instanceof Tile))
+      while (!(LevelVar.house[round(PlayerData.xPosition)][round(PlayerData.yPosition)] instanceof Tile))
       {
-        if (Player.xPosition < 5)
+        if (PlayerData.xPosition < 5)
         {
-          Player.xPosition += 1;
+          PlayerData.xPosition += 1;
         } else
         {
-          Player.xPosition -= 1;
+          PlayerData.xPosition -= 1;
         }
       }
 
       // Check for wall collisions
-      if (!(LevelVar.house[round(desiredPlayerXPosition + WALL_COLLISION_OFFSET)][round(Player.yPosition)] instanceof Wall) &&
-              !(LevelVar.house[round(desiredPlayerXPosition - WALL_COLLISION_OFFSET)][round(Player.yPosition)] instanceof Wall))
+      if (!(LevelVar.house[round(desiredPlayerXPosition + WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall) &&
+              !(LevelVar.house[round(desiredPlayerXPosition - WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall))
       {
-        Player.xPosition += desiredXDisplacement * (percentOfSecond * Player.playerSpeed);
+        PlayerData.xPosition += desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed);
       }
-      if (!(LevelVar.house[round(Player.xPosition)][round(desiredPlayerYPosition + WALL_COLLISION_OFFSET)] instanceof Wall) &&
-              !(LevelVar.house[round(Player.xPosition)][round(desiredPlayerYPosition - WALL_COLLISION_OFFSET)] instanceof Wall))
+      if (!(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition + WALL_COLLISION_OFFSET)] instanceof Wall) &&
+              !(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition - WALL_COLLISION_OFFSET)] instanceof Wall))
       {
-        Player.yPosition += desiredZDisplacement * (percentOfSecond * Player.playerSpeed);
+        PlayerData.yPosition += desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed);
       }
 
       // Calculate camera displacement
-      cameraXDisplacement = Player.xPosition * TILE_WIDTH_AND_HEIGHT;
-      cameraZDisplacement = Player.yPosition * TILE_WIDTH_AND_HEIGHT;
+      cameraXDisplacement = PlayerData.xPosition * TILE_WIDTH_AND_HEIGHT;
+      cameraZDisplacement = PlayerData.yPosition * TILE_WIDTH_AND_HEIGHT;
 
       // Move the point light with the light
       pl.setTranslateX(cameraXDisplacement);
@@ -548,10 +558,6 @@ public class MainApplication extends Application
     @Override
     public void handle(long time)
     {
-      Timeline turnTime = new Timeline(new KeyFrame(
-              Duration.millis(1000),
-              ae ->{zombieAttack();}
-      ));
 
       if (frame == 0) lastFrame = time;
       frame++;
@@ -571,21 +577,25 @@ public class MainApplication extends Application
           zombie3D.setTranslateZ(zombie.positionY * TILE_WIDTH_AND_HEIGHT);
 
           // Move and rotate the zombie. A* doesn't currently work, so this allows zombies to move towards player. Ugly.
-          double distance = Math.sqrt(Math.abs(zombie.positionX - Player.xPosition) * Math.abs(zombie.positionX - Player.xPosition) +
-                  Math.abs(zombie.positionY - Player.yPosition) * Math.abs(zombie.positionY - Player.yPosition));
+          double distance = Math.sqrt(Math.abs(zombie.positionX - PlayerData.xPosition) * Math.abs(zombie.positionX - PlayerData.xPosition) +
+                  Math.abs(zombie.positionY - PlayerData.yPosition) * Math.abs(zombie.positionY - PlayerData.yPosition));
           if (distance < ZOMBIE_ACTIVATION_DISTANCE)
           {
             // Animate 3D zombie and move it to its parent zombie location
             zombie3D.nextFrame();
-            double distanceX = (zombie.positionX - Player.xPosition);
-            double distanceY = (zombie.positionY - Player.yPosition);
+            double distanceX = (zombie.positionX - PlayerData.xPosition);
+            double distanceY = (zombie.positionY - PlayerData.yPosition);
             double totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
 
-            // Player collided with zombie, Deduct health
+            // PlayerData collided with zombie, Deduct health
+
             if (totalDistance < 0.3)
             {
-              zombieAttack();
+              System.out.println("Im Called");
+              //zombieAttack();
             }
+
+
 
             double desiredPositionX = zombie.positionX - (distanceX / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
             double desiredPositionY = zombie.positionY - (distanceY / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
@@ -603,29 +613,29 @@ public class MainApplication extends Application
               zombie.positionY = desiredPositionY;
             }
 
-            double zombieVectorX = zombie.positionX - Player.xPosition;
-            double zombieVectorY = zombie.positionY - Player.yPosition;
+            double zombieVectorX = zombie.positionX - PlayerData.xPosition;
+            double zombieVectorY = zombie.positionY - PlayerData.yPosition;
 
             // Accomodate all four quadrants of the unit circle, rotate to face the user
             if (distanceX < 0)
             {
               if (distanceY < 0)
               {
-                double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - Player.xPosition) / (zombie.positionY - Player.yPosition)));
+                double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
                 zombie3D.setRotate(angle);
               } else
               {
-                double angle = 360 + Math.toDegrees(Math.atan((zombie.positionX - Player.xPosition) / (zombie.positionY - Player.yPosition)));
+                double angle = 360 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
                 zombie3D.setRotate(angle);
               }
             } else if (distanceY < 0)
             {
-              double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - Player.xPosition) / (zombie.positionY - Player.yPosition)));
+              double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
               zombie3D.setRotate(angle);
 
             } else
             {
-              double angle = Math.toDegrees(Math.atan((zombie.positionX - Player.xPosition) / (zombie.positionY - Player.yPosition)));
+              double angle = Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
               zombie3D.setRotate(angle);
             }
 
@@ -660,17 +670,27 @@ public class MainApplication extends Application
 
     public void zombieAttack()
     {
-      if(Player.health > 0.0)
+
+      if(PlayerData.health > 0.0)
       {
-        System.out.print("Player got hit, health -5 ");
-        Player.health+= -ZombieData.dps;
-        System.out.println("Health Remaining: "+ Player.health);
+        System.out.print("PlayerData got hit, health -5 ");
+        PlayerData.health+= -ZombieData.dps;
+        System.out.println("Health Remaining: "+ PlayerData.health);
       }
       else
       {
         System.out.println("Restarting due to death!!");
         level.restartLevel();
         rebuildLevel();
+      }
+    }
+
+    public void playerAttack()
+    {
+      if(ZombieData.health >0.0)
+      {
+        ZombieData.health += PlayerData.dps;
+
       }
     }
   }

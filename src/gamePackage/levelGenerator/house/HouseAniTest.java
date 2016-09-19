@@ -2,7 +2,7 @@ package gamePackage.levelGenerator.house;
 
 import gamePackage.common.InputContainer;
 import gamePackage.common.LevelVar;
-import gamePackage.common.Player;
+import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.zombies.LineWalkZombie;
 import gamePackage.levelGenerator.zombies.RandomWalkZombie;
 import gamePackage.levelGenerator.zombies.ZTimer;
@@ -154,7 +154,7 @@ public class HouseAniTest extends Application
       }
 
       gfx.setFill(Color.BLUE);
-      gfx.fillOval(Player.xPosition * sqrPix - sqrPix / 2, Player.yPosition * sqrPix - sqrPix / 2, sqrPix * 1, sqrPix * 1);
+      gfx.fillOval(PlayerData.xPosition * sqrPix - sqrPix / 2, PlayerData.yPosition * sqrPix - sqrPix / 2, sqrPix * 1, sqrPix * 1);
 
       for (Zombie z : LevelVar.zombieCollection)
       {
@@ -192,24 +192,24 @@ public class HouseAniTest extends Application
     desiredYDisplacement -= (InputContainer.forward) ? (1) : 0;
     desiredYDisplacement += (InputContainer.backward) ? (1) : 0;
 
-    double desiredPlayerXPosition = Player.xPosition + (desiredXDisplacement * PLAYER_MOVE_SPEED * Player.playerSpeed);
-    double desiredPlayerYPosition = Player.yPosition + (desiredYDisplacement * PLAYER_MOVE_SPEED * Player.playerSpeed);
+    double desiredPlayerXPosition = PlayerData.xPosition + (desiredXDisplacement * PLAYER_MOVE_SPEED * PlayerData.playerSpeed);
+    double desiredPlayerYPosition = PlayerData.yPosition + (desiredYDisplacement * PLAYER_MOVE_SPEED * PlayerData.playerSpeed);
 
     if (LevelVar.house[(int) desiredPlayerXPosition][(int) desiredPlayerYPosition] instanceof Floor)
     {
-      Player.xPosition += desiredXDisplacement * PLAYER_MOVE_SPEED;
-      Player.yPosition += desiredYDisplacement * PLAYER_MOVE_SPEED;
-    } else if (LevelVar.house[(int) desiredPlayerXPosition][(int) Player.yPosition] instanceof Floor)
+      PlayerData.xPosition += desiredXDisplacement * PLAYER_MOVE_SPEED;
+      PlayerData.yPosition += desiredYDisplacement * PLAYER_MOVE_SPEED;
+    } else if (LevelVar.house[(int) desiredPlayerXPosition][(int) PlayerData.yPosition] instanceof Floor)
     {
-      Player.xPosition += desiredXDisplacement * PLAYER_MOVE_SPEED;
-    } else if (LevelVar.house[(int) Player.xPosition][(int) desiredPlayerYPosition] instanceof Floor)
+      PlayerData.xPosition += desiredXDisplacement * PLAYER_MOVE_SPEED;
+    } else if (LevelVar.house[(int) PlayerData.xPosition][(int) desiredPlayerYPosition] instanceof Floor)
     {
-      Player.yPosition += desiredYDisplacement * PLAYER_MOVE_SPEED;
+      PlayerData.yPosition += desiredYDisplacement * PLAYER_MOVE_SPEED;
     }
     for (Zombie z : LevelVar.zombieCollection)
     {
-      double deltaX = Player.xPosition - z.positionX;
-      double deltaY = Player.yPosition - z.positionY;
+      double deltaX = PlayerData.xPosition - z.positionX;
+      double deltaY = PlayerData.yPosition - z.positionY;
       if (deltaX * deltaX + deltaY * deltaY < 1)
       {
         System.out.println("player dead");

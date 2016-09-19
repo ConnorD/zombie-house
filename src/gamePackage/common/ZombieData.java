@@ -11,7 +11,7 @@ public class ZombieData
   public static double health = 50.0;
   public static double maxHealth = 50.0;
 
-  public static double dps = 5.0;
+  public static double dps = 2.5;
 
   public static double masterZombieDps = 25.0;
 }
