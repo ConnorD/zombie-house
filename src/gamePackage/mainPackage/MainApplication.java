@@ -1,5 +1,6 @@
 package gamePackage.mainPackage;
 
+import com.sun.javafx.application.LauncherImpl;
 import gamePackage.audio.AudioFiles;
 import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.InputContainer;
@@ -110,6 +111,9 @@ public class MainApplication extends Application
     sceneRoot = new Group();
     Scene scene = new Scene(sceneRoot, WINDOW_WIDTH, WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
+
+    Label fpsLabel = new Label("FPS");
+//    sceneRoot.getChildren().add(fpsLabel);
 
     // Hide the cursor
     scene.setCursor(Cursor.NONE);
@@ -225,6 +229,7 @@ public class MainApplication extends Application
     stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
     stage.setScene(scene);
     stage.show();
+//    stage.toBack();
 
     // Load textures from files to use for floor, walls, and ceiling
     floorMaterial1.setDiffuseColor(Color.WHITE);
@@ -669,5 +674,7 @@ public class MainApplication extends Application
   public static void main(String[] args)
   {
     launch(args);
+
+//    LauncherImpl.launchApplication(this, GamePreloader.class, args);
   }
 }
