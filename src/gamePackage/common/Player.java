@@ -4,9 +4,8 @@ package gamePackage.common;
  * Ederin Igharoro
  *
  * Class to hold player positioning/stamina data.
- * Modifications: Added a health element (double) to store as data
- * for the game
  *
+ * Modifications: Added new data for the player such as health and dps
  * original author Maxwell Sanchez
  * @author Ederin Igharoro
  *****************************************************************************/
@@ -22,6 +21,7 @@ public class Player
   public static double health = 100.0;
   public static double maxHealth = 100.0;
 
+  public static double dps = 25.0;
 
   public static double playerSpeed = 2.0;
 
