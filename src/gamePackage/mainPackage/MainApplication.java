@@ -1,6 +1,5 @@
 package gamePackage.mainPackage;
 
-import com.sun.javafx.application.LauncherImpl;
 import gamePackage.audio.AudioFiles;
 import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.*;
@@ -10,28 +9,23 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
-import javafx.animation.Animation;
+import gamePackage.util.CombatSystem;
+import gamePackage.util.StatusBar;
 import javafx.animation.AnimationTimer;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 /**
@@ -85,7 +79,8 @@ public class MainApplication extends Application
   private PerspectiveCamera camera;
   private Group sceneRoot;
 
-  StatusBar vitals;
+  private StatusBar playerVitals;
+  private CombatSystem combatSystem;
 
   /**
    * Create a robot to reset the mouse to the middle of the screen.
@@ -155,6 +150,10 @@ public class MainApplication extends Application
     camera.setDepthTest(DepthTest.ENABLE);
     scene.setCamera(camera);
 
+    //Setting up player health and stamina bar
+    playerVitals = new StatusBar(PlayerData.health, PlayerData.stamina, PlayerData.xPosition,PlayerData.yPosition, 10, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    sceneRoot.getChildren().add(playerVitals);
+
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
     scene.setOnKeyPressed(event ->
     {
@@ -162,28 +161,44 @@ public class MainApplication extends Application
       if (keycode == KeyCode.W)
       {
         InputContainer.forward = true;
-      } else if (keycode == KeyCode.S)
+      }
+
+      else if (keycode == KeyCode.S)
       {
         InputContainer.backward = true;
-      } else if (keycode == KeyCode.A)
+      }
+
+      else if (keycode == KeyCode.A)
       {
         InputContainer.left = true;
-      } else if (keycode == KeyCode.D)
+      }
+
+      else if (keycode == KeyCode.D)
       {
         InputContainer.right = true;
-      } else if (keycode == KeyCode.F1)
+      }
+
+      else if (keycode == KeyCode.F1)
       {
         stage.setFullScreen(true);
-      } else if (keycode == KeyCode.F2)
+      }
+
+      else if (keycode == KeyCode.F2)
       {
         stage.setFullScreen(false);
-      } else if (keycode == KeyCode.SHIFT)
+      }
+
+      else if (keycode == KeyCode.SHIFT)
       {
         InputContainer.run = true;
-      } else if (keycode == KeyCode.ESCAPE)
+      }
+
+      else if (keycode == KeyCode.ESCAPE)
       {
         System.exit(0);
-      } else if (keycode == KeyCode.F3) /* Cheat key to advance levels */
+      }
+
+      else if (keycode == KeyCode.F3) /* Cheat key to advance levels */
       {
         level.nextLevel();
         rebuildLevel();
@@ -236,6 +251,29 @@ public class MainApplication extends Application
       }
     });
 
+    //Add Mouse Pressed and Released for attack system
+    scene.setOnMousePressed(event ->
+  {
+    MouseButton mouse = event.getButton();
+
+    if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
+    {
+      InputContainer.useWeapon = true;
+      System.out.println("Mouse Pressed, use Weapon = "+ InputContainer.useWeapon);
+    }
+  });
+
+    scene.setOnMouseReleased(event ->
+    {
+      MouseButton mouse = event.getButton();
+
+      if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
+      {
+        InputContainer.useWeapon = false;
+        System.out.println("Mouse Released, use Weapon = "+ InputContainer.useWeapon);
+      }
+    });
+
     stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
     stage.setScene(scene);
     stage.show();
@@ -245,7 +283,7 @@ public class MainApplication extends Application
     floorMaterial1.setDiffuseColor(Color.WHITE);
     floorMaterial1.setSpecularColor(Color.WHITE.darker());
     floorMaterial1.setSpecularPower(128);
-    floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/dirt.png").toExternalForm()));
+    floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
     floorMaterial2.setDiffuseColor(Color.WHITE);
     floorMaterial2.setSpecularColor(Color.WHITE.darker());
@@ -260,13 +298,13 @@ public class MainApplication extends Application
     floorMaterial4.setDiffuseColor(Color.WHITE);
     floorMaterial4.setSpecularColor(Color.WHITE.darker());
     floorMaterial4.setSpecularPower(128);
-    floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor4.png").toExternalForm()));
+    floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
     ceilingMaterial.setDiffuseColor(Color.WHITE);
     ceilingMaterial.setSpecularColor(Color.BLACK.darker().darker().darker().darker());
     ceilingMaterial.setSpecularPower(25);
-    ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/shale.png").toExternalForm()));
+    ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
     wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     wallMaterial.setSpecularColor(Color.BLACK);
@@ -274,7 +312,9 @@ public class MainApplication extends Application
     wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
 
     exitMaterial.setDiffuseColor(Color.WHITE);
-    exitMaterial.setSpecularColor(Color.WHITE);
+    exitMaterial.setSpecularColor(Color.WHITE.darker());
+    exitMaterial.setSpecularPower(128);
+    //exitMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/exitDoor.png").toExternalForm()));
 
     setupLevel();
 
@@ -297,6 +337,8 @@ public class MainApplication extends Application
    */
   public void setupLevel()
   {
+    combatSystem = new CombatSystem(true, false);
+
     Tile[][] house = LevelVar.house;
     // Loop through all tiles
     for (int x = 0; x < house.length; x++)
@@ -361,9 +403,6 @@ public class MainApplication extends Application
     for (Zombie zombie : LevelVar.zombieCollection)
     {
       sceneRoot.getChildren().add(zombie.zombie3D);
-
-      /*vitals = new StatusBar(ZombieData.health, 0, zombie.positionX, zombie.positionY, 0,0,60,20);
-      sceneRoot.getChildren().add(vitals);*/
     }
 
 
@@ -592,12 +631,25 @@ public class MainApplication extends Application
             double distanceY = (zombie.positionY - PlayerData.yPosition);
             double totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
 
-            // PlayerData collided with zombie, Deduct health
+            // Player collides with zombie, Deduct health
 
             if (totalDistance < 0.3)
             {
               System.out.println("Im Called");
-              //zombieAttack();
+
+              combatSystem.zombieAttack();
+
+              if(combatSystem.isPlayerAlive() == false)
+              {
+                System.out.println("Restarting due to death!!");
+                level.restartLevel();
+                rebuildLevel();
+              }
+
+              if(InputContainer.useWeapon == true)
+              {
+                combatSystem.playerAttack();
+              }
             }
 
 
@@ -673,31 +725,6 @@ public class MainApplication extends Application
       }
     }
 
-    public void zombieAttack()
-    {
-
-      if(PlayerData.health > 0.0)
-      {
-        System.out.print("PlayerData got hit, health -5 ");
-        PlayerData.health+= -ZombieData.dps;
-        System.out.println("Health Remaining: "+ PlayerData.health);
-      }
-      else
-      {
-        System.out.println("Restarting due to death!!");
-        level.restartLevel();
-        rebuildLevel();
-      }
-    }
-
-    public void playerAttack()
-    {
-      if(ZombieData.health >0.0)
-      {
-        ZombieData.health += PlayerData.dps;
-
-      }
-    }
   }
 
   /**

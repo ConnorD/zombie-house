@@ -6,12 +6,133 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/Player.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="Checkpoint update due to me not going to be in class on tuesday. Added a CombatSystem claas to hadnle dps for player and zombie and began to start thinking of how to implement different past selves in the system.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/exitDoor.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/floor0.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/floor1.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/resources/wallOld.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/dirt.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/floor2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/floor3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/floor4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/footstep1.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/footstep2.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/shale.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/wall.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-1.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-10.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-11.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-12.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-13.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-14.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-15.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-16.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-17.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-18.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-19.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-2.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-20.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-21.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-22.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-23.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-24.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-3.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-4.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-5.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-6.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-7.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-8.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/resources/zombieAudioFiles/zombie-9.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/dirt.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/floor2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/floor3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/floor4.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/footstep1.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/footstep2.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/shale.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/wall.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-1.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-10.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-11.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-12.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-13.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-14.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-15.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-16.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-17.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-18.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-19.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-2.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-20.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-21.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-22.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-23.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-24.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-3.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-4.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-5.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-6.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-7.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-8.wav" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/gamePackage/resources/zombieAudioFiles/zombie-9.wav" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gamePackage/common/StatusBar.java" afterPath="$PROJECT_DIR$/src/gamePackage/util/StatusBar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/InputContainer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/InputContainer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/HouseAniTest$MainGameLoop.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/HouseAniTest$MainGameLoop.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/HouseAniTest.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/HouseAniTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Level.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Level.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/ProGen.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/ProGen.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Tile.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Tile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/zombies/Zombie.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/zombies/Zombie.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/Zombie3D.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/Zombie3D.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/floor3.png" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/floor3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/wall.png" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/wall.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/floor3.png" afterPath="$PROJECT_DIR$/src/resources/floor3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resources/wall.png" afterPath="$PROJECT_DIR$/src/resources/wall.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GamePreloader/GamePreloader.iml" afterPath="$PROJECT_DIR$/GamePreloader/GamePreloader.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/zombie-house.iml" afterPath="$PROJECT_DIR$/zombie-house.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.html" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/audio/README" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/audio/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/README" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/README" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/README" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/README" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/10.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/10.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/11.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/11.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/12.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/12.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/13.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/13.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/14.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/14.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/15.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/15.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/16.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/16.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/17.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/17.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/18.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/18.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/19.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/19.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/20.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/20.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/21.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/21.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/22.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/22.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/23.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/23.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/24.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/24.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/25.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/25.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/26.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/26.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/27.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/27.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/28.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/28.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/29.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/29.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/30.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/30.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/5.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/5.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/6.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/6.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/7.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/7.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/8.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/8.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/resources/9.fxml" afterPath="$PROJECT_DIR$/out/production/zombie-house/resources/9.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" afterPath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/common/ZombieData.java" afterPath="$PROJECT_DIR$/src/gamePackage/common/ZombieData.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" />
     </list>
     <ignored path="zombie-house.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +156,8 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="337" column="2" selection-start-line="337" selection-start-column="2" selection-end-line="337" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -44,34 +165,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MANIFEST.MF" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/META-INF/MANIFEST.MF">
+      <file leaf-file-name="Level.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+            <state relative-caret-position="193">
+              <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GamePreloader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GamePreloader/src/GamePreloader.java">
+      <file leaf-file-name="CombatSystem.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="943">
-              <caret line="64" column="3" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
+            <state relative-caret-position="102">
+              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
+                <element signature="e#380#381#0" expanded="true" />
+                <element signature="e#422#423#0" expanded="true" />
+                <element signature="e#454#455#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatusBar.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/gamePackage/common/StatusBar.java">
+      <file leaf-file-name="InputContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/common/InputContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            <state relative-caret-position="170">
+              <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusBar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/util/StatusBar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="359">
+              <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -80,8 +214,18 @@
       <file leaf-file-name="ZombieData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/common/ZombieData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            <state relative-caret-position="187">
+              <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PlayerData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/common/PlayerData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -122,7 +266,12 @@
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainPreloader.java" />
         <option value="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
         <option value="$PROJECT_DIR$/GamePreloader/src/GamePreloader.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/common/ZombieData.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/util/StatusBar.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java" />
       </list>
     </option>
   </component>
@@ -193,28 +342,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gamePackage" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,60 +503,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artifacts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie_house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="zombie-house" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="out" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="artifacts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -438,11 +511,16 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Reviews/4569878-e6d3e5545069678783c171320d075e8e248c0f8c" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Ultimate Ediri\Documents\IntelliJ IDEA Workspace\CS351L\zombie-house\src\resources" />
+    </key>
   </component>
   <component name="RunManager" selected="JAR Application.zombie_house.jar">
     <configuration default="false" name="GamePreloader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -825,6 +903,14 @@
       <option name="presentableId" value="Default" />
       <updated>1473797661960</updated>
     </task>
+    <task id="LOCAL-00001" summary="Displays Health bar for each zombie created, Attack system not yet ready">
+      <created>1474321401473</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1474321401473</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -833,17 +919,18 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329602" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32875264" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34778014" sideWeight="0.5046875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34778014" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34778014" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15520833" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -854,7 +941,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -894,6 +980,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Displays Health bar for each zombie created, Attack system not yet ready" />
+    <MESSAGE value="Checkpoint update due to me not going to be in class on tuesday. Added a CombatSystem claas to hadnle dps for player and zombie and began to start thinking of how to implement different past selves in the system." />
+    <option name="LAST_COMMIT_MESSAGE" value="Checkpoint update due to me not going to be in class on tuesday. Added a CombatSystem claas to hadnle dps for player and zombie and began to start thinking of how to implement different past selves in the system." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -903,145 +994,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/ZTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/LineWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/LevelVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="11" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/MasterZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4386">
-          <caret line="306" column="16" selection-start-line="306" selection-start-column="16" selection-end-line="306" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Floor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/ZTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/LineWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/LevelVar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2074">
-          <caret line="122" column="11" selection-start-line="122" selection-start-column="11" selection-end-line="122" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/MasterZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4386">
-          <caret line="306" column="16" selection-start-line="306" selection-start-column="16" selection-end-line="306" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Floor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="48" column="24" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/ZTimer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/LineWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/common/LevelVar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1248,10 +1200,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/StatusBar.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/util/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/ZombieData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1261,16 +1221,58 @@
         <state relative-caret-position="943">
           <caret line="64" column="3" selection-start-line="64" selection-start-column="3" selection-end-line="64" selection-end-column="3" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="imports" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/ZombieData.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/util/StatusBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        <state relative-caret-position="359">
+          <caret line="95" column="34" selection-start-line="95" selection-start-column="34" selection-end-line="95" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/PlayerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/InputContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/resources/wall.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/resources/shale.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Wall.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Tile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1283,10 +1285,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/shale.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/wallOld.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/wall.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/Diffuse1.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/dirt.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/tiles.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/floor4.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/floor3.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/floor2.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+            <element signature="e#380#381#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="213" column="0" selection-start-line="213" selection-start-column="0" selection-end-line="213" selection-end-column="0" />
+        <state relative-caret-position="193">
+          <caret line="337" column="2" selection-start-line="337" selection-start-column="2" selection-end-line="337" selection-end-column="2" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

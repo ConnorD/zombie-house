@@ -8,8 +8,8 @@ package gamePackage.common;
  *****************************************************************************/
 public class ZombieData
 {
-  public static double health = 50.0;
-  public static double maxHealth = 50.0;
+  public static double health = 100.0;
+  public static double maxHealth = 100.0;
 
   public static double dps = 2.5;
 

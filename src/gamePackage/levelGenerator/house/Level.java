@@ -3,6 +3,7 @@ package gamePackage.levelGenerator.house;
 import gamePackage.common.LevelVar;
 import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.util.CombatSystem;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -45,6 +46,8 @@ public class Level
   private static long rSeed;
 
   private static ProGen pG;
+
+  private CombatSystem combatSystem;
 
   /**
    * Level constructor
@@ -101,12 +104,12 @@ public class Level
     LevelVar.zombieCollection = new ArrayList<Zombie>();
     LevelVar.rand.setSeed(rSeed);
     pG = new ProGen();
+    combatSystem = new CombatSystem(true, true);
     if (LevelVar.LEVEL_DEBUG_TEXT)
     {
       printHouse();
     }
 
-    PlayerData.health = PlayerData.maxHealth;
   }
 
   /**

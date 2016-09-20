@@ -15,6 +15,8 @@ public class InputContainer
   public static boolean right = false;
   public static boolean run = false;
 
+  public static boolean useWeapon = false;
+
   // The last X location of the mouse, used for calculating how far the user moved the mouse in a mouse event
   public static double lastMouseX = 0.0;
 

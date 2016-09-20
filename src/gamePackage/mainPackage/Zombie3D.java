@@ -1,6 +1,6 @@
 package gamePackage.mainPackage;
 
-import gamePackage.common.StatusBar;
+import gamePackage.util.StatusBar;
 import gamePackage.common.ZombieData;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
