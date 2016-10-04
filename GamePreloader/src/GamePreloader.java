@@ -18,14 +18,6 @@ public class GamePreloader extends Preloader
   ProgressBar bar;
   Stage stage;
 
-//  private Scene createPreloaderScene()
-//  {
-////    bar = new ProgressBar();
-//    BorderPane p = new BorderPane();
-//    p.setCenter(bar);
-//    return new Scene(p, 300, 150);
-//  }
-
   public void start(Stage stage) throws Exception
   {
     this.stage = stage;
@@ -36,10 +28,7 @@ public class GamePreloader extends Preloader
         stage.hide();
       }
     });
-//
-//    Button settingsButton = new Button("Settings");
-//    Button quitButton = new Button("Quit");
-//    bar = new ProgressBar();
+
     BorderPane pane = new BorderPane();
     pane.setCenter(startButton);
     Scene preloaderScene = new Scene(pane, 400, 300);
@@ -59,7 +48,6 @@ public class GamePreloader extends Preloader
   {
     if (evt.getType() == StateChangeNotification.Type.BEFORE_START)
     {
-//      stage.toFront();
       stage.hide();
     }
   }

@@ -64,16 +64,8 @@ public class Zombie3D extends Group
     // Make sure zombies are on different frames to avoid "synchronized" movement
     getChildren().get(random.nextInt(MAXIMUM_FRAME)).setVisible(true);
 
-    zombieVitails = new StatusBar(ZombieData.health, 0, -5, -7, 0,0,10,1);
+    zombieVitails = new StatusBar(ZombieData.health, 0, -5, -7, 0, 0, 10, 1);
     getChildren().add(zombieVitails);
-  }
-
-  public void setType(String zombieType)
-  {
-    if (zombieType.equalsIgnoreCase("linewalk"))
-    {
-
-    }
   }
 
   /**
@@ -92,6 +84,7 @@ public class Zombie3D extends Group
       currentFrame = 1;
       frameDirection = 1;
     }
+
     getChildren().get(currentFrame).setVisible(true);
   }
 }

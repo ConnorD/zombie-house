@@ -15,6 +15,7 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -74,6 +75,7 @@ public class MainApplication extends Application
 
   private Level level;
   private Stage stage;
+  private GameLoop mainGameLoop;
 
   private PointLight pl;
   private PerspectiveCamera camera;
@@ -81,6 +83,8 @@ public class MainApplication extends Application
 
   private StatusBar playerVitals;
   private CombatSystem combatSystem;
+
+  private boolean isRunning = false;
 
   /**
    * Create a robot to reset the mouse to the middle of the screen.
@@ -195,7 +199,15 @@ public class MainApplication extends Application
 
       else if (keycode == KeyCode.ESCAPE)
       {
-        System.exit(0);
+        if (isRunning == true)
+        {
+          isRunning = false;
+          mainGameLoop.stop();
+        } else
+        {
+          isRunning = true;
+          mainGameLoop.start();
+        }
       }
 
       else if (keycode == KeyCode.F3) /* Cheat key to advance levels */
@@ -318,7 +330,8 @@ public class MainApplication extends Application
 
     setupLevel();
 
-    new GameLoop().start();
+    mainGameLoop = new GameLoop();
+//    mainGameLoop.start();
   }
 
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner
@@ -409,9 +422,6 @@ public class MainApplication extends Application
     // Create a zombie update timer
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
-
-
-
   }
 
   /**
@@ -421,6 +431,7 @@ public class MainApplication extends Application
    */
   class GameLoop extends AnimationTimer
   {
+
     /**
      * Moves the player, if possible (no wall collisions) in the direction(s) requested by the user
      * with keyboard input, given the current angle determined by previous mouse input.
