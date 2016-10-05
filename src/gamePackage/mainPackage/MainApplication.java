@@ -16,6 +16,9 @@ import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
@@ -23,10 +26,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.util.Optional;
 
 
 /**
@@ -203,6 +208,23 @@ public class MainApplication extends Application
         {
           isRunning = false;
           mainGameLoop.stop();
+
+          PauseDialog pd = new PauseDialog();
+          Optional<ButtonType> chosenOption = pd.showAndWait();
+
+          if (chosenOption.isPresent())
+          {
+            if (chosenOption.get() == PauseDialog.RESUME_BUTTON_TYPE)
+            {
+              mainGameLoop.start();
+              isRunning = true;
+            } else
+            {
+              mainGameLoop.stop();
+              isRunning = false;
+              rebuildLevel();
+            }
+          }
         } else
         {
           isRunning = true;
@@ -289,7 +311,7 @@ public class MainApplication extends Application
     stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
     stage.setScene(scene);
     stage.show();
-//    stage.toBack();
+    stage.toFront();
 
     // Load textures from files to use for floor, walls, and ceiling
     floorMaterial1.setDiffuseColor(Color.WHITE);
@@ -331,7 +353,6 @@ public class MainApplication extends Application
     setupLevel();
 
     mainGameLoop = new GameLoop();
-//    mainGameLoop.start();
   }
 
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner

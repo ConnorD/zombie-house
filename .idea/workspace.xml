@@ -7,22 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="Checkpoint update due to me not going to be in class on tuesday. Added a CombatSystem claas to hadnle dps for player and zombie and began to start thinking of how to implement different past selves in the system.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/util/PlayerRecorder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/PauseDialog.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GamePreloader/gamePackage/mainPackage/GamePreloader$1.class" afterPath="$PROJECT_DIR$/out/production/GamePreloader/gamePackage/mainPackage/GamePreloader$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/GamePreloader/gamePackage/mainPackage/GamePreloader.class" afterPath="$PROJECT_DIR$/out/production/GamePreloader/gamePackage/mainPackage/GamePreloader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/Zombie3D.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/Zombie3D.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GamePreloader/src/GamePreloader.java" afterPath="$PROJECT_DIR$/GamePreloader/src/GamePreloader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" />
     </list>
     <ignored path="zombie-house.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,8 +37,20 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="216" column="20" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
+            <state relative-caret-position="241">
+              <caret line="216" column="50" selection-start-line="216" selection-start-column="50" selection-end-line="216" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PauseDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/PauseDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,6 +63,26 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Zombie3D.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="680">
+              <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatusBar.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamePackage/util/StatusBar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="782">
+              <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -99,6 +122,7 @@
         <option value="$PROJECT_DIR$/GamePreloader/src/GamePreloader.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/util/PlayerRecorder.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/PauseDialog.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
       </list>
     </option>
@@ -140,9 +164,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -172,10 +194,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -375,6 +393,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -738,8 +758,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="false" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -748,12 +768,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34778014" sideWeight="0.5046875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34658384" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34658384" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18263888" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -818,13 +838,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/LineWalkZombie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/common/LevelVar.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="748">
@@ -1048,7 +1061,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="37" selection-start-line="11" selection-start-column="37" selection-end-line="11" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1092,12 +1104,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#662#663#0" expanded="false" />
-            <element signature="e#692#693#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,15 +1111,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/util/StatusBar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="717">
-          <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1121,15 +1118,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="27" column="34" selection-start-line="27" selection-start-column="34" selection-end-line="27" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1137,7 +1125,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="717">
           <caret line="297" column="35" selection-start-line="297" selection-start-column="35" selection-end-line="297" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,10 +1136,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/util/StatusBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="782">
+          <caret line="56" column="30" selection-start-line="56" selection-start-column="30" selection-end-line="56" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/PauseDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="21" column="69" selection-start-line="21" selection-start-column="69" selection-end-line="21" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="216" column="20" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
+        <state relative-caret-position="241">
+          <caret line="216" column="50" selection-start-line="216" selection-start-column="50" selection-end-line="216" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
