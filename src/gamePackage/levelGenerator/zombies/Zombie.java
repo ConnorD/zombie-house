@@ -482,7 +482,6 @@ public class Zombie
   /**
    * Used to tell the Zombie where to go once using the A* path obtained 
    * from calcPath()
-   * @param time Used to set initial heading for first call
    */
   public void makeHeading()
   {

@@ -2,6 +2,7 @@ package gamePackage.util;
 
 import gamePackage.common.PlayerData;
 import gamePackage.common.ZombieData;
+import gamePackage.levelGenerator.zombies.Zombie;
 
 /**
  *
@@ -26,12 +27,18 @@ public class CombatSystem
     return pastSelfPresent;
   }
 
+
   public CombatSystem(boolean playerAlive , boolean pastSelfPresent)
   {
     this.playerAlive = playerAlive;
     this.pastSelfPresent = pastSelfPresent;
 
     PlayerData.health = PlayerData.maxHealth;
+  }
+
+  public void targetToChase(Zombie zombie)
+  {
+
   }
 
 

@@ -10,23 +10,19 @@ import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.util.CombatSystem;
+import gamePackage.util.GameData;
 import gamePackage.util.StatusBar;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
-import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.stage.Stage;
 
@@ -43,7 +39,7 @@ import java.util.Optional;
  * PlayerData cannot move through walls, and zombie collisions trigger
  * a level reset.
  *
- * @author Maxwell Sanchez
+ * @author Connor Denman & Ederin Igharoro
  */
 public class MainApplication extends Application
 {
@@ -54,29 +50,7 @@ public class MainApplication extends Application
 
   private double cameraYRotation = 0;
 
-  private static final double TARGET_FRAMES_PER_SECOND = 60;
 
-  private static final double PLAYER_TURN_SPEED = 0.07;
-  private static final double PLAYER_TURN_SMOOTHING = 0.36;
-
-  private static final double FLOOR_Y_DISPLACEMENT = -10;
-  private static final double CEILING_Y_DISPLACEMENT = -600;
-  private static final double WALL_HEIGHT = 600;
-  private static final double TILE_WIDTH_AND_HEIGHT = 400;
-  private static final double WALL_COLLISION_OFFSET = 0.25;
-
-  private static final int WINDOW_WIDTH = 1260;
-  private static final int WINDOW_HEIGHT = 900;
-
-  private static final int ZOMBIE_ACTIVATION_DISTANCE = 14;
-
-  private static final PhongMaterial floorMaterial1 = new PhongMaterial();
-  private static final PhongMaterial floorMaterial2 = new PhongMaterial();
-  private static final PhongMaterial floorMaterial3 = new PhongMaterial();
-  private static final PhongMaterial floorMaterial4 = new PhongMaterial();
-  private static final PhongMaterial ceilingMaterial = new PhongMaterial();
-  private static final PhongMaterial wallMaterial = new PhongMaterial();
-  private static final PhongMaterial exitMaterial = new PhongMaterial();
 
   private Level level;
   private Stage stage;
@@ -123,7 +97,7 @@ public class MainApplication extends Application
 
     // Create group to hold 3D objects
     sceneRoot = new Group();
-    Scene scene = new Scene(sceneRoot, WINDOW_WIDTH, WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
+    Scene scene = new Scene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
 
     Label fpsLabel = new Label("FPS");
@@ -160,7 +134,7 @@ public class MainApplication extends Application
     scene.setCamera(camera);
 
     //Setting up player health and stamina bar
-    playerVitals = new StatusBar(PlayerData.health, PlayerData.stamina, PlayerData.xPosition,PlayerData.yPosition, 10, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    playerVitals = new StatusBar(PlayerData.health, PlayerData.stamina, PlayerData.xPosition,PlayerData.yPosition, 10, 0, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
     sceneRoot.getChildren().add(playerVitals);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
@@ -265,7 +239,7 @@ public class MainApplication extends Application
     scene.addEventHandler(MouseEvent.MOUSE_MOVED, event ->
     {
       double rotateAmountY = event.getScreenX() - InputContainer.lastMouseX;
-      rotateAmountY *= PLAYER_TURN_SPEED;
+      rotateAmountY *= GameData.PLAYER_TURN_SPEED;
 
       // Smooth inertia swivel
       InputContainer.remainingCameraPan += rotateAmountY;
@@ -314,41 +288,41 @@ public class MainApplication extends Application
     stage.toFront();
 
     // Load textures from files to use for floor, walls, and ceiling
-    floorMaterial1.setDiffuseColor(Color.WHITE);
-    floorMaterial1.setSpecularColor(Color.WHITE.darker());
-    floorMaterial1.setSpecularPower(128);
-    floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
+    GameData.floorMaterial1.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial1.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial1.setSpecularPower(128);
+    GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
-    floorMaterial2.setDiffuseColor(Color.WHITE);
-    floorMaterial2.setSpecularColor(Color.WHITE.darker());
-    floorMaterial2.setSpecularPower(128);
-    floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
+    GameData.floorMaterial2.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial2.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial2.setSpecularPower(128);
+    GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
-    floorMaterial3.setDiffuseColor(Color.WHITE);
-    floorMaterial3.setSpecularColor(Color.WHITE.darker());
-    floorMaterial3.setSpecularPower(128);
-    floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
+    GameData.floorMaterial3.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial3.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial3.setSpecularPower(128);
+    GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    floorMaterial4.setDiffuseColor(Color.WHITE);
-    floorMaterial4.setSpecularColor(Color.WHITE.darker());
-    floorMaterial4.setSpecularPower(128);
-    floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
+    GameData.floorMaterial4.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial4.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial4.setSpecularPower(128);
+    GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
-    ceilingMaterial.setDiffuseColor(Color.WHITE);
-    ceilingMaterial.setSpecularColor(Color.BLACK.darker().darker().darker().darker());
-    ceilingMaterial.setSpecularPower(25);
-    ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
+    GameData.ceilingMaterial.setDiffuseColor(Color.WHITE);
+    GameData.ceilingMaterial.setSpecularColor(Color.BLACK.darker().darker().darker().darker());
+    GameData.ceilingMaterial.setSpecularPower(25);
+    GameData.ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
-    wallMaterial.setSpecularColor(Color.BLACK);
-    wallMaterial.setSpecularPower(256);
-    wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
+    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.wallMaterial.setSpecularColor(Color.BLACK);
+    GameData.wallMaterial.setSpecularPower(256);
+    GameData.wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
 
-    exitMaterial.setDiffuseColor(Color.WHITE);
-    exitMaterial.setSpecularColor(Color.WHITE.darker());
-    exitMaterial.setSpecularPower(128);
-    //exitMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/exitDoor.png").toExternalForm()));
+    GameData.exitMaterial.setDiffuseColor(Color.WHITE);
+    GameData.exitMaterial.setSpecularColor(Color.WHITE.darker());
+    GameData.exitMaterial.setSpecularPower(128);
+    //GameData.exitMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/exitDoor.png").toExternalForm()));
 
     setupLevel();
 
@@ -380,54 +354,54 @@ public class MainApplication extends Application
       for (int z = 0; z < house[0].length; z++)
       {
         // Always have a floor and ceiling
-        Box floor = new Box(TILE_WIDTH_AND_HEIGHT, 10, TILE_WIDTH_AND_HEIGHT);
+        Box floor = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
         if (house[x][z].zone == 0)
         {
-          floor.setMaterial(floorMaterial1);
+          floor.setMaterial(GameData.floorMaterial1);
         }
         if (house[x][z].zone == 1)
         {
-          floor.setMaterial(floorMaterial2);
+          floor.setMaterial(GameData.floorMaterial2);
         }
         if (house[x][z].zone == 2)
         {
-          floor.setMaterial(floorMaterial3);
+          floor.setMaterial(GameData.floorMaterial3);
         } else
         {
-          floor.setMaterial(floorMaterial4);
+          floor.setMaterial(GameData.floorMaterial4);
         }
 
-        floor.setTranslateY(FLOOR_Y_DISPLACEMENT);
-        floor.setTranslateX(x * TILE_WIDTH_AND_HEIGHT);
-        floor.setTranslateZ(z * TILE_WIDTH_AND_HEIGHT);
+        floor.setTranslateY(GameData.FLOOR_Y_DISPLACEMENT);
+        floor.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+        floor.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
         sceneRoot.getChildren().add(floor);
 
-        Box ceiling = new Box(TILE_WIDTH_AND_HEIGHT, 10, TILE_WIDTH_AND_HEIGHT);
-        ceiling.setMaterial(ceilingMaterial);
-        ceiling.setTranslateY(CEILING_Y_DISPLACEMENT);
-        ceiling.setTranslateX(x * TILE_WIDTH_AND_HEIGHT);
-        ceiling.setTranslateZ(z * TILE_WIDTH_AND_HEIGHT);
+        Box ceiling = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
+        ceiling.setMaterial(GameData.ceilingMaterial);
+        ceiling.setTranslateY(GameData.CEILING_Y_DISPLACEMENT);
+        ceiling.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+        ceiling.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
         sceneRoot.getChildren().add(ceiling);
 
         // If wall, place a ground-to-ceiling wall box
         if (house[x][z] instanceof Wall)
         {
-          Box wall = new Box(TILE_WIDTH_AND_HEIGHT, WALL_HEIGHT, TILE_WIDTH_AND_HEIGHT);
-          wall.setMaterial(wallMaterial);
-          wall.setTranslateY(-WALL_HEIGHT / 2);
-          wall.setTranslateX(x * TILE_WIDTH_AND_HEIGHT);
-          wall.setTranslateZ(z * TILE_WIDTH_AND_HEIGHT);
+          Box wall = new Box(GameData.TILE_WIDTH_AND_HEIGHT, GameData.WALL_HEIGHT, GameData.TILE_WIDTH_AND_HEIGHT);
+          wall.setMaterial(GameData.wallMaterial);
+          wall.setTranslateY(-GameData.WALL_HEIGHT / 2);
+          wall.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+          wall.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
           sceneRoot.getChildren().add(wall);
         }
 
         // If exit, place a ground-to-ceiling exit box
         else if (house[x][z] instanceof Exit)
         {
-          Box exit = new Box(TILE_WIDTH_AND_HEIGHT, WALL_HEIGHT, TILE_WIDTH_AND_HEIGHT);
-          exit.setMaterial(exitMaterial);
-          exit.setTranslateY(-WALL_HEIGHT / 2);
-          exit.setTranslateX(x * TILE_WIDTH_AND_HEIGHT);
-          exit.setTranslateZ(z * TILE_WIDTH_AND_HEIGHT);
+          Box exit = new Box(GameData.TILE_WIDTH_AND_HEIGHT, GameData.WALL_HEIGHT, GameData.TILE_WIDTH_AND_HEIGHT);
+          exit.setMaterial(GameData.exitMaterial);
+          exit.setTranslateY(-GameData.WALL_HEIGHT / 2);
+          exit.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+          exit.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
           sceneRoot.getChildren().add(exit);
         }
       }
@@ -488,7 +462,7 @@ public class MainApplication extends Application
       if (InputContainer.run && PlayerData.stamina > 0)
       {
         displacementScaleFactor *= 2;
-        PlayerData.stamina -= 1.0 / TARGET_FRAMES_PER_SECOND;
+        PlayerData.stamina -= 1.0 / GameData.TARGET_FRAMES_PER_SECOND;
         isRunning = true;
       }
 
@@ -501,7 +475,7 @@ public class MainApplication extends Application
       // PlayerData is not *trying* to run, so allow stamina regeneration
       if (!InputContainer.run)
       {
-        PlayerData.stamina += PlayerData.staminaRegen / TARGET_FRAMES_PER_SECOND;
+        PlayerData.stamina += PlayerData.staminaRegen / GameData.TARGET_FRAMES_PER_SECOND;
         if (PlayerData.stamina > PlayerData.maxStamina) PlayerData.stamina = PlayerData.maxStamina;
       }
 
@@ -556,27 +530,27 @@ public class MainApplication extends Application
       }
 
       // Check for wall collisions
-      if (!(LevelVar.house[round(desiredPlayerXPosition + WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall) &&
-              !(LevelVar.house[round(desiredPlayerXPosition - WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall))
+      if (!(LevelVar.house[round(desiredPlayerXPosition + GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall) &&
+              !(LevelVar.house[round(desiredPlayerXPosition - GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall))
       {
         PlayerData.xPosition += desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed);
       }
-      if (!(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition + WALL_COLLISION_OFFSET)] instanceof Wall) &&
-              !(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition - WALL_COLLISION_OFFSET)] instanceof Wall))
+      if (!(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition + GameData.WALL_COLLISION_OFFSET)] instanceof Wall) &&
+              !(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition - GameData.WALL_COLLISION_OFFSET)] instanceof Wall))
       {
         PlayerData.yPosition += desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed);
       }
 
       // Calculate camera displacement
-      cameraXDisplacement = PlayerData.xPosition * TILE_WIDTH_AND_HEIGHT;
-      cameraZDisplacement = PlayerData.yPosition * TILE_WIDTH_AND_HEIGHT;
+      cameraXDisplacement = PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
+      cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
 
       // Move the point light with the light
       pl.setTranslateX(cameraXDisplacement);
       pl.setTranslateZ(cameraZDisplacement);
 
       // Calculate camera rotation
-      cameraYRotation += PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
+      cameraYRotation += GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
 
       // Displace camera
       camera.setTranslateX(cameraXDisplacement);
@@ -586,7 +560,7 @@ public class MainApplication extends Application
       camera.setRotate(cameraYRotation);
 
       // Used for movement and swivel smoothing
-      InputContainer.remainingCameraPan -= PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
+      InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
 
     }
 
@@ -649,13 +623,13 @@ public class MainApplication extends Application
         for (Zombie zombie : LevelVar.zombieCollection)
         {
           Zombie3D zombie3D = zombie.zombie3D;
-          zombie3D.setTranslateX(zombie.positionX * TILE_WIDTH_AND_HEIGHT);
-          zombie3D.setTranslateZ(zombie.positionY * TILE_WIDTH_AND_HEIGHT);
+          zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
+          zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
 
           // Move and rotate the zombie. A* doesn't currently work, so this allows zombies to move towards player. Ugly.
           double distance = Math.sqrt(Math.abs(zombie.positionX - PlayerData.xPosition) * Math.abs(zombie.positionX - PlayerData.xPosition) +
                   Math.abs(zombie.positionY - PlayerData.yPosition) * Math.abs(zombie.positionY - PlayerData.yPosition));
-          if (distance < ZOMBIE_ACTIVATION_DISTANCE)
+          if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE)
           {
             // Animate 3D zombie and move it to its parent zombie location
             zombie3D.nextFrame();
@@ -671,14 +645,14 @@ public class MainApplication extends Application
 
               combatSystem.zombieAttack();
 
-              if(combatSystem.isPlayerAlive() == false)
+              if(!combatSystem.isPlayerAlive())
               {
                 System.out.println("Restarting due to death!!");
                 level.restartLevel();
                 rebuildLevel();
               }
 
-              if(InputContainer.useWeapon == true)
+              if(InputContainer.useWeapon)
               {
                 combatSystem.playerAttack();
               }
@@ -691,13 +665,13 @@ public class MainApplication extends Application
 
 
             // Check for wall collisions
-            if (!(LevelVar.house[round(desiredPositionX + WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall) &&
-                    !(LevelVar.house[round(desiredPositionX - WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall))
+            if (!(LevelVar.house[round(desiredPositionX + GameData.WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall) &&
+                    !(LevelVar.house[round(desiredPositionX - GameData.WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall))
             {
               zombie.positionX = desiredPositionX;
             }
-            if (!(LevelVar.house[round(zombie.positionX)][round(desiredPositionY + WALL_COLLISION_OFFSET)] instanceof Wall) &&
-                    !(LevelVar.house[round(zombie.positionX)][round(desiredPositionY - WALL_COLLISION_OFFSET)] instanceof Wall))
+            if (!(LevelVar.house[round(zombie.positionX)][round(desiredPositionY + GameData.WALL_COLLISION_OFFSET)] instanceof Wall) &&
+                    !(LevelVar.house[round(zombie.positionX)][round(desiredPositionY - GameData.WALL_COLLISION_OFFSET)] instanceof Wall))
             {
               zombie.positionY = desiredPositionY;
             }
