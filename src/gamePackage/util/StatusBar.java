@@ -89,11 +89,13 @@ public class StatusBar extends Group
   {
     if(damageDoneTo.equals("player"))
     {
-      PlayerData.health += amount;
+      PlayerData.health -= amount;
     }
-    else if(damageDoneTo.equals("zombie"))
+    else if(damageDoneTo.equals("Zombie"))
     {
-      ZombieData.health += amount;
+      //ZombieData.health -= amount;
+
+      healthGreenBar.setWidth(widthBar - amount);
     }
   }
 

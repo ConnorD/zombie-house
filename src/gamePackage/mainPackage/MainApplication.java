@@ -192,14 +192,18 @@ public class MainApplication extends Application
             {
               mainGameLoop.start();
               isRunning = true;
-            } else
+            }
+
+            else
             {
               mainGameLoop.stop();
               isRunning = false;
               rebuildLevel();
             }
           }
-        } else
+        }
+
+        else
         {
           isRunning = true;
           mainGameLoop.start();
@@ -588,19 +592,6 @@ public class MainApplication extends Application
     int lastClip = 1;
     long lastFrame = System.nanoTime();
 
-    /**
-     * Calculates the angle between two vectors, useful in directional sound calculation.
-     *
-     * @param x1 X component of vector 1
-     * @param y1 Y component of vector 1
-     * @param x2 X component of vector 2
-     * @param y2 Y component of vector 2
-     * @return double Angle, in degrees, between the provided vectors
-     */
-    public double angleBetweenVectors(double x1, double y1, double x2, double y2)
-    {
-      return Math.toDegrees(Math.atan2(x1 * y2 - x2 * y1, x1 * x2 + y1 * y2));
-    }
 
     /**
      * Called for every frame of the game. Moves the player, nearby zombies, and determiens win/loss conditions.
@@ -626,88 +617,13 @@ public class MainApplication extends Application
           zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
           zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
 
-          // Move and rotate the zombie. A* doesn't currently work, so this allows zombies to move towards player. Ugly.
-          double distance = Math.sqrt(Math.abs(zombie.positionX - PlayerData.xPosition) * Math.abs(zombie.positionX - PlayerData.xPosition) +
-                  Math.abs(zombie.positionY - PlayerData.yPosition) * Math.abs(zombie.positionY - PlayerData.yPosition));
-          if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE)
+          combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
+
+          if(!combatSystem.isPlayerAlive())
           {
-            // Animate 3D zombie and move it to its parent zombie location
-            zombie3D.nextFrame();
-            double distanceX = (zombie.positionX - PlayerData.xPosition);
-            double distanceY = (zombie.positionY - PlayerData.yPosition);
-            double totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
-
-            // Player collides with zombie, Deduct health
-
-            if (totalDistance < 0.3)
-            {
-              System.out.println("Im Called");
-
-              combatSystem.zombieAttack();
-
-              if(!combatSystem.isPlayerAlive())
-              {
-                System.out.println("Restarting due to death!!");
-                level.restartLevel();
-                rebuildLevel();
-              }
-
-              if(InputContainer.useWeapon)
-              {
-                combatSystem.playerAttack();
-              }
-            }
-
-
-
-            double desiredPositionX = zombie.positionX - (distanceX / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
-            double desiredPositionY = zombie.positionY - (distanceY / totalDistance * LevelVar.zombieSpeed * percentOfSecond);
-
-
-            // Check for wall collisions
-            if (!(LevelVar.house[round(desiredPositionX + GameData.WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall) &&
-                    !(LevelVar.house[round(desiredPositionX - GameData.WALL_COLLISION_OFFSET)][round(zombie.positionY)] instanceof Wall))
-            {
-              zombie.positionX = desiredPositionX;
-            }
-            if (!(LevelVar.house[round(zombie.positionX)][round(desiredPositionY + GameData.WALL_COLLISION_OFFSET)] instanceof Wall) &&
-                    !(LevelVar.house[round(zombie.positionX)][round(desiredPositionY - GameData.WALL_COLLISION_OFFSET)] instanceof Wall))
-            {
-              zombie.positionY = desiredPositionY;
-            }
-
-            double zombieVectorX = zombie.positionX - PlayerData.xPosition;
-            double zombieVectorY = zombie.positionY - PlayerData.yPosition;
-
-            // Accomodate all four quadrants of the unit circle, rotate to face the user
-            if (distanceX < 0)
-            {
-              if (distanceY < 0)
-              {
-                double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
-                zombie3D.setRotate(angle);
-              } else
-              {
-                double angle = 360 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
-                zombie3D.setRotate(angle);
-              }
-            } else if (distanceY < 0)
-            {
-              double angle = 180 + Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
-              zombie3D.setRotate(angle);
-
-            } else
-            {
-              double angle = Math.toDegrees(Math.atan((zombie.positionX - PlayerData.xPosition) / (zombie.positionY - PlayerData.yPosition)));
-              zombie3D.setRotate(angle);
-            }
-
-
-            if (Math.random() > 0.98)
-            {
-              DirectionalPlayer.playSound(AudioFiles.randomZombieSound(), angleBetweenVectors(playerDirectionVectorX, playerDirectionVectorY, zombieVectorX, zombieVectorY), distance);
-            }
-
+            System.out.println("Restarting due to death!!");
+            level.restartLevel();
+            rebuildLevel();
           }
         }
 

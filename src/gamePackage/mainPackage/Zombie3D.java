@@ -26,7 +26,7 @@ public class Zombie3D extends Group
   private int frameDirection = 1;
   private static Random random = new Random();
 
-  private StatusBar zombieVitails;
+  public StatusBar zombieVitails;
 
   /**
    * Create a Zombie3D by loading in 8 random, contiguous frames,
