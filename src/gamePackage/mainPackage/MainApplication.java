@@ -1,15 +1,16 @@
 package gamePackage.mainPackage;
 
 import gamePackage.audio.AudioFiles;
-import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.*;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
 import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
-import gamePackage.levelGenerator.player.PastPlayer;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.mainPackage.ui.HUD;
+import gamePackage.mainPackage.ui.PauseDialog;
+import gamePackage.mainPackage.ui.StartDialog;
 import gamePackage.util.CombatSystem;
 import gamePackage.util.GameData;
 import gamePackage.util.StatusBar;
@@ -17,11 +18,12 @@ import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
@@ -51,8 +53,6 @@ public class MainApplication extends Application
 
   private double cameraYRotation = 0;
 
-
-
   private Level level;
   private Stage stage;
   private GameLoop mainGameLoop;
@@ -60,6 +60,8 @@ public class MainApplication extends Application
   private PointLight pl;
   private PerspectiveCamera camera;
   private Group sceneRoot;
+
+  private HUD dataHUD;
 
   private StatusBar playerVitals;
   private CombatSystem combatSystem;
@@ -98,8 +100,17 @@ public class MainApplication extends Application
 
     // Create group to hold 3D objects
     sceneRoot = new Group();
-    Scene scene = new Scene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
+    SubScene scene = new SubScene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
+
+    // 2D
+    BorderPane pane = new BorderPane();
+    pane.setCenter(scene);
+    Scene fullScene = new Scene(pane);
+
+    dataHUD = new HUD();
+    pane.setTop(dataHUD);
+    pane.setPrefSize(300,300);
 
     // Spawn the first level
     LevelVar.zombie3D = true;
@@ -133,7 +144,7 @@ public class MainApplication extends Application
     sceneRoot.getChildren().add(playerVitals);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
-    scene.setOnKeyPressed(event ->
+    fullScene.setOnKeyPressed(event ->
     {
       KeyCode keycode = event.getCode();
       if (keycode == KeyCode.W)
@@ -216,7 +227,7 @@ public class MainApplication extends Application
       }
     });
 
-    scene.setOnKeyReleased(event ->
+    fullScene.setOnKeyReleased(event ->
     {
       KeyCode keycode = event.getCode();
       if (keycode == KeyCode.W)
@@ -238,7 +249,7 @@ public class MainApplication extends Application
     });
 
     // Add mouse listener
-    scene.addEventHandler(MouseEvent.MOUSE_MOVED, event ->
+    fullScene.addEventHandler(MouseEvent.MOUSE_MOVED, event ->
     {
       double rotateAmountY = event.getScreenX() - InputContainer.lastMouseX;
       rotateAmountY *= GameData.PLAYER_TURN_SPEED;
@@ -262,7 +273,7 @@ public class MainApplication extends Application
     });
 
     //Add Mouse Pressed and Released for attack system
-    scene.setOnMousePressed(event ->
+    fullScene.setOnMousePressed(event ->
   {
     MouseButton mouse = event.getButton();
 
@@ -273,7 +284,7 @@ public class MainApplication extends Application
     }
   });
 
-    scene.setOnMouseReleased(event ->
+    fullScene.setOnMouseReleased(event ->
     {
       MouseButton mouse = event.getButton();
 
@@ -285,7 +296,7 @@ public class MainApplication extends Application
     });
 
     stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
-    stage.setScene(scene);
+    stage.setScene(fullScene);
     stage.show();
     stage.toFront();
 
@@ -663,6 +674,9 @@ public class MainApplication extends Application
         setupLevel();
         shouldRebuildLevel = false;
       }
+
+//      update the HUD
+      dataHUD.update();
     }
 
   }
