@@ -1,5 +1,7 @@
 package gamePackage.common;
 
+import java.util.LinkedList;
+
 /******************************************************************************
  * Ederin Igharoro
  *
@@ -27,6 +29,4 @@ public class PlayerData
   public static double playerSpeed = 2.0;
 
   public static int playerSightRange = 7;
-
-
 }
