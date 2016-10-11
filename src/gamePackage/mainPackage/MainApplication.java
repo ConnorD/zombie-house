@@ -1,11 +1,13 @@
 package gamePackage.mainPackage;
 
 import gamePackage.audio.AudioFiles;
+import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.*;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
 import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
+import gamePackage.levelGenerator.player.PastPlayer;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.util.CombatSystem;
@@ -99,12 +101,6 @@ public class MainApplication extends Application
     Scene scene = new Scene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
 
-    Label fpsLabel = new Label("FPS");
-//    sceneRoot.getChildren().add(fpsLabel);
-
-    // Hide the cursor
-    scene.setCursor(Cursor.NONE);
-
     // Spawn the first level
     LevelVar.zombie3D = true;
     level = new Level();
@@ -112,7 +108,7 @@ public class MainApplication extends Application
     level.fullGen();
 
     // Create a "lantern" for the user
-    pl = new PointLight(Color.WHITE);
+    pl = new PointLight(Color.WHITESMOKE);
     pl.setDepthTest(DepthTest.ENABLE);
     pl.setTranslateY(cameraYDisplacement);
 
@@ -189,14 +185,17 @@ public class MainApplication extends Application
           {
             if (chosenOption.get() == PauseDialog.RESUME_BUTTON_TYPE)
             {
+//              user wants to resume
               mainGameLoop.start();
               isRunning = true;
             }
 
             else
             {
+//              user wants to restart
               mainGameLoop.stop();
               isRunning = false;
+              level.restartLevel();
               rebuildLevel();
             }
           }
@@ -330,6 +329,23 @@ public class MainApplication extends Application
     setupLevel();
 
     mainGameLoop = new GameLoop();
+
+    //    show startup menu
+    StartDialog sd = new StartDialog();
+    Optional<ButtonType> chosenOption = sd.showAndWait();
+
+    if (chosenOption.isPresent())
+    {
+      if (chosenOption.get() == StartDialog.START_BUTTON_TYPE)
+      {
+        // Hide the cursor
+        scene.setCursor(Cursor.NONE);
+
+
+        mainGameLoop.start();
+        isRunning = true;
+      }
+    }
   }
 
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner
@@ -422,8 +438,6 @@ public class MainApplication extends Application
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
   }
-
-
 
   /**
    * @author Maxwell Sanchez
@@ -560,6 +574,7 @@ public class MainApplication extends Application
       // Used for movement and swivel smoothing
       InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
 
+//      TODO: save the current state of the player to PastPlayer
     }
 
     /**

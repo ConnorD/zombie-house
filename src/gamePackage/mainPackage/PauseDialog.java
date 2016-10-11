@@ -6,6 +6,8 @@ import javafx.scene.control.ButtonType;
 import java.util.Optional;
 
 /**
+ * This class
+ *
  * @author Connor Denman
  */
 public class PauseDialog extends Alert
