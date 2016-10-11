@@ -21,9 +21,9 @@ public class RandomWalkZombie extends Zombie
    * @param positionY this RandomWalkZombie's positionY
    * @param curTile   this RandomWalkZombie's curTile
    */
-  public RandomWalkZombie(double heading, double positionX, double positionY, Tile curTile, int id)
+  public RandomWalkZombie(double heading, double positionX, double positionY, Tile curTile, int id, double health, double dps)
   {
-    super(heading, positionX, positionY, curTile, id);
+    super(heading, positionX, positionY, curTile, id, health, dps);
   }
 
   /**
@@ -33,23 +33,32 @@ public class RandomWalkZombie extends Zombie
   @Override
   public void makeDecision()
   {
-    if (super.scentDetection(super.getZombieSmell(), LevelVar.house) || this.getSmell())
+    if(super.hasLife())
     {
-      super.setSmell(true);
-      super.calcPath(LevelVar.house);
-    } else
-    {
-      super.setSmell(false);
-      if (super.getCollide())
+      super.setHealth(100);
+      super.setDPS(2.5);
+
+      if (super.scentDetection(super.getZombieSmell(), LevelVar.house) || this.getSmell())
       {
-        double curHeading = super.getHeading();
-        super.setHeading((180 + curHeading) % 360);
-        super.setCollided(false);
+        super.setSmell(true);
+        super.calcPath(LevelVar.house);
       } else
       {
-        super.setHeading(Math.random() * 360);
-        super.setCollided(false);
+        super.setSmell(false);
+        if (super.getCollide())
+        {
+          double curHeading = super.getHeading();
+          super.setHeading((180 + curHeading) % 360);
+          super.setCollided(false);
+        } else
+        {
+          super.setHeading(Math.random() * 360);
+          super.setCollided(false);
+        }
       }
     }
+
+    else {System.out.println("This zombie is now dead");}
+
   }
 }

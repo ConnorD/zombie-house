@@ -1,7 +1,6 @@
 package gamePackage.mainPackage;
 
 import gamePackage.audio.AudioFiles;
-import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.*;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
@@ -134,7 +133,7 @@ public class MainApplication extends Application
     scene.setCamera(camera);
 
     //Setting up player health and stamina bar
-    playerVitals = new StatusBar(PlayerData.health, PlayerData.stamina, PlayerData.xPosition,PlayerData.yPosition, 10, 0, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT);
+    playerVitals = new StatusBar(true, true, 0, 0, 10, 0, 20, 1);
     sceneRoot.getChildren().add(playerVitals);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
@@ -415,6 +414,7 @@ public class MainApplication extends Application
     for (Zombie zombie : LevelVar.zombieCollection)
     {
       sceneRoot.getChildren().add(zombie.zombie3D);
+      zombie.isAlive(true);
     }
 
 
@@ -422,6 +422,8 @@ public class MainApplication extends Application
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
   }
+
+
 
   /**
    * @author Maxwell Sanchez
@@ -534,16 +536,8 @@ public class MainApplication extends Application
       }
 
       // Check for wall collisions
-      if (!(LevelVar.house[round(desiredPlayerXPosition + GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall) &&
-              !(LevelVar.house[round(desiredPlayerXPosition - GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall))
-      {
-        PlayerData.xPosition += desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed);
-      }
-      if (!(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition + GameData.WALL_COLLISION_OFFSET)] instanceof Wall) &&
-              !(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition - GameData.WALL_COLLISION_OFFSET)] instanceof Wall))
-      {
-        PlayerData.yPosition += desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed);
-      }
+      combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
+
 
       // Calculate camera displacement
       cameraXDisplacement = PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
@@ -619,11 +613,20 @@ public class MainApplication extends Application
 
           combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
+          //Checking if Player gets Killed
           if(!combatSystem.isPlayerAlive())
           {
             System.out.println("Restarting due to death!!");
             level.restartLevel();
             rebuildLevel();
+          }
+
+          //Checking if a Zombie gets killed
+          if(!zombie.hasLife())
+          {
+            sceneRoot.getChildren().remove(zombie.zombie3D); //Remove the physical zombie obj
+            LevelVar.zombieCollection.remove(zombie); //Now remove the instance of the obj (that certain zombie)
+            break; // Get out of the current loop and restart
           }
         }
 

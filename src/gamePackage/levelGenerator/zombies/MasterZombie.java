@@ -21,9 +21,9 @@ public class MasterZombie extends Zombie
    * @param positionY this MasterZombie's positionY
    * @param curTile   this MasterZombie's curTile
    */
-  public MasterZombie(double heading, double positionX, double positionY, Tile curTile, int id)
+  public MasterZombie(double heading, double positionX, double positionY, Tile curTile, int id, double health, double dps)
   {
-    super(heading, positionX, positionY, curTile, id);
+    super(heading, positionX, positionY, curTile, id, health, dps);
   }
 
   /**
@@ -33,31 +33,40 @@ public class MasterZombie extends Zombie
   @Override
   public void makeDecision()
   {
-    if (super.scentDetection(super.getZombieSmell(), LevelVar.house))
+    if(super.hasLife())
     {
-      this.setCollided(false);
-      super.setSmell(true);
-      super.calcPath(LevelVar.house);
-      for (Zombie z : LevelVar.zombieCollection) z.setSmell(true);
-    } else
-    {
-      for (Zombie z : LevelVar.zombieCollection) z.setSmell(false);
-      super.setSmell(false);
-      if (super.getCollide())
+      super.setHealth(100);
+      super.setDPS(10);
+
+      if (super.scentDetection(super.getZombieSmell(), LevelVar.house))
       {
-        double curHeading = super.getHeading();
-        double boundA = (curHeading + 90) % 360;
-        double boundB = (curHeading - 90) % 360;
-        if (boundA < boundB)
+        this.setCollided(false);
+        super.setSmell(true);
+        super.calcPath(LevelVar.house);
+        for (Zombie z : LevelVar.zombieCollection) z.setSmell(true);
+      } else
+      {
+        for (Zombie z : LevelVar.zombieCollection) z.setSmell(false);
+        super.setSmell(false);
+        if (super.getCollide())
         {
-          super.setHeading((180 + curHeading) % 360);
-          super.setCollided(false);
-        } else
-        {
-          super.setHeading((180 + curHeading) % 360);
-          super.setCollided(false);
+          double curHeading = super.getHeading();
+          double boundA = (curHeading + 90) % 360;
+          double boundB = (curHeading - 90) % 360;
+          if (boundA < boundB)
+          {
+            super.setHeading((180 + curHeading) % 360);
+            super.setCollided(false);
+          } else
+          {
+            super.setHeading((180 + curHeading) % 360);
+            super.setCollided(false);
+          }
         }
       }
     }
+
+    else {System.out.println("This zombie is now dead");}
+
   }
 }

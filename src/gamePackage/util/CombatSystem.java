@@ -5,10 +5,8 @@ import gamePackage.audio.DirectionalPlayer;
 import gamePackage.common.InputContainer;
 import gamePackage.common.LevelVar;
 import gamePackage.common.PlayerData;
-import gamePackage.common.ZombieData;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.Zombie;
-
 /**
  *
  *
@@ -19,9 +17,9 @@ public class CombatSystem
 {
   private boolean playerAlive;
   private boolean pastSelfPresent;
-  private StatusBar vitalStatus;
 
   public double distance, distanceX, distanceY, totalDistance;
+
 
   public boolean isPlayerAlive()
   {
@@ -34,6 +32,13 @@ public class CombatSystem
   }
 
 
+
+  /**
+   * Constructor fot the combat engine and setting the conditions on how the combat system
+   * will run for the first time or when restarted
+   * @param playerAlive Set if you want the player to be alive (True/False)
+   * @param pastSelfPresent Set if you want a past self to be Present (True/False)
+   */
   public CombatSystem(boolean playerAlive , boolean pastSelfPresent)
   {
     this.playerAlive = playerAlive;
@@ -72,6 +77,7 @@ public class CombatSystem
     }
   }
 
+
   /**
    * Rounds the provided number up if decimal component >= 0.5, otherwise down.
    *
@@ -104,9 +110,18 @@ public class CombatSystem
   }
 
 
-  public void checkWallCollisionForPlayer()
+  public void checkWallCollisionForPlayer(double desiredPlayerXPosition, double desiredPlayerYPosition, double desiredXDisplacement, double desiredZDisplacement, double percentOfSecond)
   {
-
+    if (!(LevelVar.house[round(desiredPlayerXPosition + GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall) &&
+            !(LevelVar.house[round(desiredPlayerXPosition - GameData.WALL_COLLISION_OFFSET)][round(PlayerData.yPosition)] instanceof Wall))
+    {
+      PlayerData.xPosition += desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed);
+    }
+    if (!(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition + GameData.WALL_COLLISION_OFFSET)] instanceof Wall) &&
+            !(LevelVar.house[round(PlayerData.xPosition)][round(desiredPlayerYPosition - GameData.WALL_COLLISION_OFFSET)] instanceof Wall))
+    {
+      PlayerData.yPosition += desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed);
+    }
   }
 
   public void checkWallCollisionForZombies(Zombie zombie , double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
@@ -172,7 +187,7 @@ public class CombatSystem
       System.out.println("Im Called");
 
       //Zombie starts to attack
-      zombieAttack();
+      zombieAttack(zombie);
 
       //If Player left clicks mouse, Player attacks
       if (InputContainer.useWeapon)
@@ -183,13 +198,13 @@ public class CombatSystem
   }
 
 
-  public void zombieAttack()
+  public void zombieAttack(Zombie zombie)
   {
 
     if(PlayerData.health > 0.0)
     {
-      System.out.print("Player got hit, health - " + ZombieData.dps);
-      PlayerData.health+= -ZombieData.dps;
+      System.out.print("Player got hit, health - " + zombie.getDPS());
+      PlayerData.health -= zombie.getDPS();
       System.out.println("Health Remaining: "+ PlayerData.health);
     }
     else
@@ -200,13 +215,19 @@ public class CombatSystem
 
   public void playerAttack(Zombie zombie)
   {
-    if(ZombieData.health > 0.0)
+    if(zombie.getHealth() > 0.0)
     {
       System.out.print("Zombie got hit, health  "+-PlayerData.dps);
-      ZombieData.health += -PlayerData.dps;
-      zombie.zombie3D.zombieVitails.decrementHealth("Zombie", PlayerData.dps); //THIS WORKS
-      System.out.println("Health Remaining: "+ ZombieData.health);
+      zombie.setHealth(zombie.health -= PlayerData.dps);
+      zombie.zombie3D.zombieVitails.reduceHealthBar("Zombie", PlayerData.dps); //THIS WORKS
+      System.out.println("Health Remaining: "+ zombie.getHealth());
 
     }
+    else
+      {
+        zombie.zombie3D.getChildren().remove(zombie.zombie3D.zombieVitails);
+        zombie.isAlive(false);
+      }
   }
+
 }

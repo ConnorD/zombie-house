@@ -767,7 +767,7 @@ public class ProGen
       int randY = LevelVar.rand.nextInt(fullY);
       if (LevelVar.house[randX][randY].isEmpty() && LevelVar.house[randX][randY].zone == zoneNum)
       {
-        LevelVar.zombieCollection.add(new MasterZombie(0, randX + 0.5, randY + 0.5, LevelVar.house[randX][randY], Level.nextZombie++));
+        LevelVar.zombieCollection.add(new MasterZombie(0, randX + 0.5, randY + 0.5, LevelVar.house[randX][randY], Level.nextZombie++, Level.nextZombie++, Level.nextZombie++));
         LevelVar.house[randX][randY].isUsed();
         zombieNotPlaced = false;
       }

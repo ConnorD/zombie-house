@@ -45,6 +45,9 @@ public class Zombie
    * whether or not a Zombie has collided with an Object
    */
   private boolean collided = false;
+
+  private boolean alive;
+
   /**
    * this Zombie's ID number
    */
@@ -86,6 +89,17 @@ public class Zombie
    * the Zombie's current Y coordinate in the ZombieHouse
    */
   public double positionY;
+
+  /**
+   * the Zombie's health
+   */
+  public double health;
+
+  /**
+   * the Zombie's Damage per second
+   */
+  public double dps;
+
   /**
    * the Tile the Zombie is currently in inside the ZombieHouse
    */
@@ -102,13 +116,17 @@ public class Zombie
    * X and Y coordinates
    */
   public Zombie(double heading, double positionX, double positionY,
-                Tile curTile, int id)
+                Tile curTile, int id, double health, double dps)
   {
     this.heading = heading;
     this.positionX = positionX;
     this.positionY = positionY;
     this.curTile = curTile;
     this.zombieID = id;
+
+    this.health = health;
+    this.dps = dps;
+
     if (LevelVar.zombie3D)
     {
       zombie3D = new Zombie3D();
@@ -213,6 +231,30 @@ public class Zombie
   }
 
   /**
+   *
+   * @return this Zombie's Health
+   */
+  public double getHealth(){return health;}
+
+  /**
+   * Set this Zombie's Health
+   * @param value the amount of the health the zombie has
+   */
+  public void setHealth(double value){this.health = value;}
+
+  /**
+   *
+   * @return the Zombie's Damage Per Second
+   */
+  public double getDPS(){return dps;}
+
+  /**
+   * Set the Dps of this Zombie
+   * @param value the amount of dps this zombie can inflict
+   */
+  public void setDPS(double value){this.dps = value;}
+
+  /**
    * round method borrowed from Max's MainApplication class
    */
   private int round(double toRound)
@@ -269,6 +311,20 @@ public class Zombie
       }
     }
   }
+
+  /**
+   *
+   * @param value used to set zombie to be alive or dead
+   */
+  public void isAlive(boolean value){ this.alive = value;}
+
+  /**
+   * Checks first to see if this zombie is actually alive
+   * @return True if zombie is alive, False if otherwise
+   */
+  public boolean hasLife() {return alive;}
+
+
 
   /**
    * Calculates whether the Zombie has collided with an object

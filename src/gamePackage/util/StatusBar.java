@@ -1,52 +1,44 @@
 package gamePackage.util;
 
-import gamePackage.common.PlayerData;
-import gamePackage.common.ZombieData;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /**
- * Created by Ultimate Ediri on 9/18/2016.
+ *
+ * @author Ederin Igharoro
+ * Created by Ultimate Ediri(Ederin) on 9/18/2016.
  */
 public class StatusBar extends Group
 {
-  private double health , initialHealth, stamina, initialStamina;
-  private Rectangle healthGreenBar, healthRedBar;
-  private Rectangle staminaYellowBar, staminaGreyBar;
+  private Rectangle healthGreenBar;
+  private Rectangle staminaYellowBar;
   private double widthBar;
 
-  public double getHealth()
-  {
-    return health;
-  }
 
-  public double getStamina()
-  {
-    return stamina;
-  }
-
-  public StatusBar(double health, double stamina, double healthX, double healthY, double staminaX, double staminaY, double width, double height)
+  public StatusBar(boolean hasHealth, boolean hasStamina, double healthX, double healthY, double staminaX, double staminaY, double width, double height)
   {
     super();
-    this.health = health;
-    this.stamina = stamina;
-    this.initialHealth = health;
-    this.initialStamina = stamina;
 
-    if(this.stamina == 0){this.initHealthRectangles(healthX, healthY, width, height);}
+    this.widthBar = width;
+    if(hasHealth)
+    {
+      if(!hasStamina){this.initHealthRectangles(healthX, healthY, width, height);}
 
-    else
+      else
       {
         this.initHealthRectangles(healthX, healthY, width, height);
         this.initStaminaRectangles(staminaX, staminaY, width, height);
       }
+    }
+
 
   }
 
   private void initHealthRectangles(double x, double y, double width, double height)
   {
-    healthRedBar = new Rectangle();
+    Rectangle healthRedBar = new Rectangle();
+
     healthRedBar.setFill(Color.RED);
     healthRedBar.setTranslateX(x);
     healthRedBar.setTranslateY(y);
@@ -67,7 +59,8 @@ public class StatusBar extends Group
 
   private void initStaminaRectangles(double x, double y, double width, double height)
   {
-    staminaGreyBar = new Rectangle();
+    Rectangle staminaGreyBar = new Rectangle();
+
     staminaGreyBar.setFill(Color.GREY);
     staminaGreyBar.setTranslateX(x);
     staminaGreyBar.setTranslateY(y);
@@ -85,22 +78,32 @@ public class StatusBar extends Group
     this.getChildren().add(staminaYellowBar);
   }
 
-  public void decrementHealth(String damageDoneTo ,double amount)
+  public void reduceHealthBar(String damageDoneTo , double amount)
   {
-    if(damageDoneTo.equals("player"))
+    if(damageDoneTo.equals("Player"))
     {
-      PlayerData.health -= amount;
+      //PlayerData.health -= amount;
     }
+
+
     else if(damageDoneTo.equals("Zombie"))
     {
-      //ZombieData.health -= amount;
-
-      healthGreenBar.setWidth(widthBar - amount);
+      widthBar -= ((amount/10));
+      healthGreenBar.setWidth(widthBar);
     }
   }
 
-  private void reAdjustSizeOfVitals(Rectangle selectedVital, double amount)
+  public void reduceStaminaBar(double amount)
   {
-    double percent;
+    widthBar -= (amount/10);
+
+    staminaYellowBar.setWidth(widthBar);
   }
+
+  public void staminaRegen(double amount)
+  {
+    widthBar += (amount/10);
+    staminaYellowBar.setWidth(widthBar);
+  }
+
 }

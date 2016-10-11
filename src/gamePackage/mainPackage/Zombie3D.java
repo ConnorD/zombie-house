@@ -1,7 +1,7 @@
 package gamePackage.mainPackage;
 
+import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.util.StatusBar;
-import gamePackage.common.ZombieData;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.transform.Rotate;
@@ -25,7 +25,6 @@ public class Zombie3D extends Group
   private int currentFrame = 0;
   private int frameDirection = 1;
   private static Random random = new Random();
-
   public StatusBar zombieVitails;
 
   /**
@@ -64,7 +63,7 @@ public class Zombie3D extends Group
     // Make sure zombies are on different frames to avoid "synchronized" movement
     getChildren().get(random.nextInt(MAXIMUM_FRAME)).setVisible(true);
 
-    zombieVitails = new StatusBar(ZombieData.health, 0, -5, -7, 0, 0, 10, 1);
+    zombieVitails = new StatusBar(true, false, -5, -7, 0, 0, 10, 1);
     getChildren().add(zombieVitails);
   }
 
