@@ -8,6 +8,7 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.mainPackage.ui.GameEngine;
 import gamePackage.mainPackage.ui.HUD;
 import gamePackage.mainPackage.ui.PauseDialog;
 import gamePackage.mainPackage.ui.StartDialog;
@@ -47,26 +48,26 @@ import java.util.Optional;
 public class MainApplication extends Application
 {
 
-  private double cameraXDisplacement = 0;
-  private double cameraYDisplacement = -375;
-  private double cameraZDisplacement = 0;
+  public double cameraXDisplacement = 0;
+  public double cameraYDisplacement = -375;
+  public double cameraZDisplacement = 0;
 
-  private double cameraYRotation = 0;
+  public double cameraYRotation = 0;
 
-  private Level level;
-  private Stage stage;
-  private GameLoop mainGameLoop;
+  public Level level;
+  public Stage stage;
+  //private GameLoop mainGameLoop;
+  private GameEngine gameEngine;
 
-  private PointLight pl;
-  private PerspectiveCamera camera;
-  private Group sceneRoot;
+  public PointLight light;
+  public PerspectiveCamera camera;
+  public Group sceneRoot;
 
-  private HUD dataHUD;
+  public HUD dataHUD;
 
-  private StatusBar playerVitals;
-  private CombatSystem combatSystem;
+  public CombatSystem combatSystem;
 
-  private boolean isRunning = false;
+  public boolean isRunning = false;
 
   /**
    * Create a robot to reset the mouse to the middle of the screen.
@@ -82,6 +83,8 @@ public class MainApplication extends Application
       e.printStackTrace();
     }
   }
+
+
 
 
 
@@ -103,6 +106,7 @@ public class MainApplication extends Application
     SubScene scene = new SubScene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
 
+
     // 2D
     BorderPane pane = new BorderPane();
     pane.setCenter(scene);
@@ -118,12 +122,6 @@ public class MainApplication extends Application
     level.nextLevel();
     level.fullGen();
 
-    // Create a "lantern" for the user
-    pl = new PointLight(Color.WHITESMOKE);
-    pl.setDepthTest(DepthTest.ENABLE);
-    pl.setTranslateY(cameraYDisplacement);
-
-    sceneRoot.getChildren().add(pl);
 
     // Create the camera, set it to view far enough for any reasonably-sized map
     camera = new PerspectiveCamera(true);
@@ -131,17 +129,26 @@ public class MainApplication extends Application
     camera.setFarClip(20000.0);
     camera.setFieldOfView(62.5);
 
+
     // Rotate camera on the y-axis for swivel in response to mouse
     camera.setVerticalFieldOfView(true);
     camera.setTranslateZ(cameraZDisplacement);
     camera.setTranslateY(cameraYDisplacement);
     camera.setRotationAxis(Rotate.Y_AXIS);
     camera.setDepthTest(DepthTest.ENABLE);
+
     scene.setCamera(camera);
 
-    //Setting up player health and stamina bar
-    playerVitals = new StatusBar(true, true, 0, 0, 10, 0, 20, 1);
-    sceneRoot.getChildren().add(playerVitals);
+    // Create a "lantern" for the user
+    light = new PointLight(Color.color(1.0, 1.0, 1.0));
+    light.setLightOn(true);
+
+    light.setDepthTest(DepthTest.ENABLE);
+    light.setTranslateX(camera.getTranslateX());
+    light.setTranslateY(camera.getTranslateY());
+    light.setTranslateZ(camera.getTranslateZ());
+
+    sceneRoot.getChildren().add(light);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
     fullScene.setOnKeyPressed(event ->
@@ -187,7 +194,8 @@ public class MainApplication extends Application
         if (isRunning == true)
         {
           isRunning = false;
-          mainGameLoop.stop();
+          //mainGameLoop.stop();
+          gameEngine.stop();
 
           PauseDialog pd = new PauseDialog();
           Optional<ButtonType> chosenOption = pd.showAndWait();
@@ -197,14 +205,16 @@ public class MainApplication extends Application
             if (chosenOption.get() == PauseDialog.RESUME_BUTTON_TYPE)
             {
 //              user wants to resume
-              mainGameLoop.start();
+              //mainGameLoop.start();
+              gameEngine.start();
               isRunning = true;
             }
 
             else
             {
 //              user wants to restart
-              mainGameLoop.stop();
+              //mainGameLoop.stop();
+              gameEngine.stop();
               isRunning = false;
               level.restartLevel();
               rebuildLevel();
@@ -215,7 +225,8 @@ public class MainApplication extends Application
         else
         {
           isRunning = true;
-          mainGameLoop.start();
+          //mainGameLoop.start();
+          gameEngine.start();
         }
       }
 
@@ -302,22 +313,22 @@ public class MainApplication extends Application
 
     // Load textures from files to use for floor, walls, and ceiling
     GameData.floorMaterial1.setDiffuseColor(Color.WHITE);
-    GameData.floorMaterial1.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial1.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial1.setSpecularPower(128);
     GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
     GameData.floorMaterial2.setDiffuseColor(Color.WHITE);
-    GameData.floorMaterial2.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial2.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial2.setSpecularPower(128);
     GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
     GameData.floorMaterial3.setDiffuseColor(Color.WHITE);
-    GameData.floorMaterial3.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial3.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial3.setSpecularPower(128);
     GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
     GameData.floorMaterial4.setDiffuseColor(Color.WHITE);
-    GameData.floorMaterial4.setSpecularColor(Color.WHITE.darker());
+    GameData.floorMaterial4.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial4.setSpecularPower(128);
     GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
@@ -339,7 +350,8 @@ public class MainApplication extends Application
 
     setupLevel();
 
-    mainGameLoop = new GameLoop();
+    //mainGameLoop = new GameLoop();
+    gameEngine = new GameEngine(this, combatSystem);
 
     //    show startup menu
     StartDialog sd = new StartDialog();
@@ -353,14 +365,15 @@ public class MainApplication extends Application
         scene.setCursor(Cursor.NONE);
 
 
-        mainGameLoop.start();
+        //mainGameLoop.start();
+        gameEngine.start();
         isRunning = true;
       }
     }
   }
 
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner
-  boolean shouldRebuildLevel = false;
+  public boolean shouldRebuildLevel = false;
 
   /**
    * Informs the program that a level rebuild has been requested.
@@ -455,6 +468,8 @@ public class MainApplication extends Application
    *         <p>
    *         GameLoop handles the primary game animation frame timing.
    */
+
+
   class GameLoop extends AnimationTimer
   {
 
@@ -560,7 +575,7 @@ public class MainApplication extends Application
         }
       }
 
-      // Check for wall collisions
+      // Check for wall collisions for player
       combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
 
 
@@ -569,8 +584,8 @@ public class MainApplication extends Application
       cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
 
       // Move the point light with the light
-      pl.setTranslateX(cameraXDisplacement);
-      pl.setTranslateZ(cameraZDisplacement);
+      light.setTranslateX(cameraXDisplacement);
+      light.setTranslateZ(cameraZDisplacement);
 
       // Calculate camera rotation
       cameraYRotation += GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;

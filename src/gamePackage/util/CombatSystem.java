@@ -72,6 +72,8 @@ public class CombatSystem
 
       // Player collides with zombie, Deduct health
       targetCollision(zombie);
+
+      //Check Wall collision for zombie while chasing the player
       checkWallCollisionForZombies(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
     }
