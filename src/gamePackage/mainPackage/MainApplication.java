@@ -190,7 +190,7 @@ public class MainApplication extends Application
 
       else if (keycode == KeyCode.SHIFT)
       {
-        InputContainer.run = true;
+        InputContainer.run = InputContainer.isMoving();
       }
 
       else if (keycode == KeyCode.ESCAPE)
@@ -261,6 +261,8 @@ public class MainApplication extends Application
       {
         InputContainer.run = false;
       }
+
+      InputContainer.run = InputContainer.run && InputContainer.isMoving();
     });
 
     // Add mouse listener
@@ -473,6 +475,11 @@ public class MainApplication extends Application
     // Create a zombie update timer
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
+
+    sceneRoot.getChildren().add(PlayerData.past);
+    PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
   }
 
   /**
