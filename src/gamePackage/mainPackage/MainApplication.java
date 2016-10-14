@@ -57,7 +57,6 @@ public class MainApplication extends Application
 
   public Level level;
   public Stage stage;
-  //private GameLoop mainGameLoop;
   private GameEngine gameEngine;
 
   public static PointLight light;
@@ -198,7 +197,6 @@ public class MainApplication extends Application
         if (isRunning == true)
         {
           isRunning = false;
-          //mainGameLoop.stop();
           gameEngine.stop();
 
           PauseDialog pd = new PauseDialog();
@@ -209,7 +207,6 @@ public class MainApplication extends Application
             if (chosenOption.get() == PauseDialog.RESUME_BUTTON_TYPE)
             {
 //              user wants to resume
-              //mainGameLoop.start();
               gameEngine.start();
               isRunning = true;
             }
@@ -217,7 +214,6 @@ public class MainApplication extends Application
             else
             {
 //              user wants to restart
-              //mainGameLoop.stop();
               gameEngine.stop();
               isRunning = false;
               level.restartLevel();
@@ -229,7 +225,6 @@ public class MainApplication extends Application
         else
         {
           isRunning = true;
-          //mainGameLoop.start();
           gameEngine.start();
         }
       }
@@ -364,7 +359,6 @@ public class MainApplication extends Application
 
     setupLevel();
 
-    //mainGameLoop = new GameLoop();
     gameEngine = new GameEngine(this, combatSystem);
 
     //    show startup menu
@@ -379,7 +373,6 @@ public class MainApplication extends Application
         scene.setCursor(Cursor.NONE);
 
 
-        //mainGameLoop.start();
         gameEngine.start();
         isRunning = true;
       }
@@ -489,231 +482,6 @@ public class MainApplication extends Application
    */
 
 
-  class GameLoop extends AnimationTimer
-  {
-
-    /**
-     * Moves the player, if possible (no wall collisions) in the direction(s) requested by the user
-     * with keyboard input, given the current angle determined by previous mouse input.
-     */
-    public void movePlayerIfRequested(double percentOfSecond)
-    {
-      double desiredZDisplacement = 0;
-
-      // Calculate information for horizontal and vertical player movement based on direction
-      double cos = Math.cos(cameraYRotation / 180.0 * 3.1415);
-      double sin = Math.sin(cameraYRotation / 180.0 * 3.1415);
-
-      // Include all user input (including those which cancel out) to determine z offset
-      desiredZDisplacement += (InputContainer.forward) ? (cos) : 0;
-      desiredZDisplacement -= (InputContainer.backward) ? (cos) : 0;
-      desiredZDisplacement += (InputContainer.left) ? (sin) : 0;
-      desiredZDisplacement -= (InputContainer.right) ? (sin) : 0;
-
-      // Include all user input (including those which cancel out) to determine x offset
-      double desiredXDisplacement = 0;
-      desiredXDisplacement += (InputContainer.forward) ? (sin) : 0;
-      desiredXDisplacement -= (InputContainer.backward) ? (sin) : 0;
-      desiredXDisplacement -= (InputContainer.left) ? (cos) : 0;
-      desiredXDisplacement += (InputContainer.right) ? (cos) : 0;
-
-      // Prevent diagonal move speed-boost
-      double displacementMagnitude = Math.abs(desiredZDisplacement) + Math.abs(desiredXDisplacement);
-      double displacementScaleFactor = 1 / displacementMagnitude;
-
-      boolean isRunning = false;
-
-      if (Double.isInfinite(displacementScaleFactor)) displacementScaleFactor = 1;
-      if (InputContainer.run && PlayerData.stamina > 0)
-      {
-        displacementScaleFactor *= 2;
-        PlayerData.stamina -= 1.0 / GameData.TARGET_FRAMES_PER_SECOND;
-        isRunning = true;
-      }
-
-      // PlayerData out of stamina
-      else if (PlayerData.stamina <= 0)
-      {
-        InputContainer.run = false;
-      }
-
-      // PlayerData is not *trying* to run, so allow stamina regeneration
-      if (!InputContainer.run)
-      {
-        PlayerData.stamina += PlayerData.staminaRegen / GameData.TARGET_FRAMES_PER_SECOND;
-        if (PlayerData.stamina > PlayerData.maxStamina) PlayerData.stamina = PlayerData.maxStamina;
-      }
-
-      // How often to play the stepping noise (walking vs running)
-      int stepFrequency = isRunning ? 20 : 40;
-
-      // Play walking noises if player is moving
-      if (desiredXDisplacement != 0 || desiredZDisplacement != 0)
-      {
-        if (frame % stepFrequency == 0)
-        {
-          // Alternate step clips
-          if (lastClip == 2)
-          {
-            AudioFiles.userStep1.setVolume(isRunning ? 0.4 : 0.25);
-            AudioFiles.userStep1.play();
-            lastClip = 1;
-          } else if (lastClip == 1)
-          {
-            AudioFiles.userStep2.setVolume(isRunning ? 0.4 : 0.25);
-            AudioFiles.userStep2.play();
-            lastClip = 2;
-          }
-        }
-      }
-      desiredXDisplacement *= displacementScaleFactor;
-      desiredZDisplacement *= displacementScaleFactor;
-
-      // If possible, the position the player indicated they wanted to move to
-      double desiredPlayerXPosition = PlayerData.xPosition + (desiredXDisplacement * (percentOfSecond * PlayerData.playerSpeed));
-      double desiredPlayerYPosition = PlayerData.yPosition + (desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed));
-
-      // PlayerData reached the exit
-      if (LevelVar.house[(int) desiredPlayerXPosition][(int) desiredPlayerYPosition] instanceof Exit)
-      {
-        System.out.println("next level...");
-        level.nextLevel();
-        stage.setTitle("Zombie House: Level " + (LevelVar.levelNum + 1));
-        rebuildLevel();
-      }
-
-      // "Unstick" player
-      while (!(LevelVar.house[round(PlayerData.xPosition)][round(PlayerData.yPosition)] instanceof Tile))
-      {
-        if (PlayerData.xPosition < 5)
-        {
-          PlayerData.xPosition += 1;
-        } else
-        {
-          PlayerData.xPosition -= 1;
-        }
-      }
-
-      // Check for wall collisions for player
-      combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
-
-
-      // Calculate camera displacement
-      cameraXDisplacement = PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
-      cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
-
-      // Move the point light with the light
-      light.setTranslateX(cameraXDisplacement);
-      light.setTranslateZ(cameraZDisplacement);
-
-      // Calculate camera rotation
-      cameraYRotation += GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
-
-      // Displace camera
-      camera.setTranslateX(cameraXDisplacement);
-      camera.setTranslateZ(cameraZDisplacement);
-
-      // Rotate the camera
-      camera.setRotate(cameraYRotation);
-
-      // Used for movement and swivel smoothing
-      InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
-
-//      TODO: save the current state of the player to PastPlayer
-    }
-
-    /**
-     * Rounds the provided number up if decimal component >= 0.5, otherwise down.
-     *
-     * @param toRound Double to round
-     * @return int Rounded number
-     */
-    private int round(double toRound)
-    {
-      if (toRound - ((int) toRound) < 0.5)
-      {
-        return (int) toRound;
-      } else
-      {
-        return (int) toRound + 1;
-      }
-    }
-
-    // Used for timing events that don't happen every frame
-    int frame = 0;
-
-    // The last-used user walking clip
-    int lastClip = 1;
-    long lastFrame = System.nanoTime();
-
-
-    /**
-     * Called for every frame of the game. Moves the player, nearby zombies, and determiens win/loss conditions.
-     */
-    @Override
-    public void handle(long time)
-    {
-
-      if (frame == 0) lastFrame = time;
-      frame++;
-      double percentOfSecond = ((double) time - (double) lastFrame) / 2000000000;
-      movePlayerIfRequested(percentOfSecond);
-
-      double playerDirectionVectorX = Math.toDegrees(Math.cos(cameraYRotation));
-      double playerDirectionVectorY = Math.toDegrees(Math.sin(cameraYRotation));
-
-      // Animate zombies every four frames to reduce computational load
-      if (frame % 4 == 0)
-      {
-        for (Zombie zombie : LevelVar.zombieCollection)
-        {
-          Zombie3D zombie3D = zombie.zombie3D;
-          zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
-          zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
-
-          combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
-
-          //Checking if Player gets Killed
-          if(!combatSystem.isPlayerAlive())
-          {
-            System.out.println("Restarting due to death!!");
-            level.restartLevel();
-            rebuildLevel();
-          }
-
-          //Checking if a Zombie gets killed
-          if(!zombie.hasLife())
-          {
-            sceneRoot.getChildren().remove(zombie.zombie3D); //Remove the physical zombie obj
-            LevelVar.zombieCollection.remove(zombie); //Now remove the instance of the obj (that certain zombie)
-            break; // Get out of the current loop and restart
-          }
-        }
-
-        lastFrame = time;
-      }
-
-      // Rebuild level if requested. Done here to occur on graphics thread to avoid concurrent modification exceptions.
-      if (shouldRebuildLevel)
-      {
-
-        for (int i = 0; i < sceneRoot.getChildren().size(); i++)
-        {
-          if (sceneRoot.getChildren().get(i) instanceof Box || sceneRoot.getChildren().get(i) instanceof Zombie3D)
-          {
-            sceneRoot.getChildren().remove(sceneRoot.getChildren().get(i));
-            i--;
-          }
-        }
-        setupLevel();
-        shouldRebuildLevel = false;
-      }
-
-//      update the HUD
-      dataHUD.update();
-    }
-
-  }
 
   /**
    * Main kept for legacy applications.
