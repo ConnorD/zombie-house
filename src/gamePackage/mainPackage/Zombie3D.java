@@ -1,12 +1,13 @@
 package gamePackage.mainPackage;
 
-import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.util.StatusBar;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.transform.Rotate;
 
 import java.util.Random;
+
+
 
 /**
  * Zombie3D holds zombie animation frames that I animated in Blender.
@@ -27,6 +28,8 @@ public class Zombie3D extends Group
   private static Random random = new Random();
   public StatusBar zombieVitails;
 
+  private static final String MESH_FILENAME = "resources/Zombie.stl";
+
   /**
    * Create a Zombie3D by loading in 8 random, contiguous frames,
    * setting the mesh group's scale and Y translation, and preparing
@@ -46,6 +49,8 @@ public class Zombie3D extends Group
         Group zombieModel = fxmlLoader.load();
         zombieModel.setVisible(false);
         getChildren().add(zombieModel);
+
+
 
       } catch (Exception e)
       {

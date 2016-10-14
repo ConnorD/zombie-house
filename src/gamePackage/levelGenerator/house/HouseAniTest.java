@@ -163,7 +163,9 @@ public class HouseAniTest extends Application
         if (z instanceof LineWalkZombie)
         {
           gfx.setFill(Color.DARKOLIVEGREEN);
-        } else if (z instanceof RandomWalkZombie)
+        }
+
+        else if (z instanceof RandomWalkZombie)
         {
           gfx.setFill(Color.LIGHTGREEN);
         } else

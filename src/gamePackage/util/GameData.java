@@ -1,5 +1,6 @@
 package gamePackage.util;
 
+import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 
 /**
@@ -26,11 +27,11 @@ public class GameData
 
   public static final int ZOMBIE_ACTIVATION_DISTANCE = 14;
 
-  public static final PhongMaterial floorMaterial1 = new PhongMaterial();
-  public static final PhongMaterial floorMaterial2 = new PhongMaterial();
-  public static final PhongMaterial floorMaterial3 = new PhongMaterial();
-  public static final PhongMaterial floorMaterial4 = new PhongMaterial();
-  public static final PhongMaterial ceilingMaterial = new PhongMaterial();
-  public static final PhongMaterial wallMaterial = new PhongMaterial();
-  public static final PhongMaterial exitMaterial = new PhongMaterial();
+  public static final PhongMaterial floorMaterial1 = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial floorMaterial2 = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial floorMaterial3 = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial floorMaterial4 = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial ceilingMaterial = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial wallMaterial = new PhongMaterial(Color.WHITE);
+  public static final PhongMaterial exitMaterial = new PhongMaterial(Color.WHITE);
 }

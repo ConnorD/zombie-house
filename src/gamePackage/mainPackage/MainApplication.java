@@ -28,6 +28,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Box;
 import javafx.scene.transform.Rotate;
+import javafx.scene.transform.Translate;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -59,7 +60,7 @@ public class MainApplication extends Application
   //private GameLoop mainGameLoop;
   private GameEngine gameEngine;
 
-  public PointLight light;
+  public static PointLight light;
   public PerspectiveCamera camera;
   public Group sceneRoot;
 
@@ -103,6 +104,7 @@ public class MainApplication extends Application
 
     // Create group to hold 3D objects
     sceneRoot = new Group();
+
     SubScene scene = new SubScene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
 
@@ -126,7 +128,7 @@ public class MainApplication extends Application
     // Create the camera, set it to view far enough for any reasonably-sized map
     camera = new PerspectiveCamera(true);
     camera.setNearClip(0.1);
-    camera.setFarClip(20000.0);
+    camera.setFarClip(6000.0);
     camera.setFieldOfView(62.5);
 
 
@@ -140,14 +142,16 @@ public class MainApplication extends Application
     scene.setCamera(camera);
 
     // Create a "lantern" for the user
-    light = new PointLight(Color.color(1.0, 1.0, 1.0));
+    light = new PointLight();
     light.setLightOn(true);
 
     light.setDepthTest(DepthTest.ENABLE);
-    light.setTranslateX(camera.getTranslateX());
-    light.setTranslateY(camera.getTranslateY());
-    light.setTranslateZ(camera.getTranslateZ());
+    light.getTransforms().addAll(new Translate(0.0, 0.0, 0.0));
+    light.getTransforms().addAll(new Translate(cameraXDisplacement, cameraYDisplacement, cameraZDisplacement));
+    //light.setTranslateX(camera.getTranslateX());
+    //light.setTranslateY(camera.getTranslateY());
 
+    light.setColor(Color.WHITE.brighter().brighter().brighter().brighter().brighter());
     sceneRoot.getChildren().add(light);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
@@ -311,35 +315,43 @@ public class MainApplication extends Application
     stage.show();
     stage.toFront();
 
+    double distanceModifier = 0.0;
+
+    double dx = PlayerData.xPosition - camera.getTranslateX();
+    double dy = PlayerData.yPosition - camera.getTranslateY();
+    double roughDistance = dx * dx + dy * dy;
+    distanceModifier = 1.0 - roughDistance / (PlayerData.playerSightRange * PlayerData.playerSightRange);
+    if (distanceModifier < 0.0) distanceModifier = 0.0;
+
     // Load textures from files to use for floor, walls, and ceiling
-    GameData.floorMaterial1.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
     GameData.floorMaterial1.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial1.setSpecularPower(128);
     GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
-    GameData.floorMaterial2.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial2.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
     GameData.floorMaterial2.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial2.setSpecularPower(128);
     GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
-    GameData.floorMaterial3.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
     GameData.floorMaterial3.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial3.setSpecularPower(128);
     GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.floorMaterial4.setDiffuseColor(Color.WHITE);
+    GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
     GameData.floorMaterial4.setSpecularColor(Color.BLACK.darker());
     GameData.floorMaterial4.setSpecularPower(128);
     GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
-    GameData.ceilingMaterial.setDiffuseColor(Color.WHITE);
-    GameData.ceilingMaterial.setSpecularColor(Color.BLACK.darker().darker().darker().darker());
+    GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.ceilingMaterial.setSpecularColor(Color.BLACK.darker());
     GameData.ceilingMaterial.setSpecularPower(25);
     GameData.ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
-    GameData.wallMaterial.setSpecularColor(Color.BLACK);
+    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.wallMaterial.setSpecularColor(Color.BLACK.darker());
     GameData.wallMaterial.setSpecularPower(256);
     GameData.wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
 

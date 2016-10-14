@@ -21,7 +21,9 @@ import java.util.*;
 
 /**
  *Zombie class that contains methods inherited by the sub-classes of Zombie
- *as well as all Zombie variables. 
+ *as well as all Zombie variables.
+ *
+ * @author Ederin Igharoro
  */
 public class Zombie
 {
