@@ -7,20 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/PlayerData.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/PlayerData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" afterPath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/common/PlayerData.java" afterPath="$PROJECT_DIR$/src/gamePackage/common/PlayerData.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/HUD.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/HUD.java" />
     </list>
     <ignored path="zombie-house.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +36,8 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="260" column="49" selection-start-line="260" selection-start-column="49" selection-end-line="260" selection-end-column="49" />
+            <state relative-caret-position="314">
+              <caret line="469" column="61" selection-start-line="469" selection-start-column="61" selection-end-line="469" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="class#GameLoop#0;class#MainApplication#0" expanded="false" />
@@ -60,8 +49,8 @@
       <file leaf-file-name="InputContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/common/InputContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -104,12 +93,10 @@
       <file leaf-file-name="PastPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+            <state relative-caret-position="306">
+              <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#425#426#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,7 +105,7 @@
       <file leaf-file-name="GameData.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/util/GameData.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
+            <state relative-caret-position="442">
               <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
               <folding />
             </state>
@@ -173,8 +160,8 @@
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/HUD.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/ProGen.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/common/PlayerData.java" />
-        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
       </list>
     </option>
@@ -1175,6 +1162,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/common/PlayerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
@@ -1185,17 +1180,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/InputContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state relative-caret-position="289">
+          <caret line="17" column="42" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/util/GameData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
+        <state relative-caret-position="442">
           <caret line="26" column="30" selection-start-line="26" selection-start-column="30" selection-end-line="26" selection-end-column="30" />
           <folding />
         </state>
@@ -1203,12 +1198,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="306">
+          <caret line="18" column="3" selection-start-line="18" selection-start-column="3" selection-end-line="18" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#425#426#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1223,18 +1216,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/common/InputContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="260" column="49" selection-start-line="260" selection-start-column="49" selection-end-line="260" selection-end-column="49" />
+        <state relative-caret-position="314">
+          <caret line="469" column="61" selection-start-line="469" selection-start-column="61" selection-end-line="469" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="class#GameLoop#0;class#MainApplication#0" expanded="false" />

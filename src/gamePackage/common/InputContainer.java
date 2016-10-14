@@ -30,8 +30,6 @@ public class InputContainer
       return false;
     }
 
-    System.out.println("moving");
-
     return true;
   }
 }

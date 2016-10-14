@@ -465,9 +465,9 @@ public class MainApplication extends Application
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
 
     sceneRoot.getChildren().add(PlayerData.past);
-    PlayerData.past.setTranslateX(cameraXDisplacement);
-    PlayerData.past.setTranslateY(cameraYDisplacement);
-    PlayerData.past.setTranslateZ(cameraZDisplacement);
+    PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
   }
 
   /**

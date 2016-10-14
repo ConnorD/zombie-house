@@ -13,7 +13,9 @@ public class PastPlayer extends Box
 
   public PastPlayer()
   {
-    super(GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT);
+//    super(GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT);
+    super(GameData.TILE_WIDTH_AND_HEIGHT, GameData.WALL_HEIGHT, GameData.TILE_WIDTH_AND_HEIGHT);
+//    setMaterial(G);
   }
 
   public void recordPlayerState()
