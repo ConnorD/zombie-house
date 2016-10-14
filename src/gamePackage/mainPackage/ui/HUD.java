@@ -18,7 +18,7 @@ public class HUD extends HBox
 
   public HUD()
   {
-    super(4);
+    super(10);
     healthPB = new ProgressBar((float) (PlayerData.health / PlayerData.maxHealth));
     healthPB.setStyle("-fx-accent: green;");
     staminaPB = new ProgressBar((float) (PlayerData.stamina / PlayerData.maxStamina));

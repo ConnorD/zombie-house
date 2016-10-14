@@ -1,5 +1,7 @@
 package gamePackage.common;
 
+import gamePackage.levelGenerator.player.PastPlayer;
+
 import java.util.LinkedList;
 
 /******************************************************************************
@@ -29,4 +31,6 @@ public class PlayerData
   public static double playerSpeed = 2.0;
 
   public static int playerSightRange = 7;
+
+  public static PastPlayer past = new PastPlayer();
 }
