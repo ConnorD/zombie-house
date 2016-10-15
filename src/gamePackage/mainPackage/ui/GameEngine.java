@@ -6,6 +6,8 @@ import gamePackage.common.LevelVar;
 import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Tile;
+import gamePackage.levelGenerator.player.PastPlayer;
+import gamePackage.levelGenerator.player.PastPlayerData;
 import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.mainPackage.MainApplication;
 import gamePackage.mainPackage.Zombie3D;
@@ -162,6 +164,7 @@ public class GameEngine extends AnimationTimer
     InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
 
 //      TODO: save the current state of the player to PastPlayer
+
   }
 
   /**
@@ -251,6 +254,16 @@ public class GameEngine extends AnimationTimer
       main.shouldRebuildLevel = false;
     }
 
+    PlayerData.past.recordPlayerState();
+//    if (frame % 30 == 0)
+//    {
+//      move past player
+      PastPlayerData currentState = PlayerData.past.nextState();
+      PlayerData.past.setTranslateX(currentState.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+      PlayerData.past.setTranslateZ(currentState.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+//    }
+
+//    PlayerData.past.recordPlayerState();
 //      update the HUD
     main.dataHUD.update();
   }

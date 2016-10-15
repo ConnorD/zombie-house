@@ -84,10 +84,6 @@ public class MainApplication extends Application
     }
   }
 
-
-
-
-
   /**
    * Called on initial application startup. Setup the camera, point light,
    * scene, key listeners, and materials, as well as starting the
@@ -147,8 +143,8 @@ public class MainApplication extends Application
     light.setDepthTest(DepthTest.ENABLE);
     light.getTransforms().addAll(new Translate(0.0, 0.0, 0.0));
     light.getTransforms().addAll(new Translate(cameraXDisplacement, cameraYDisplacement, cameraZDisplacement));
-    //light.setTranslateX(camera.getTranslateX());
-    //light.setTranslateY(camera.getTranslateY());
+    light.setTranslateX(camera.getTranslateX());
+    light.setTranslateY(camera.getTranslateY());
 
     light.setColor(Color.WHITE.brighter().brighter().brighter().brighter().brighter());
     sceneRoot.getChildren().add(light);
@@ -288,6 +284,7 @@ public class MainApplication extends Application
     fullScene.setOnMousePressed(event ->
   {
     MouseButton mouse = event.getButton();
+    AudioFiles.userSwing.play();
 
     if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
     {
@@ -360,6 +357,7 @@ public class MainApplication extends Application
     setupLevel();
 
     gameEngine = new GameEngine(this, combatSystem);
+    AudioFiles.backgroundMusic.play(0.5f);
 
     //    show startup menu
     StartDialog sd = new StartDialog();

@@ -217,6 +217,9 @@ public class CombatSystem
 
   public void playerAttack(Zombie zombie)
   {
+//    play attack sound
+    AudioFiles.userAttack.play();
+
     if(zombie.getHealth() > 0.0)
     {
       System.out.print("Zombie got hit, health  "+-PlayerData.dps);
