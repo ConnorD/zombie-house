@@ -7,15 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/GameOverDialog.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/GameEngine.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
     </list>
     <ignored path="zombie-house.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,8 +37,8 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="130" column="22" selection-start-line="130" selection-start-column="11" selection-end-line="130" selection-end-column="22" />
+            <state relative-caret-position="309">
+              <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -64,8 +59,8 @@
       <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="530">
-              <caret line="272" column="56" selection-start-line="272" selection-start-column="56" selection-end-line="272" selection-end-column="56" />
+            <state relative-caret-position="428">
+              <caret line="263" column="0" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -98,8 +93,8 @@
       <file leaf-file-name="PastPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="26" column="111" selection-start-line="26" selection-start-column="111" selection-end-line="26" selection-end-column="111" />
+            <state relative-caret-position="451">
+              <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,6 +122,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Connor Denman &lt;connor.denman@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
@@ -167,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/gamePackage/audio/AudioFiles.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/ui/GameOverDialog.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
-        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
       </list>
     </option>
@@ -907,7 +907,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476496594226</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Past Player records the camera rotation for each frame. Past player (bifurcation) feature is ready, just need to implement properly when the game restarts.">
+      <created>1476585651126</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1476585651127</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -921,7 +928,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930845" sideWeight="0.50416666" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16149068" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16149068" sideWeight="0.4953125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32875264" sideWeight="0.49583334" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -960,7 +967,8 @@
     <MESSAGE value="tester1" />
     <MESSAGE value="Merge branch 'master' of https://github.com/ConnorD/zombie-house&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;out/artifacts/zombie_house/zombie_house.jar&#10;#&#9;out/artifacts/zombie_house/zombie_house.jnlp&#10;#&#9;out/production/zombie-house/gamePackage/mainPackage/MainApplication$GameLoop.class&#10;#&#9;out/production/zombie-house/gamePackage/mainPackage/MainApplication.class&#10;" />
     <MESSAGE value="Play sounds for when user attacks but doesn't hit a zombie, another for when they hit a zombie, and added looping background music." />
-    <option name="LAST_COMMIT_MESSAGE" value="Play sounds for when user attacks but doesn't hit a zombie, another for when they hit a zombie, and added looping background music." />
+    <MESSAGE value="Past Player records the camera rotation for each frame. Past player (bifurcation) feature is ready, just need to implement properly when the game restarts." />
+    <option name="LAST_COMMIT_MESSAGE" value="Past Player records the camera rotation for each frame. Past player (bifurcation) feature is ready, just need to implement properly when the game restarts." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1240,16 +1248,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="26" column="111" selection-start-line="26" selection-start-column="111" selection-end-line="26" selection-end-column="111" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -1258,10 +1256,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="37" column="24" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="130" column="22" selection-start-line="130" selection-start-column="11" selection-end-line="130" selection-end-column="22" />
+        <state relative-caret-position="309">
+          <caret line="134" column="0" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1278,8 +1286,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="530">
-          <caret line="272" column="56" selection-start-line="272" selection-start-column="56" selection-end-line="272" selection-end-column="56" />
+        <state relative-caret-position="428">
+          <caret line="263" column="0" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Box;
+import javafx.scene.transform.Rotate;
 
 import java.util.LinkedList;
 
@@ -19,6 +20,7 @@ public class PastPlayer extends Box
 //    super(GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT);
     super(GameData.TILE_WIDTH_AND_HEIGHT, GameData.WALL_HEIGHT, GameData.TILE_WIDTH_AND_HEIGHT);
     currentIndex = 0;
+    setRotationAxis(Rotate.Y_AXIS);
     setMaterial(new PhongMaterial(Color.WHITE));
   }
 
@@ -31,10 +33,12 @@ public class PastPlayer extends Box
 
   public PastPlayerData nextState()
   {
+    PastPlayerData nextPastState = states.remove();
 
-    PastPlayerData currentPastPlayerData = states.get(currentIndex);
-    currentIndex++;
+    setTranslateX(nextPastState.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    setTranslateZ(nextPastState.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+    setRotate(nextPastState.yRotation);
 
-    return currentPastPlayerData;
+    return nextPastState;
   }
 }

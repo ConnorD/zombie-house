@@ -266,11 +266,7 @@ public class GameEngine extends AnimationTimer
     if (frame > 500)
     {
 //      move past player
-      PastPlayerData currentState = PlayerData.past.nextState();
-      PlayerData.past.setTranslateX(currentState.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-      PlayerData.past.setTranslateZ(currentState.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-      PlayerData.past.setRotationAxis(Rotate.Y_AXIS);
-      PlayerData.past.setRotate(currentState.yRotation);
+      PlayerData.past.nextState();
     }
 
 //    PlayerData.past.recordPlayerState();
