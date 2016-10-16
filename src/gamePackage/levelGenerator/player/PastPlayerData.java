@@ -12,6 +12,7 @@ public class PastPlayerData
 {
   public double xPosition = 1.0;
   public double yPosition = 1.0;
+  public double yRotation = 0.0;
 
   public double stamina = 5.0;
   public double staminaRegen = 0.20;
@@ -26,9 +27,10 @@ public class PastPlayerData
 
   public int playerSightRange = 7;
 
-  public PastPlayerData(double x, double y)
+  public PastPlayerData(double x, double y, double rotation)
   {
     xPosition = x;
     yPosition = y;
+    yRotation = rotation;
   }
 }

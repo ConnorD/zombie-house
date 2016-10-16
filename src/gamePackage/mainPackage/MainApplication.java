@@ -8,14 +8,11 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
-import gamePackage.mainPackage.ui.GameEngine;
 import gamePackage.mainPackage.ui.HUD;
 import gamePackage.mainPackage.ui.PauseDialog;
 import gamePackage.mainPackage.ui.StartDialog;
 import gamePackage.util.CombatSystem;
 import gamePackage.util.GameData;
-import gamePackage.util.StatusBar;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
@@ -357,7 +354,7 @@ public class MainApplication extends Application
     setupLevel();
 
     gameEngine = new GameEngine(this, combatSystem);
-    AudioFiles.backgroundMusic.play(0.5f);
+    AudioFiles.backgroundMusic.play(0.4f);
 
     //    show startup menu
     StartDialog sd = new StartDialog();
@@ -385,6 +382,7 @@ public class MainApplication extends Application
    */
   public void rebuildLevel()
   {
+//    gameEngine.stop();
     shouldRebuildLevel = true;
   }
 
@@ -472,14 +470,6 @@ public class MainApplication extends Application
     PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
     PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
   }
-
-  /**
-   * @author Maxwell Sanchez
-   *         <p>
-   *         GameLoop handles the primary game animation frame timing.
-   */
-
-
 
   /**
    * Main kept for legacy applications.
