@@ -157,6 +157,7 @@ public class GameEngine extends AnimationTimer
 
     // Rotate the camera
     main.camera.setRotate(main.cameraYRotation);
+    main.light.setRotate(main.cameraYRotation);
 
     // Used for movement and swivel smoothing
     InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
@@ -221,6 +222,7 @@ public class GameEngine extends AnimationTimer
           System.out.println("Restarting due to death!!");
           main.level.restartLevel();
           main.rebuildLevel();
+
         }
 
         //Checking if a Zombie gets killed

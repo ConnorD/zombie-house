@@ -86,7 +86,6 @@ public class LineWalkZombie extends Zombie
       }
     }
 
-    else {System.out.println("This zombie is now dead");}
 
   }
 }

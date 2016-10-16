@@ -8,10 +8,7 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
-import gamePackage.mainPackage.ui.GameEngine;
-import gamePackage.mainPackage.ui.HUD;
-import gamePackage.mainPackage.ui.PauseDialog;
-import gamePackage.mainPackage.ui.StartDialog;
+import gamePackage.mainPackage.ui.*;
 import gamePackage.util.CombatSystem;
 import gamePackage.util.GameData;
 import gamePackage.util.StatusBar;
@@ -68,7 +65,6 @@ public class MainApplication extends Application
   public CombatSystem combatSystem;
 
   public boolean isRunning = false;
-
   /**
    * Create a robot to reset the mouse to the middle of the screen.
    */
@@ -127,7 +123,7 @@ public class MainApplication extends Application
     // Create the camera, set it to view far enough for any reasonably-sized map
     camera = new PerspectiveCamera(true);
     camera.setNearClip(0.1);
-    camera.setFarClip(6000.0);
+    camera.setFarClip(5000.0);
     camera.setFieldOfView(62.5);
 
 
@@ -141,17 +137,24 @@ public class MainApplication extends Application
     scene.setCamera(camera);
 
     // Create a "lantern" for the user
+
     light = new PointLight();
-    light.setLightOn(true);
+    //light.setLightOn(true);
 
     light.setDepthTest(DepthTest.ENABLE);
-    light.getTransforms().addAll(new Translate(0.0, 0.0, 0.0));
-    light.getTransforms().addAll(new Translate(cameraXDisplacement, cameraYDisplacement, cameraZDisplacement));
-    //light.setTranslateX(camera.getTranslateX());
-    //light.setTranslateY(camera.getTranslateY());
 
-    light.setColor(Color.WHITE.brighter().brighter().brighter().brighter().brighter());
-    sceneRoot.getChildren().add(light);
+    light.setColor(Color.rgb(255, 255, 255, 1).brighter().brighter().brighter());
+    //light.setScaleZ(250000);
+
+    light.setLayoutX(-50); // This sets the light floor distance between you(Player/camera) and the in front of you
+    light.setLayoutY(camera.getLayoutY());
+
+    light.setTranslateX(camera.getTranslateX());
+    light.setTranslateY(camera.getTranslateY());
+    light.setTranslateZ(camera.getTranslateZ());
+
+
+    sceneRoot.getChildren().addAll(light);
 
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
     fullScene.setOnKeyPressed(event ->
@@ -314,45 +317,45 @@ public class MainApplication extends Application
 
     double distanceModifier = 0.0;
 
-    double dx = PlayerData.xPosition - camera.getTranslateX();
-    double dy = PlayerData.yPosition - camera.getTranslateY();
+    double dx = camera.getLayoutX();
+    double dy = camera.getLayoutY();
     double roughDistance = dx * dx + dy * dy;
-    distanceModifier = 1.0 - roughDistance / (PlayerData.playerSightRange * PlayerData.playerSightRange);
+    distanceModifier = 1.0 - roughDistance / (camera.getFarClip() * camera.getFarClip());
     if (distanceModifier < 0.0) distanceModifier = 0.0;
 
     // Load textures from files to use for floor, walls, and ceiling
     GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.floorMaterial1.setSpecularColor(Color.BLACK.darker());
+    GameData.floorMaterial1.setSpecularColor(Color.BLACK);
     GameData.floorMaterial1.setSpecularPower(128);
     GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
     GameData.floorMaterial2.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.floorMaterial2.setSpecularColor(Color.BLACK.darker());
+    GameData.floorMaterial2.setSpecularColor(Color.BLACK);
     GameData.floorMaterial2.setSpecularPower(128);
     GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
     GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.floorMaterial3.setSpecularColor(Color.BLACK.darker());
+    GameData.floorMaterial3.setSpecularColor(Color.BLACK);
     GameData.floorMaterial3.setSpecularPower(128);
     GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
     GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.floorMaterial4.setSpecularColor(Color.BLACK.darker());
+    GameData.floorMaterial4.setSpecularColor(Color.BLACK);
     GameData.floorMaterial4.setSpecularPower(128);
     GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
     GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.ceilingMaterial.setSpecularColor(Color.BLACK.darker());
-    GameData.ceilingMaterial.setSpecularPower(25);
+    GameData.ceilingMaterial.setSpecularColor(Color.BLACK);
+    GameData.ceilingMaterial.setSpecularPower(128);
     GameData.ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
     GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
-    GameData.wallMaterial.setSpecularColor(Color.BLACK.darker());
-    GameData.wallMaterial.setSpecularPower(256);
+    //GameData.wallMaterial.setSpecularColor(Color.BLACK);
+    GameData.wallMaterial.setSpecularPower(128);
     GameData.wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
 
-    GameData.exitMaterial.setDiffuseColor(Color.WHITE);
+    //GameData.exitMaterial.setDiffuseColor(Color.WHITE);
     GameData.exitMaterial.setSpecularColor(Color.WHITE.darker());
     GameData.exitMaterial.setSpecularPower(128);
     //GameData.exitMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/exitDoor.png").toExternalForm()));
@@ -378,6 +381,7 @@ public class MainApplication extends Application
       }
     }
   }
+
 
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner
   public boolean shouldRebuildLevel = false;
@@ -405,6 +409,10 @@ public class MainApplication extends Application
       {
         // Always have a floor and ceiling
         Box floor = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
+        floor.setTranslateY(GameData.FLOOR_Y_DISPLACEMENT);
+        floor.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+        floor.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
+
         if (house[x][z].zone == 0)
         {
           floor.setMaterial(GameData.floorMaterial1);
@@ -421,9 +429,6 @@ public class MainApplication extends Application
           floor.setMaterial(GameData.floorMaterial4);
         }
 
-        floor.setTranslateY(GameData.FLOOR_Y_DISPLACEMENT);
-        floor.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
-        floor.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
         sceneRoot.getChildren().add(floor);
 
         Box ceiling = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
