@@ -8,11 +8,11 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
-import gamePackage.mainPackage.ui.*;
+import gamePackage.mainPackage.ui.HUD;
+import gamePackage.mainPackage.ui.PauseDialog;
+import gamePackage.mainPackage.ui.StartDialog;
 import gamePackage.util.CombatSystem;
 import gamePackage.util.GameData;
-import gamePackage.util.StatusBar;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Cursor;
 import javafx.scene.*;
@@ -65,6 +65,7 @@ public class MainApplication extends Application
   public CombatSystem combatSystem;
 
   public boolean isRunning = false;
+
   /**
    * Create a robot to reset the mouse to the middle of the screen.
    */
@@ -79,10 +80,6 @@ public class MainApplication extends Application
       e.printStackTrace();
     }
   }
-
-
-
-
 
   /**
    * Called on initial application startup. Setup the camera, point light,
@@ -137,9 +134,8 @@ public class MainApplication extends Application
     scene.setCamera(camera);
 
     // Create a "lantern" for the user
-
     light = new PointLight();
-    //light.setLightOn(true);
+    light.setLightOn(true);
 
     light.setDepthTest(DepthTest.ENABLE);
 
@@ -291,6 +287,7 @@ public class MainApplication extends Application
     fullScene.setOnMousePressed(event ->
   {
     MouseButton mouse = event.getButton();
+    AudioFiles.userSwing.play();
 
     if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
     {
@@ -363,6 +360,7 @@ public class MainApplication extends Application
     setupLevel();
 
     gameEngine = new GameEngine(this, combatSystem);
+    AudioFiles.backgroundMusic.play(0.4f);
 
     //    show startup menu
     StartDialog sd = new StartDialog();
@@ -382,7 +380,6 @@ public class MainApplication extends Application
     }
   }
 
-
   // Stores requests to rebuild the level graphically, so that rebuilding is done in a thread-safe manner
   public boolean shouldRebuildLevel = false;
 
@@ -391,6 +388,7 @@ public class MainApplication extends Application
    */
   public void rebuildLevel()
   {
+//    gameEngine.stop();
     shouldRebuildLevel = true;
   }
 
@@ -409,10 +407,6 @@ public class MainApplication extends Application
       {
         // Always have a floor and ceiling
         Box floor = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
-        floor.setTranslateY(GameData.FLOOR_Y_DISPLACEMENT);
-        floor.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
-        floor.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
-
         if (house[x][z].zone == 0)
         {
           floor.setMaterial(GameData.floorMaterial1);
@@ -429,6 +423,9 @@ public class MainApplication extends Application
           floor.setMaterial(GameData.floorMaterial4);
         }
 
+        floor.setTranslateY(GameData.FLOOR_Y_DISPLACEMENT);
+        floor.setTranslateX(x * GameData.TILE_WIDTH_AND_HEIGHT);
+        floor.setTranslateZ(z * GameData.TILE_WIDTH_AND_HEIGHT);
         sceneRoot.getChildren().add(floor);
 
         Box ceiling = new Box(GameData.TILE_WIDTH_AND_HEIGHT, 10, GameData.TILE_WIDTH_AND_HEIGHT);
@@ -479,14 +476,6 @@ public class MainApplication extends Application
     PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
     PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
   }
-
-  /**
-   * @author Maxwell Sanchez
-   *         <p>
-   *         GameLoop handles the primary game animation frame timing.
-   */
-
-
 
   /**
    * Main kept for legacy applications.
