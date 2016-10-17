@@ -58,7 +58,5 @@ public class RandomWalkZombie extends Zombie
       }
     }
 
-    else {System.out.println("This zombie is now dead");}
-
   }
 }
