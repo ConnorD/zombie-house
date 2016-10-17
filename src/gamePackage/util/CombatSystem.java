@@ -182,6 +182,12 @@ public class CombatSystem
 
   }
 
+  /**
+   * When the player collides with a zombie, deduct player health.
+   * If player is attacking, also deduct zombie health.
+   *
+   * @param zombie - the zombie that the player is currently engaging.
+   */
   private void targetCollision(Zombie zombie)
   {
     if (totalDistance < 0.3)
@@ -190,6 +196,7 @@ public class CombatSystem
 
       //Zombie starts to attack
       zombieAttack(zombie);
+
 
       //If Player left clicks mouse, Player attacks
       if (InputContainer.useWeapon)
@@ -205,6 +212,7 @@ public class CombatSystem
 
     if(PlayerData.health > 0.0)
     {
+      AudioFiles.userHealth.play();
       System.out.print("Player got hit, health - " + zombie.getDPS());
       PlayerData.health -= zombie.getDPS();
       System.out.println("Health Remaining: "+ PlayerData.health);

@@ -100,15 +100,15 @@ public class Level
   public void restartLevel()
   {
     nextZombie = 0;
-    LevelVar.house = new Tile[houseWidth][houseHeight];
-    LevelVar.zombieCollection = new ArrayList<Zombie>();
-    LevelVar.rand.setSeed(rSeed);
-    pG = new ProGen();
+//    LevelVar.house = new Tile[houseWidth][houseHeight];
+//    LevelVar.zombieCollection = new ArrayList<Zombie>();
+//    LevelVar.rand.setSeed(rSeed);
+//    pG = new ProGen();
     combatSystem = new CombatSystem(true, true);
-    if (LevelVar.LEVEL_DEBUG_TEXT)
-    {
-      printHouse();
-    }
+//    if (LevelVar.LEVEL_DEBUG_TEXT)
+//    {
+//      printHouse();
+//    }
 
   }
 

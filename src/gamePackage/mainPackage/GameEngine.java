@@ -151,7 +151,7 @@ public class GameEngine extends AnimationTimer
     main.cameraXDisplacement = PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
     main.cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
 
-    // Move the point light with the light
+    // Move the point light with the player
     main.light.setTranslateX(main.cameraXDisplacement);
     main.light.setTranslateZ(main.cameraZDisplacement);
 
@@ -220,20 +220,6 @@ public class GameEngine extends AnimationTimer
 
         combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
-        //Checking if Player gets Killed
-        if(!combatSystem.isPlayerAlive())
-        {
-          GameOverDialog gameOverAlert = new GameOverDialog();
-          Optional<ButtonType> chosenOption = gameOverAlert.showAndWait();
-
-          if (chosenOption.isPresent())
-          {
-            System.out.println("Restarting due to death!!");
-            main.level.restartLevel();
-            main.rebuildLevel();
-          }
-        }
-
         //Checking if a Zombie gets killed
         if(!zombie.hasLife())
         {
@@ -241,6 +227,12 @@ public class GameEngine extends AnimationTimer
           LevelVar.zombieCollection.remove(zombie); //Now remove the instance of the obj (that certain zombie)
           break; // Get out of the current loop and restart
         }
+      }
+
+      //Checking if Player gets Killed
+      if(!combatSystem.isPlayerAlive())
+      {
+        main.respawnAfterDeath();
       }
 
       lastFrame = time;
@@ -259,15 +251,17 @@ public class GameEngine extends AnimationTimer
         }
       }
       main.setupLevel();
+
+//      main.restartLevel();
       main.shouldRebuildLevel = false;
     }
 
     PlayerData.past.recordPlayerState(main.cameraYRotation);
-    if (frame > 500)
-    {
-//      move past player
-      PlayerData.past.nextState();
-    }
+//    if (frame > 500)
+//    {
+////      move past player
+//      PlayerData.past.nextState();
+//    }
 
 //    PlayerData.past.recordPlayerState();
 //      update the HUD

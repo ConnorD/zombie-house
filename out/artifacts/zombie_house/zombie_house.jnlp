@@ -10,7 +10,7 @@
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
     <jar href="GamePreloader.jar" size="1632" download="progress" />
     <jar href="jimObjModelImporterJFX.jar" size="64470" download="eager" />
-    <jar href="zombie_house.jar" size="17503074" download="eager" />
+    <jar href="zombie_house.jar" size="17502594" download="eager" />
   </resources>
   <jfx:javafx-desc  width="600" height="400" main-class="gamePackage.mainPackage.MainApplication"  name="zombie-house"  preloader-class="gamePackage.mainPackage.GamePreloader"/>
   <update check="background"/>

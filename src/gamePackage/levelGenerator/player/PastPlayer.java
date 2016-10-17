@@ -10,20 +10,29 @@ import javafx.scene.transform.Rotate;
 
 import java.util.LinkedList;
 
+/**
+ * Manages the bifurcated form of the player.
+ *
+ * @author Connor Denman
+ */
+
 public class PastPlayer extends Box
 {
   public static LinkedList<PastPlayerData> states = new LinkedList<>();
-  private int currentIndex;
 
   public PastPlayer()
   {
 //    super(GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT);
     super(GameData.TILE_WIDTH_AND_HEIGHT, GameData.WALL_HEIGHT, GameData.TILE_WIDTH_AND_HEIGHT);
-    currentIndex = 0;
     setRotationAxis(Rotate.Y_AXIS);
     setMaterial(new PhongMaterial(Color.WHITE));
   }
 
+  /**
+   * Add a "snapshot" of the current player's state into the linked list for use later.
+   *
+   * @param cameraRotation - the double value used for rotating the camera.
+   */
   public void recordPlayerState(double cameraRotation)
   {
     PastPlayerData currentState = new PastPlayerData(PlayerData.xPosition, PlayerData.yPosition, cameraRotation);
@@ -31,6 +40,9 @@ public class PastPlayer extends Box
     states.add(currentState);
   }
 
+  /**
+   * Step to the next saved state of the past player. Remove elements from the linked list of states as we go.
+   */
   public PastPlayerData nextState()
   {
     PastPlayerData nextPastState = states.remove();

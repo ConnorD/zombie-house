@@ -8,6 +8,7 @@ import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.mainPackage.ui.GameOverDialog;
 import gamePackage.mainPackage.ui.HUD;
 import gamePackage.mainPackage.ui.PauseDialog;
 import gamePackage.mainPackage.ui.StartDialog;
@@ -116,42 +117,6 @@ public class MainApplication extends Application
     level.nextLevel();
     level.fullGen();
 
-
-    // Create the camera, set it to view far enough for any reasonably-sized map
-    camera = new PerspectiveCamera(true);
-    camera.setNearClip(0.1);
-    camera.setFarClip(5000.0);
-    camera.setFieldOfView(62.5);
-
-
-    // Rotate camera on the y-axis for swivel in response to mouse
-    camera.setVerticalFieldOfView(true);
-    camera.setTranslateZ(cameraZDisplacement);
-    camera.setTranslateY(cameraYDisplacement);
-    camera.setRotationAxis(Rotate.Y_AXIS);
-    camera.setDepthTest(DepthTest.ENABLE);
-
-    scene.setCamera(camera);
-
-    // Create a "lantern" for the user
-    light = new PointLight();
-    light.setLightOn(true);
-
-    light.setDepthTest(DepthTest.ENABLE);
-
-    light.setColor(Color.rgb(255, 255, 255, 1).brighter().brighter().brighter());
-    //light.setScaleZ(250000);
-
-    light.setLayoutX(-50); // This sets the light floor distance between you(Player/camera) and the in front of you
-    light.setLayoutY(camera.getLayoutY());
-
-    light.setTranslateX(camera.getTranslateX());
-    light.setTranslateY(camera.getTranslateY());
-    light.setTranslateZ(camera.getTranslateZ());
-
-
-    sceneRoot.getChildren().addAll(light);
-
     // Set up key listeners for WASD (movement), F1/F2 (full screen toggle), Shift (run), Escape (exit), F3 (cheat)
     fullScene.setOnKeyPressed(event ->
     {
@@ -209,7 +174,6 @@ public class MainApplication extends Application
               gameEngine.start();
               isRunning = true;
             }
-
             else
             {
 //              user wants to restart
@@ -220,14 +184,12 @@ public class MainApplication extends Application
             }
           }
         }
-
         else
         {
           isRunning = true;
           gameEngine.start();
         }
       }
-
       else if (keycode == KeyCode.F3) /* Cheat key to advance levels */
       {
         level.nextLevel();
@@ -285,16 +247,16 @@ public class MainApplication extends Application
 
     //Add Mouse Pressed and Released for attack system
     fullScene.setOnMousePressed(event ->
-  {
-    MouseButton mouse = event.getButton();
-    AudioFiles.userSwing.play();
-
-    if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
     {
-      InputContainer.useWeapon = true;
-      System.out.println("Mouse Pressed, use Weapon = "+ InputContainer.useWeapon);
-    }
-  });
+      MouseButton mouse = event.getButton();
+      AudioFiles.userSwing.play();
+
+      if(mouse == MouseButton.PRIMARY) // if Left Click for player attack
+      {
+        InputContainer.useWeapon = true;
+        System.out.println("Mouse Pressed, use Weapon = "+ InputContainer.useWeapon);
+      }
+    });
 
     fullScene.setOnMouseReleased(event ->
     {
@@ -311,14 +273,6 @@ public class MainApplication extends Application
     stage.setScene(fullScene);
     stage.show();
     stage.toFront();
-
-    double distanceModifier = 0.0;
-
-    double dx = camera.getLayoutX();
-    double dy = camera.getLayoutY();
-    double roughDistance = dx * dx + dy * dy;
-    distanceModifier = 1.0 - roughDistance / (camera.getFarClip() * camera.getFarClip());
-    if (distanceModifier < 0.0) distanceModifier = 0.0;
 
     // Load textures from files to use for floor, walls, and ceiling
     GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
@@ -357,6 +311,47 @@ public class MainApplication extends Application
     GameData.exitMaterial.setSpecularPower(128);
     //GameData.exitMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/exitDoor.png").toExternalForm()));
 
+    // Create the camera, set it to view far enough for any reasonably-sized map
+    camera = new PerspectiveCamera(true);
+    camera.setNearClip(0.1);
+    camera.setFarClip(5000.0);
+    camera.setFieldOfView(62.5);
+
+    // Rotate camera on the y-axis for swivel in response to mouse
+    camera.setVerticalFieldOfView(true);
+    camera.setTranslateZ(cameraZDisplacement);
+    camera.setTranslateY(cameraYDisplacement);
+    camera.setRotationAxis(Rotate.Y_AXIS);
+    camera.setDepthTest(DepthTest.ENABLE);
+
+    scene.setCamera(camera);
+
+    // Create a "lantern" for the user
+    light = new PointLight();
+    light.setLightOn(true);
+
+    light.setDepthTest(DepthTest.ENABLE);
+
+    light.setColor(Color.rgb(255, 255, 255, 1).brighter().brighter().brighter());
+    //light.setScaleZ(250000);
+
+    light.setLayoutX(-50); // This sets the light floor distance between you(Player/camera) and the in front of you
+    light.setLayoutY(camera.getLayoutY());
+
+    light.setTranslateX(camera.getTranslateX());
+    light.setTranslateY(camera.getTranslateY());
+    light.setTranslateZ(camera.getTranslateZ());
+
+    sceneRoot.getChildren().addAll(light);
+
+    double distanceModifier = 0.0;
+
+    double dx = camera.getLayoutX();
+    double dy = camera.getLayoutY();
+    double roughDistance = dx * dx + dy * dy;
+    distanceModifier = 1.0 - roughDistance / (camera.getFarClip() * camera.getFarClip());
+    if (distanceModifier < 0.0) distanceModifier = 0.0;
+
     setupLevel();
 
     gameEngine = new GameEngine(this, combatSystem);
@@ -373,7 +368,6 @@ public class MainApplication extends Application
         // Hide the cursor
         scene.setCursor(Cursor.NONE);
 
-
         gameEngine.start();
         isRunning = true;
       }
@@ -388,7 +382,6 @@ public class MainApplication extends Application
    */
   public void rebuildLevel()
   {
-//    gameEngine.stop();
     shouldRebuildLevel = true;
   }
 
@@ -466,15 +459,63 @@ public class MainApplication extends Application
       zombie.isAlive(true);
     }
 
-
     // Create a zombie update timer
     ZTimer zMoves = new ZTimer();
     zMoves.zUpdateTimer.schedule(zMoves.myUpdate, Zombie.getDecisionRate(), Zombie.getDecisionRate());
+  }
+
+  /**
+   * Don't regenerate the house but place the player at the beginning along with the past player.
+   *
+   */
+  public void respawnAfterDeath()
+  {
+    gameEngine.stop();
+
+//    GameOverDialog gameOverAlert = new GameOverDialog();
+//    gameOverAlert.showAndWait();
+
+//    if (chosenOption.isPresent())
+//    {
+//      System.out.println("Restarting due to death!!");
+////      level.restartLevel();
+////      rebuildLevel();
+//    }
+
+//    reset camera and light
+    cameraXDisplacement = 0;
+    cameraYDisplacement = -375;
+    cameraZDisplacement = 0;
+    camera.setTranslateZ(cameraZDisplacement);
+    camera.setTranslateY(cameraYDisplacement);
+
+    light.setTranslateX(camera.getTranslateX());
+    light.setTranslateY(camera.getTranslateY());
+    light.setTranslateZ(camera.getTranslateZ());
 
     sceneRoot.getChildren().add(PlayerData.past);
     PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
     PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
     PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
+
+    gameEngine.start();
+  }
+
+  /**
+   * Setup the zombies and player (camera).
+   *
+   */
+  public void placeZombies()
+  {
+    // Add all of the 3D zombie objects
+    for (Zombie zombie : LevelVar.zombieCollection)
+    {
+      sceneRoot.getChildren().add(zombie.zombie3D);
+      zombie.isAlive(true);
+    }
+
+
+
   }
 
   /**
