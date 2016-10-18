@@ -221,10 +221,13 @@ public class GameEngine extends AnimationTimer
       if (pastPlayerData.health <= 0)
       {
 //        remove past player from parent
-        AudioFiles.userDeath.play();
-        main.sceneRoot.getChildren().remove(PlayerData.past);
+
+//        main.sceneRoot.getChildren().remove(PlayerData.past);
         main.combatSystem.pastSelfPresent = false;
       }
+    } else
+    {
+
     }
 
     //Checking if Player gets Killed

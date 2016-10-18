@@ -362,6 +362,8 @@ public class MainApplication extends Application
     StartDialog sd = new StartDialog();
     Optional<ButtonType> chosenOption = sd.showAndWait();
 
+    sceneRoot.getChildren().add(PlayerData.past);
+
     if (chosenOption.isPresent())
     {
       if (chosenOption.get() == StartDialog.START_BUTTON_TYPE)
@@ -492,17 +494,22 @@ public class MainApplication extends Application
           cameraYRotation = 0;
           camera.setTranslateZ(cameraZDisplacement);
           camera.setTranslateY(cameraYDisplacement);
+          camera.setTranslateX(cameraXDisplacement);
           camera.setRotate(cameraYRotation);
 
           light.setTranslateX(camera.getTranslateX());
           light.setTranslateY(camera.getTranslateY());
           light.setTranslateZ(camera.getTranslateZ());
 
-          sceneRoot.getChildren().add(PlayerData.past);
+
           PlayerData.restart();
-          PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-          PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-          PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
+          PlayerData.past.setVisible(true);
+          PlayerData.past.nextLife();
+//          PlayerData.past.goToNextLife();
+//          PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+//          PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+//          PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
+          combatSystem.pastSelfPresent = true;
 
           gameEngine.start();
         } catch (Exception e)
