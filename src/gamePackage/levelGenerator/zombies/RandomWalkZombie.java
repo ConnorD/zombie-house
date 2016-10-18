@@ -37,6 +37,7 @@ public class RandomWalkZombie extends Zombie
     {
       super.setHealth(100);
       super.setDPS(2.5);
+      System.out.println("This zombie ID is " + zombieID);
 
       if (super.scentDetection(super.getZombieSmell(), LevelVar.house) || this.getSmell())
       {

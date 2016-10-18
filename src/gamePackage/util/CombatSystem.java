@@ -7,6 +7,8 @@ import gamePackage.common.LevelVar;
 import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.mainPackage.MainApplication;
+
 /**
  * Manage zombie and player attacks and appropriately deducting health of zombies and player.
  *
@@ -29,6 +31,9 @@ public class CombatSystem
   {
     return pastSelfPresent;
   }
+
+
+  public boolean WithinRange = false;
 
 
 
@@ -54,8 +59,9 @@ public class CombatSystem
    * @param playerDirectionVectorX
    * @param playerDirectionVectorY
    */
-  public void setTargetForZombie(Zombie zombie, double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
+  public void setTargetForZombie(Zombie zombie, MainApplication main,  double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
   {
+
     if (!isPastSelfPresent())
     {
       // Move and rotate the zombie. A* doesn't currently work, so this allows zombies to move towards player. Ugly.
@@ -69,7 +75,7 @@ public class CombatSystem
     }
 
 
-    if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE)
+    if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE && !WithinRange)
     {
       // Animate 3D zombie and move it to its parent zombie location
       zombie.zombie3D.nextFrame();
@@ -77,12 +83,22 @@ public class CombatSystem
       distanceY = (zombie.positionY - PlayerData.yPosition);
       totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
 
-      // Player collides with zombie, Deduct health
       targetCollision(zombie);
 
       //Check Wall collision for zombie while chasing the player
       checkWallCollisionForZombies(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
+    }
+
+    else if(isWithinRange(zombie))
+    {
+      zombie.zombie3D.nextFrame();
+
+      zombie.zombie3D.setRotate(main.cameraYRotation);
+
+      // Player collides with zombie, Deduct health, Zombie starts to attack
+      System.out.println("Still in range");
+      targetCollision(zombie);
     }
   }
 
@@ -132,6 +148,8 @@ public class CombatSystem
       PlayerData.yPosition += desiredZDisplacement * (percentOfSecond * PlayerData.playerSpeed);
     }
   }
+
+
 
   public void checkWallCollisionForZombies(Zombie zombie , double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
   {
@@ -189,6 +207,17 @@ public class CombatSystem
 
   }
 
+  private boolean isWithinRange(Zombie zombie)
+  {
+    distanceX = (zombie.positionX - PlayerData.xPosition);
+    distanceY = (zombie.positionY - PlayerData.yPosition);
+    totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
+
+    if(totalDistance <=1.3){return true;}
+
+    return false;
+  }
+
   /**
    * When the player collides with a zombie, deduct player health.
    * If player is attacking, also deduct zombie health.
@@ -197,8 +226,9 @@ public class CombatSystem
    */
   private void targetCollision(Zombie zombie)
   {
-    if (totalDistance < 0.3)
+    if (totalDistance <= 1.0)
     {
+      WithinRange = true;
       System.out.println("Im Called");
 
       //Zombie starts to attack
@@ -210,7 +240,9 @@ public class CombatSystem
       {
         playerAttack(zombie);
       }
+
     }
+    else{WithinRange = false;}
   }
 
 
@@ -244,10 +276,10 @@ public class CombatSystem
 
     }
     else
-      {
-        zombie.zombie3D.getChildren().remove(zombie.zombie3D.zombieVitails);
-        zombie.isAlive(false);
-      }
+    {
+      zombie.zombie3D.getChildren().remove(zombie.zombie3D.zombieVitails);
+      zombie.isAlive(false);
+    }
   }
 
 }
