@@ -151,8 +151,8 @@ public class GameEngine extends AnimationTimer
     main.cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
 
     // Move the point light with the player
-    main.light.setTranslateX(main.cameraXDisplacement);
-    main.light.setTranslateZ(main.cameraZDisplacement);
+    main.light.setTranslateX(main.cameraXDisplacement * GameData.TILE_WIDTH_AND_HEIGHT);
+    main.light.setTranslateZ(main.cameraZDisplacement * GameData.TILE_WIDTH_AND_HEIGHT);
 
     // Calculate camera rotation
     main.cameraYRotation += GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
@@ -233,7 +233,10 @@ public class GameEngine extends AnimationTimer
       //Checking if Player gets Killed
       if(!combatSystem.isPlayerAlive())
       {
+        stop();
+        AudioFiles.userDeath.play();
         main.respawnAfterDeath();
+        return;
       }
 
       lastFrame = time;

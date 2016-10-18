@@ -20,6 +20,10 @@ public class PastPlayer extends Box
 {
   public static LinkedList<PastPlayerData> states = new LinkedList<>();
 
+//  when the game is played initially, past player is in recording mode
+//  when the player is restarting, not in recording mode
+  private static boolean shouldRecord = true;
+
   /**
    * Constructor for PastPlayer that sets the dimensions, rotation axis, and material of the 3D object.
    */

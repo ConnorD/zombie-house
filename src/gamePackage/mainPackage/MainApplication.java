@@ -181,6 +181,7 @@ public class MainApplication extends Application
               isRunning = false;
               level.restartLevel();
               rebuildLevel();
+              gameEngine.start();
             }
           }
         }
@@ -470,8 +471,6 @@ public class MainApplication extends Application
    */
   public void respawnAfterDeath()
   {
-    gameEngine.stop();
-
     System.out.println("RESPAWN");
 
     GameOverDialog gameOverAlert = new GameOverDialog();
@@ -482,21 +481,27 @@ public class MainApplication extends Application
       if (!newValue)
       {
         try {
+          combatSystem = new CombatSystem(true, true);
           //    reset camera and light
           cameraXDisplacement = 0;
           cameraYDisplacement = -375;
           cameraZDisplacement = 0;
+          cameraYRotation = 0;
           camera.setTranslateZ(cameraZDisplacement);
           camera.setTranslateY(cameraYDisplacement);
+          camera.setRotate(cameraYRotation);
 
           light.setTranslateX(camera.getTranslateX());
           light.setTranslateY(camera.getTranslateY());
           light.setTranslateZ(camera.getTranslateZ());
 
           sceneRoot.getChildren().add(PlayerData.past);
+          PlayerData.restart();
           PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
           PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
           PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
+
+//          PlayerData.movePastPlayer = true;
 
           gameEngine.start();
         } catch (Exception e)
