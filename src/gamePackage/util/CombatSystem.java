@@ -15,7 +15,7 @@ import gamePackage.levelGenerator.zombies.Zombie;
 public class CombatSystem
 {
   private boolean playerAlive;
-  private boolean pastSelfPresent;
+  public boolean pastSelfPresent;
 
   public double distance, distanceX, distanceY, totalDistance;
 

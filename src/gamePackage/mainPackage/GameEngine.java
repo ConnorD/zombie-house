@@ -32,12 +32,12 @@ public class GameEngine extends AnimationTimer
 
 
   private MainApplication main;
-  private CombatSystem combatSystem;
+//  private CombatSystem combatSystem;
 
   public GameEngine(MainApplication main, CombatSystem combatSystem)
   {
     this.main = main;
-    this.combatSystem = combatSystem;
+//    this.combatSystem = combatSystem;
   }
 
   /**
@@ -143,7 +143,7 @@ public class GameEngine extends AnimationTimer
     }
 
     // Check for wall collisions for player
-    combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
+    main.combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
 
 
     // Calculate camera displacement
@@ -151,8 +151,8 @@ public class GameEngine extends AnimationTimer
     main.cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
 
     // Move the point light with the player
-    main.light.setTranslateX(main.cameraXDisplacement * GameData.TILE_WIDTH_AND_HEIGHT);
-    main.light.setTranslateZ(main.cameraZDisplacement * GameData.TILE_WIDTH_AND_HEIGHT);
+    main.light.setTranslateX(main.cameraXDisplacement);
+    main.light.setTranslateZ(main.cameraZDisplacement);
 
     // Calculate camera rotation
     main.cameraYRotation += GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
@@ -161,8 +161,9 @@ public class GameEngine extends AnimationTimer
     main.camera.setTranslateX(main.cameraXDisplacement);
     main.camera.setTranslateZ(main.cameraZDisplacement);
 
-    // Rotate the camera
+    // Rotate the camera and light
     main.camera.setRotate(main.cameraYRotation);
+//    main.light.setRotate(main.cameraYRotation);
 
     // Used for movement and swivel smoothing
     InputContainer.remainingCameraPan -= GameData.PLAYER_TURN_SMOOTHING * InputContainer.remainingCameraPan;
@@ -210,6 +211,29 @@ public class GameEngine extends AnimationTimer
     double playerDirectionVectorX = Math.toDegrees(Math.cos(main.cameraYRotation));
     double playerDirectionVectorY = Math.toDegrees(Math.sin(main.cameraYRotation));
 
+    PlayerData.past.recordPlayerState(main.cameraYRotation);
+
+    if (main.combatSystem.isPastSelfPresent())
+    {
+//      update the past player position and health
+      PastPlayerData pastPlayerData = PlayerData.past.nextState();
+
+      if (pastPlayerData.health <= 0)
+      {
+//        remove past player from parent
+        AudioFiles.userDeath.play();
+        main.sceneRoot.getChildren().remove(PlayerData.past);
+        main.combatSystem.pastSelfPresent = false;
+      }
+    }
+
+    //Checking if Player gets Killed
+    if(!main.combatSystem.isPlayerAlive())
+    {
+      AudioFiles.userDeath.play();
+      main.respawnAfterDeath();
+    }
+
     // Animate zombies every four frames to reduce computational load
     if (frame % 4 == 0)
     {
@@ -219,7 +243,7 @@ public class GameEngine extends AnimationTimer
         zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
         zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
 
-        combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
+        main.combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
         //Checking if a Zombie gets killed
         if(!zombie.hasLife())
@@ -228,15 +252,6 @@ public class GameEngine extends AnimationTimer
           LevelVar.zombieCollection.remove(zombie); //Now remove the instance of the obj (that certain zombie)
           break; // Get out of the current loop and restart
         }
-      }
-
-      //Checking if Player gets Killed
-      if(!combatSystem.isPlayerAlive())
-      {
-        stop();
-        AudioFiles.userDeath.play();
-        main.respawnAfterDeath();
-        return;
       }
 
       lastFrame = time;
@@ -260,14 +275,7 @@ public class GameEngine extends AnimationTimer
       main.shouldRebuildLevel = false;
     }
 
-    PlayerData.past.recordPlayerState(main.cameraYRotation);
-//    if (frame > 500)
-//    {
-////      move past player
-//      PlayerData.past.nextState();
-//    }
 
-//    PlayerData.past.recordPlayerState();
 //      update the HUD
     main.dataHUD.update();
   }

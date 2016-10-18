@@ -473,6 +473,8 @@ public class MainApplication extends Application
   {
     System.out.println("RESPAWN");
 
+    gameEngine.stop();
+
     GameOverDialog gameOverAlert = new GameOverDialog();
     gameOverAlert.show();
 
@@ -480,7 +482,8 @@ public class MainApplication extends Application
     {
       if (!newValue)
       {
-        try {
+        try
+        {
           combatSystem = new CombatSystem(true, true);
           //    reset camera and light
           cameraXDisplacement = 0;
@@ -500,8 +503,6 @@ public class MainApplication extends Application
           PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
           PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
           PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
-
-//          PlayerData.movePastPlayer = true;
 
           gameEngine.start();
         } catch (Exception e)
