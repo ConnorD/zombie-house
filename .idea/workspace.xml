@@ -6,11 +6,14 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="">
+    <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="Past player working better. The current player and past player &quot;timelines&quot; are in-sync and the current player is spawned in a consistent position.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/GamePreloader/GamePreloader.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/GamePreloader.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
     </list>
@@ -36,11 +39,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="332">
-              <caret line="501" column="54" selection-start-line="501" selection-start-column="54" selection-end-line="501" selection-end-column="54" />
+            <state relative-caret-position="357">
+              <caret line="506" column="44" selection-start-line="506" selection-start-column="44" selection-end-line="506" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,8 +54,8 @@
       <file leaf-file-name="GameEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="225" column="50" selection-start-line="225" selection-start-column="50" selection-end-line="225" selection-end-column="50" />
+            <state relative-caret-position="351">
+              <caret line="222" column="40" selection-start-line="222" selection-start-column="40" selection-end-line="222" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -85,9 +88,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,18 +108,18 @@
       <file leaf-file-name="Zombie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1887">
+            <state relative-caret-position="17">
               <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RandomWalkZombie.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RandomWalkZombie.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="613">
-              <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
+            <state relative-caret-position="394">
+              <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -161,7 +162,6 @@
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/Zombie3D.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/util/StatusBar.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Floor.java" />
-        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/MasterZombie.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/LineWalkZombie.java" />
@@ -179,9 +179,10 @@
         <option value="$PROJECT_DIR$/src/gamePackage/audio/AudioFiles.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
+        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
         <option value="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
-        <option value="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
       </list>
     </option>
   </component>
@@ -222,8 +223,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -512,7 +514,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -961,7 +962,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476764278511</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Past player working better. The current player and past player &quot;timelines&quot; are in-sync and the current player is spawned in a consistent position.">
+      <created>1476779419814</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1476779419814</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1020,7 +1028,8 @@
     <MESSAGE value="In the middle of making the game reset properly when the player dies. Also some code cleanup and javadoc comments." />
     <MESSAGE value="Game over dialog is now showing, and when the user clicks &quot;Restart,&quot; the camera resets to the beginning of the game. Also added some Javadocs." />
     <MESSAGE value="Play sound when player dies. Game Over/restart still not working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Play sound when player dies. Game Over/restart still not working." />
+    <MESSAGE value="Past player working better. The current player and past player &quot;timelines&quot; are in-sync and the current player is spawned in a consistent position." />
+    <option name="LAST_COMMIT_MESSAGE" value="Past player working better. The current player and past player &quot;timelines&quot; are in-sync and the current player is spawned in a consistent position." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1266,24 +1275,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/ui/GameOverDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/audio/AudioFiles.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="697">
@@ -1298,16 +1289,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="225" column="50" selection-start-line="225" selection-start-column="50" selection-end-line="225" selection-end-column="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayerData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1316,13 +1297,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="501" column="54" selection-start-line="501" selection-start-column="54" selection-end-line="501" selection-end-column="54" />
+        <state relative-caret-position="394">
+          <caret line="46" column="30" selection-start-line="46" selection-start-column="30" selection-end-line="46" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="222" column="40" selection-start-line="222" selection-start-column="40" selection-end-line="222" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/audio/AudioFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="34" column="56" selection-start-line="34" selection-start-column="56" selection-end-line="34" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1336,19 +1341,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/Zombie.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/ui/GameOverDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1887">
-          <caret line="70" column="11" selection-start-line="70" selection-start-column="11" selection-end-line="70" selection-end-column="11" />
+        <state relative-caret-position="221">
+          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/gamePackage/levelGenerator/zombies/RandomWalkZombie.java">
+    <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="60" column="3" selection-start-line="60" selection-start-column="3" selection-end-line="60" selection-end-column="3" />
-          <folding />
+        <state relative-caret-position="357">
+          <caret line="506" column="44" selection-start-line="506" selection-start-column="44" selection-end-line="506" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

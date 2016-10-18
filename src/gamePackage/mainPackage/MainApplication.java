@@ -6,6 +6,7 @@ import gamePackage.levelGenerator.house.Exit;
 import gamePackage.levelGenerator.house.Level;
 import gamePackage.levelGenerator.house.Tile;
 import gamePackage.levelGenerator.house.Wall;
+import gamePackage.levelGenerator.player.PastPlayerData;
 import gamePackage.levelGenerator.zombies.ZTimer;
 import gamePackage.levelGenerator.zombies.Zombie;
 import gamePackage.mainPackage.ui.GameOverDialog;
@@ -487,11 +488,19 @@ public class MainApplication extends Application
         try
         {
           combatSystem = new CombatSystem(true, true);
+
+          PlayerData.restart();
+          PlayerData.past.setVisible(true);
+          PlayerData.past.nextLife();
+          PastPlayerData startPastPlayerData = PlayerData.past.nextState();
+          PlayerData.xPosition = startPastPlayerData.xPosition;
+          PlayerData.yPosition = startPastPlayerData.yPosition;
+
           //    reset camera and light
-          cameraXDisplacement = 0;
+          cameraXDisplacement = startPastPlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
           cameraYDisplacement = -375;
-          cameraZDisplacement = 0;
-          cameraYRotation = 0;
+          cameraZDisplacement = startPastPlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
+          cameraYRotation = startPastPlayerData.yRotation;
           camera.setTranslateZ(cameraZDisplacement);
           camera.setTranslateY(cameraYDisplacement);
           camera.setTranslateX(cameraXDisplacement);
@@ -501,14 +510,6 @@ public class MainApplication extends Application
           light.setTranslateY(camera.getTranslateY());
           light.setTranslateZ(camera.getTranslateZ());
 
-
-          PlayerData.restart();
-          PlayerData.past.setVisible(true);
-          PlayerData.past.nextLife();
-//          PlayerData.past.goToNextLife();
-//          PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-//          PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-//          PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
           combatSystem.pastSelfPresent = true;
 
           gameEngine.start();

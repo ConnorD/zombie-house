@@ -221,8 +221,6 @@ public class GameEngine extends AnimationTimer
       if (pastPlayerData.health <= 0)
       {
 //        remove past player from parent
-
-//        main.sceneRoot.getChildren().remove(PlayerData.past);
         main.combatSystem.pastSelfPresent = false;
       }
     } else
