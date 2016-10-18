@@ -275,33 +275,33 @@ public class MainApplication extends Application
     stage.toFront();
 
     // Load textures from files to use for floor, walls, and ceiling
-    GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     GameData.floorMaterial1.setSpecularColor(Color.BLACK);
     GameData.floorMaterial1.setSpecularPower(128);
     GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
 
-    GameData.floorMaterial2.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.floorMaterial2.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     GameData.floorMaterial2.setSpecularColor(Color.BLACK);
     GameData.floorMaterial2.setSpecularPower(128);
     GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
-    GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     GameData.floorMaterial3.setSpecularColor(Color.BLACK);
     GameData.floorMaterial3.setSpecularPower(128);
     GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     GameData.floorMaterial4.setSpecularColor(Color.BLACK);
     GameData.floorMaterial4.setSpecularPower(128);
     GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
-    GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     GameData.ceilingMaterial.setSpecularColor(Color.BLACK);
     GameData.ceilingMaterial.setSpecularPower(128);
     GameData.ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
+    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker());
     //GameData.wallMaterial.setSpecularColor(Color.BLACK);
     GameData.wallMaterial.setSpecularPower(128);
     GameData.wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
@@ -314,8 +314,8 @@ public class MainApplication extends Application
     // Create the camera, set it to view far enough for any reasonably-sized map
     camera = new PerspectiveCamera(true);
     camera.setNearClip(0.1);
-    camera.setFarClip(5000.0);
-    camera.setFieldOfView(62.5);
+    camera.setFarClip(3500.0);
+    camera.setFieldOfView(50);
 
     // Rotate camera on the y-axis for swivel in response to mouse
     camera.setVerticalFieldOfView(true);
