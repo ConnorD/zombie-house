@@ -7,16 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe56c15-de2d-4933-a3c3-b37a59f54d17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/audio/AudioFiles.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/audio/AudioFiles.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Level.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/house/Level.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/util/CombatSystem.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jar" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/InputContainer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/common/InputContainer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/levelGenerator/player/PastPlayer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" afterPath="$PROJECT_DIR$/out/production/zombie-house/gamePackage/mainPackage/MainApplication.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" afterPath="$PROJECT_DIR$/src/gamePackage/common/InputContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/house/Level.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" afterPath="$PROJECT_DIR$/src/gamePackage/levelGenerator/player/PastPlayer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/GameEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" afterPath="$PROJECT_DIR$/out/artifacts/zombie_house/zombie_house.jnlp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" afterPath="$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java" afterPath="$PROJECT_DIR$/src/gamePackage/util/CombatSystem.java" />
     </list>
     <ignored path="zombie-house.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="MainApplication.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="499" column="29" selection-start-line="499" selection-start-column="29" selection-end-line="499" selection-end-column="29" />
+            <state relative-caret-position="247">
+              <caret line="486" column="34" selection-start-line="486" selection-start-column="34" selection-end-line="486" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#11750#11751#0" expanded="true" />
@@ -916,7 +913,14 @@
       <option name="project" value="LOCAL" />
       <updated>1476690201721</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Game over dialog is now showing, and when the user clicks &quot;Restart,&quot; the camera resets to the beginning of the game. Also added some Javadocs.">
+      <created>1476750102160</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1476750102161</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -973,7 +977,8 @@
     <MESSAGE value="Past Player class updates its own position and rotation." />
     <MESSAGE value="Merge branch 'master' of https://github.com/ConnorD/zombie-house&#10;&#10;# Conflicts:&#10;#&#9;src/gamePackage/mainPackage/GameEngine.java&#10;" />
     <MESSAGE value="In the middle of making the game reset properly when the player dies. Also some code cleanup and javadoc comments." />
-    <option name="LAST_COMMIT_MESSAGE" value="In the middle of making the game reset properly when the player dies. Also some code cleanup and javadoc comments." />
+    <MESSAGE value="Game over dialog is now showing, and when the user clicks &quot;Restart,&quot; the camera resets to the beginning of the game. Also added some Javadocs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Game over dialog is now showing, and when the user clicks &quot;Restart,&quot; the camera resets to the beginning of the game. Also added some Javadocs." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1293,8 +1298,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/gamePackage/mainPackage/MainApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="499" column="29" selection-start-line="499" selection-start-column="29" selection-end-line="499" selection-end-column="29" />
+        <state relative-caret-position="247">
+          <caret line="486" column="34" selection-start-line="486" selection-start-column="34" selection-end-line="486" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#11750#11751#0" expanded="true" />

@@ -479,7 +479,8 @@ public class MainApplication extends Application
 
     gameOverAlert.showingProperty().addListener((observable, oldValue, newValue)->
     {
-      if (!newValue){
+      if (!newValue)
+      {
         try {
           //    reset camera and light
           cameraXDisplacement = 0;
@@ -498,7 +499,8 @@ public class MainApplication extends Application
           PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
 
           gameEngine.start();
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
           e.printStackTrace();
         }
       }
