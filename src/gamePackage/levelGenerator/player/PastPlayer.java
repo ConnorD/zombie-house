@@ -20,6 +20,9 @@ public class PastPlayer extends Box
 {
   public static LinkedList<PastPlayerData> states = new LinkedList<>();
 
+  /**
+   * Constructor for PastPlayer that sets the dimensions, rotation axis, and material of the 3D object.
+   */
   public PastPlayer()
   {
 //    super(GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT/2, GameData.WALL_HEIGHT);
@@ -42,6 +45,8 @@ public class PastPlayer extends Box
 
   /**
    * Step to the next saved state of the past player. Remove elements from the linked list of states as we go.
+   *
+   * @return the next past player state in the linked list.
    */
   public PastPlayerData nextState()
   {

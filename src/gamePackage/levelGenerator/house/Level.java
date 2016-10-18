@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author Rob
+ * @author Ederin Igharoro & Connor Denman
+ *
+ * Original author: Rob
  *         <p>
  *         Level is the master class for house generation
  *         A single instance of Level should be created in the application and used for generation

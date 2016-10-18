@@ -4,7 +4,9 @@ package gamePackage.common;
  * A class to hold information about user interaction.
  * Holds mouseX information for calculating distance mouse was moved.
  *
- * @author Maxwell Sanchez
+ * Original author: Maxwell Sanchez
+ *
+ * @author Ederin Igharoro & Connor Denman
  */
 public class InputContainer
 {
@@ -23,6 +25,11 @@ public class InputContainer
   // THe remaining distance to pan the camera
   public static double remainingCameraPan = 0.0;
 
+  /**
+   * Determine if the user is trying to move the player (keyboard commands).
+   *
+   * @return boolean - true if the player is moving, false if stationary.
+   */
   public static boolean isMoving()
   {
     if (forward == false && backward == false && left == false && right == false)

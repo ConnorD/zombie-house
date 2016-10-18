@@ -275,7 +275,7 @@ public class MainApplication extends Application
     stage.toFront();
 
     // Load textures from files to use for floor, walls, and ceiling
-    GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.floorMaterial1.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     GameData.floorMaterial1.setSpecularColor(Color.BLACK);
     GameData.floorMaterial1.setSpecularPower(128);
     GameData.floorMaterial1.setDiffuseMap(new Image(getClass().getResource("/resources/floor1.png").toExternalForm()));
@@ -285,23 +285,23 @@ public class MainApplication extends Application
     GameData.floorMaterial2.setSpecularPower(128);
     GameData.floorMaterial2.setDiffuseMap(new Image(getClass().getResource("/resources/floor2.png").toExternalForm()));
 
-    GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.floorMaterial3.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     GameData.floorMaterial3.setSpecularColor(Color.BLACK);
     GameData.floorMaterial3.setSpecularPower(128);
     GameData.floorMaterial3.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.floorMaterial4.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     GameData.floorMaterial4.setSpecularColor(Color.BLACK);
     GameData.floorMaterial4.setSpecularPower(128);
     GameData.floorMaterial4.setDiffuseMap(new Image(getClass().getResource("/resources/floor0.png").toExternalForm()));
 
 
-    GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.ceilingMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     GameData.ceilingMaterial.setSpecularColor(Color.BLACK);
     GameData.ceilingMaterial.setSpecularPower(128);
     GameData.ceilingMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/floor3.png").toExternalForm()));
 
-    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0).darker().darker().darker().darker());
+    GameData.wallMaterial.setDiffuseColor(new Color(0.45, 0.45, 0.45, 1.0));
     //GameData.wallMaterial.setSpecularColor(Color.BLACK);
     GameData.wallMaterial.setSpecularPower(128);
     GameData.wallMaterial.setDiffuseMap(new Image(getClass().getResource("/resources/wall.png").toExternalForm()));
@@ -333,7 +333,7 @@ public class MainApplication extends Application
     light.setDepthTest(DepthTest.ENABLE);
 
     light.setColor(Color.rgb(255, 255, 255, 1).brighter().brighter().brighter());
-    //light.setScaleZ(250000);
+//    light.setScaleZ(250000);
 
     light.setLayoutX(-50); // This sets the light floor distance between you(Player/camera) and the in front of you
     light.setLayoutY(camera.getLayoutY());
@@ -342,7 +342,7 @@ public class MainApplication extends Application
     light.setTranslateY(camera.getTranslateY());
     light.setTranslateZ(camera.getTranslateZ());
 
-    sceneRoot.getChildren().addAll(light);
+    sceneRoot.getChildren().add(light);
 
     double distanceModifier = 0.0;
 
@@ -472,33 +472,37 @@ public class MainApplication extends Application
   {
     gameEngine.stop();
 
-//    GameOverDialog gameOverAlert = new GameOverDialog();
-//    gameOverAlert.showAndWait();
+    System.out.println("RESPAWN");
 
-//    if (chosenOption.isPresent())
-//    {
-//      System.out.println("Restarting due to death!!");
-////      level.restartLevel();
-////      rebuildLevel();
-//    }
+    GameOverDialog gameOverAlert = new GameOverDialog();
+    gameOverAlert.show();
 
-//    reset camera and light
-    cameraXDisplacement = 0;
-    cameraYDisplacement = -375;
-    cameraZDisplacement = 0;
-    camera.setTranslateZ(cameraZDisplacement);
-    camera.setTranslateY(cameraYDisplacement);
+    gameOverAlert.showingProperty().addListener((observable, oldValue, newValue)->
+    {
+      if (!newValue){
+        try {
+          //    reset camera and light
+          cameraXDisplacement = 0;
+          cameraYDisplacement = -375;
+          cameraZDisplacement = 0;
+          camera.setTranslateZ(cameraZDisplacement);
+          camera.setTranslateY(cameraYDisplacement);
 
-    light.setTranslateX(camera.getTranslateX());
-    light.setTranslateY(camera.getTranslateY());
-    light.setTranslateZ(camera.getTranslateZ());
+          light.setTranslateX(camera.getTranslateX());
+          light.setTranslateY(camera.getTranslateY());
+          light.setTranslateZ(camera.getTranslateZ());
 
-    sceneRoot.getChildren().add(PlayerData.past);
-    PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-    PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
-    PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
+          sceneRoot.getChildren().add(PlayerData.past);
+          PlayerData.past.setTranslateX(PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+          PlayerData.past.setTranslateZ(PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT);
+          PlayerData.past.setTranslateY(-GameData.WALL_HEIGHT / 2);
 
-    gameEngine.start();
+          gameEngine.start();
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
   }
 
   /**

@@ -25,8 +25,7 @@ import java.util.Optional;
  * This handles the primary game animation frame timing. and uses the
  * Main App to handle the scene / camera changes
  *
- * @author Ederin Igharoro
- * Created by Ultimate Ediri on 10/12/2016.
+ * @author Ederin Igharoro & Connor Denman
  */
 public class GameEngine extends AnimationTimer
 {
@@ -196,6 +195,8 @@ public class GameEngine extends AnimationTimer
 
   /**
    * Called for every frame of the game. Moves the player, nearby zombies, and determiens win/loss conditions.
+   *
+   * @param time - timestamp of the call to render the next frame.
    */
   @Override
   public void handle(long time)

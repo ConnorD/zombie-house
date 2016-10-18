@@ -8,10 +8,9 @@ import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.Zombie;
 /**
+ * Manage zombie and player attacks and appropriately deducting health of zombies and player.
  *
- *
- * @author Ederin Igharoro
- * Created by Ultimate Ediri on 9/19/2016.
+ * @author Ederin Igharoro & Connor Denman
  */
 public class CombatSystem
 {
@@ -47,6 +46,14 @@ public class CombatSystem
     PlayerData.health = PlayerData.maxHealth;
   }
 
+  /**
+   * Constructor fot the combat engine and setting the conditions on how the combat system
+   * will run for the first time or when restarted
+   * @param zombie - the zombie to set target for.
+   * @param percentOfSecond
+   * @param playerDirectionVectorX
+   * @param playerDirectionVectorY
+   */
   public void setTargetForZombie(Zombie zombie, double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
   {
     if (!isPastSelfPresent())
