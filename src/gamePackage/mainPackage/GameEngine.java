@@ -219,7 +219,7 @@ public class GameEngine extends AnimationTimer
         zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
         zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
 
-        combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
+        combatSystem.setTargetForZombie(zombie, main ,percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
         //Checking if a Zombie gets killed
         if(!zombie.hasLife())

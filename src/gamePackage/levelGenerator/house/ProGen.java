@@ -749,6 +749,7 @@ public class ProGen
       {
         PlayerData.xPosition = randX;
         PlayerData.yPosition = randY;
+
         playerNotPlaced = false;
       }
     }

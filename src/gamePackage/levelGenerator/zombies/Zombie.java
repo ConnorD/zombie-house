@@ -50,6 +50,8 @@ public class Zombie
 
   private boolean alive;
 
+  public boolean isInWall = false;
+
   /**
    * this Zombie's ID number
    */
@@ -166,6 +168,11 @@ public class Zombie
   public boolean getCollide()
   {
     return this.collided;
+  }
+
+  public void checkIfPlayerWithinRange(boolean value)
+  {
+
   }
 
   /**
@@ -299,15 +306,24 @@ public class Zombie
       this.setCollided(this.collide());
       if (this.getCollide())
       {
+        if((LevelVar.house[(int)(this.positionX)][(int)(this.positionY)] instanceof Wall))
+        {
+          System.out.println("Found Zombie inside wall");
+          isInWall = true;
+        }
+
         while (!(LevelVar.house[round(this.positionX)][round(this.positionY)] instanceof Tile))
         {
           if (this.positionX < 5)
           {
             this.positionX += 1;
-          } else
+          }
+
+          else
           {
             this.positionX -= 1;
           }
+
         }
         this.setCollided(false);
       }
@@ -355,47 +371,63 @@ public class Zombie
         {
           if (LevelVar.house[j][i] instanceof Wall || LevelVar.house[j][i] instanceof Exit)
           {
+            System.out.println("Touches other Object");
             double dist;
+
             if ((int) this.positionX > j)
             {
               if ((int) this.positionY > i)
               {
                 dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8))))
                         + ((this.positionY - ((i * 2) + 1.8)) * (this.positionY - ((i * 2) + 1.8))));
-              } else if ((int) this.positionY == i)
+              }
+              else if ((int) this.positionY == i)
               {
                 dist = this.positionX - ((j * 2) + 1.8);
-              } else
+              }
+              else
               {
                 dist = Math.sqrt(((this.positionX - ((j * 2) + 1.8)) * ((this.positionX - ((j * 2) + 1.8))))
                         + ((this.positionY - ((i * 2) - 0.2)) * ((this.positionY - ((i * 2) - 0.2)))));
               }
             }
+
             else if ((int) this.positionX == j)
             {
               if ((int) this.positionY > i)
               {
                 dist = this.positionY - ((i * 2) + 1.8);
-              } else if ((int) this.positionY == i)
+              }
+
+              else if ((int) this.positionY == i)
               {
                 return true;
-              } else
+              }
+
+              else
               {
                 dist = ((i * 2) - 0.2) - this.positionY;
               }
-            } else
+            }
+
+            else
             {
               if ((int) this.positionY > i)
               {
                 dist = Math.sqrt(((this.positionX - ((j * 2) - 0.2)) * ((this.positionX - ((j * 2) - 0.2)))) + ((this.positionY - ((i * 2) + 1.8)) * ((this.positionY - ((i * 2) + 1.8)))));
-              } else if ((int) this.positionY == i)
+              }
+
+              else if ((int) this.positionY == i)
               {
                 dist = ((j * 2) - 0.2) - this.positionX;
-              } else
+              }
+
+              else
               {
                 dist = Math.sqrt(((this.positionX - ((j * 2) - 0.2)) * ((this.positionX - ((j * 2) - 0.2)))) + ((this.positionY - ((i * 2) - 0.2)) * ((this.positionY - ((i * 2) - 0.2)))));
               }
             }
+
             if (dist <= 1.0)
             {
               return true;

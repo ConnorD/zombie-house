@@ -455,8 +455,19 @@ public class MainApplication extends Application
     // Add all of the 3D zombie objects
     for (Zombie zombie : LevelVar.zombieCollection)
     {
-      sceneRoot.getChildren().add(zombie.zombie3D);
-      zombie.isAlive(true);
+      if(zombie.isInWall)
+      {
+        System.out.println("Found Zombie inside wall");
+        LevelVar.zombieCollection.remove(zombie);
+
+        zombie.isInWall = false;
+      }
+
+      else
+        {
+          sceneRoot.getChildren().add(zombie.zombie3D);
+          zombie.isAlive(true);
+        }
     }
 
     // Create a zombie update timer

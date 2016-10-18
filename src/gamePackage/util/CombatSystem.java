@@ -7,6 +7,8 @@ import gamePackage.common.LevelVar;
 import gamePackage.common.PlayerData;
 import gamePackage.levelGenerator.house.Wall;
 import gamePackage.levelGenerator.zombies.Zombie;
+import gamePackage.mainPackage.MainApplication;
+
 /**
  * Manage zombie and player attacks and appropriately deducting health of zombies and player.
  *
@@ -54,7 +56,7 @@ public class CombatSystem
    * @param playerDirectionVectorX
    * @param playerDirectionVectorY
    */
-  public void setTargetForZombie(Zombie zombie, double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
+  public void setTargetForZombie(Zombie zombie, MainApplication main,  double percentOfSecond, double playerDirectionVectorX, double playerDirectionVectorY)
   {
     if (!isPastSelfPresent())
     {
@@ -69,7 +71,7 @@ public class CombatSystem
     }
 
 
-    if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE)
+    if (distance < GameData.ZOMBIE_ACTIVATION_DISTANCE && distance >= 2.3)
     {
       // Animate 3D zombie and move it to its parent zombie location
       zombie.zombie3D.nextFrame();
@@ -77,13 +79,29 @@ public class CombatSystem
       distanceY = (zombie.positionY - PlayerData.yPosition);
       totalDistance = Math.abs(distanceX) + Math.abs(distanceY);
 
-      // Player collides with zombie, Deduct health
-      targetCollision(zombie);
 
       //Check Wall collision for zombie while chasing the player
       checkWallCollisionForZombies(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
     }
+
+    else if(distance <= 2.3)
+      {
+        zombie.zombie3D.nextFrame();
+
+        zombie.zombie3D.setRotate(main.cameraYRotation);
+
+        // Player collides with zombie, Deduct health, Zombie starts to attack
+        System.out.println("Im Called");
+        //zombieAttack(zombie);
+
+
+        //If Player left clicks mouse, Player attacks
+        if (InputContainer.useWeapon)
+        {
+          playerAttack(zombie);
+        }
+      }
   }
 
 
@@ -197,12 +215,12 @@ public class CombatSystem
    */
   private void targetCollision(Zombie zombie)
   {
-    if (totalDistance < 0.3)
+    if (totalDistance < 2.3)
     {
       System.out.println("Im Called");
 
       //Zombie starts to attack
-      zombieAttack(zombie);
+      //zombieAttack(zombie);
 
 
       //If Player left clicks mouse, Player attacks

@@ -94,4 +94,6 @@ public class LevelVar
   public static boolean zombie3D;
 
   public static boolean HOUSE_PRESENTATION = false;
+
+  public static boolean IS_WITHIN_RANGE = false;
 }
