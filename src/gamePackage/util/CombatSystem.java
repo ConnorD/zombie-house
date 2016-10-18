@@ -279,6 +279,7 @@ public class CombatSystem
     {
       zombie.zombie3D.getChildren().remove(zombie.zombie3D.zombieVitails);
       zombie.isAlive(false);
+      WithinRange = false;
     }
   }
 

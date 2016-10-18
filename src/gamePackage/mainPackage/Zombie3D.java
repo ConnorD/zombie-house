@@ -47,6 +47,8 @@ public class Zombie3D extends Group
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("/resources/" + i + ".fxml"));
         Group zombieModel = fxmlLoader.load();
+        zombieModel.setStyle("-fx-background-color: -fx-background-color: linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),\n" +
+                "        linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%);");
         zombieModel.setVisible(false);
         getChildren().add(zombieModel);
 
