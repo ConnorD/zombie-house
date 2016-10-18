@@ -17,7 +17,7 @@ import gamePackage.mainPackage.MainApplication;
 public class CombatSystem
 {
   private boolean playerAlive;
-  private boolean pastSelfPresent;
+  public boolean pastSelfPresent;
 
   public double distance, distanceX, distanceY, totalDistance;
 
@@ -237,7 +237,7 @@ public class CombatSystem
 
     if(PlayerData.health > 0.0)
     {
-      AudioFiles.userHealth.play();
+//      AudioFiles.userHealth.play();
       System.out.print("Player got hit, health - " + zombie.getDPS());
       PlayerData.health -= zombie.getDPS();
       System.out.println("Health Remaining: "+ PlayerData.health);

@@ -1,8 +1,6 @@
 package gamePackage.levelGenerator.player;
 
 /******************************************************************************
- * Connor Denman
- *
  * Class to past player's state at each time interval.
  *
  * @author Connor Denman
@@ -27,10 +25,11 @@ public class PastPlayerData
 
   public int playerSightRange = 7;
 
-  public PastPlayerData(double x, double y, double rotation)
+  public PastPlayerData(double x, double y, double rotation, double h)
   {
     xPosition = x;
     yPosition = y;
     yRotation = rotation;
+    health = h;
   }
 }

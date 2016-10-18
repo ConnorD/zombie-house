@@ -33,4 +33,12 @@ public class PlayerData
   public static int playerSightRange = 7;
 
   public static PastPlayer past = new PastPlayer();
+
+  public static void restart()
+  {
+    xPosition = 1.0;
+    yPosition = 1.0;
+    stamina = maxStamina;
+    health = maxHealth;
+  }
 }

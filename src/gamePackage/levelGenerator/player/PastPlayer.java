@@ -1,6 +1,7 @@
 package gamePackage.levelGenerator.player;
 
 import gamePackage.common.PlayerData;
+import gamePackage.util.CombatSystem;
 import gamePackage.util.GameData;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
@@ -20,6 +21,9 @@ public class PastPlayer extends Box
 {
   public static LinkedList<PastPlayerData> states = new LinkedList<>();
 
+//  when the game is played initially, past player is in recording mode
+//  when the player is restarting, not in recording mode
+
   /**
    * Constructor for PastPlayer that sets the dimensions, rotation axis, and material of the 3D object.
    */
@@ -31,6 +35,11 @@ public class PastPlayer extends Box
     setMaterial(new PhongMaterial(Color.WHITE));
   }
 
+//  public void update(double cameraRotation)
+//  {
+//    if ()
+//  }
+
   /**
    * Add a "snapshot" of the current player's state into the linked list for use later.
    *
@@ -38,7 +47,7 @@ public class PastPlayer extends Box
    */
   public void recordPlayerState(double cameraRotation)
   {
-    PastPlayerData currentState = new PastPlayerData(PlayerData.xPosition, PlayerData.yPosition, cameraRotation);
+    PastPlayerData currentState = new PastPlayerData(PlayerData.xPosition, PlayerData.yPosition, cameraRotation, PlayerData.health);
 
     states.add(currentState);
   }
