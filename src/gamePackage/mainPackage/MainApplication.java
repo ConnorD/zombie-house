@@ -102,7 +102,6 @@ public class MainApplication extends Application
     SubScene scene = new SubScene(sceneRoot, GameData.WINDOW_WIDTH, GameData.WINDOW_HEIGHT, true, SceneAntialiasing.BALANCED);
     scene.setFill(Color.BLACK);
 
-
     // 2D
     BorderPane pane = new BorderPane();
     pane.setCenter(scene);
@@ -357,7 +356,7 @@ public class MainApplication extends Application
     setupLevel();
 
     gameEngine = new GameEngine(this, combatSystem);
-    AudioFiles.backgroundMusic.play(0.4f);
+    AudioFiles.backgroundMusic.play(0.3f);
 
     //    show startup menu
     StartDialog sd = new StartDialog();
@@ -481,6 +480,7 @@ public class MainApplication extends Application
     GameOverDialog gameOverAlert = new GameOverDialog();
     gameOverAlert.show();
 
+//    wait for the user to click "replay"
     gameOverAlert.showingProperty().addListener((observable, oldValue, newValue)->
     {
       if (!newValue)
