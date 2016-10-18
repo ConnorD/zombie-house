@@ -181,6 +181,20 @@ public class MainApplication extends Application
               isRunning = false;
               level.restartLevel();
               rebuildLevel();
+
+              cameraXDisplacement = 0;
+              cameraYDisplacement = -375;
+              cameraZDisplacement = 0;
+              cameraYRotation = 0;
+              camera.setTranslateZ(cameraZDisplacement);
+              camera.setTranslateY(cameraYDisplacement);
+              camera.setTranslateX(cameraXDisplacement);
+              camera.setRotate(cameraYRotation);
+
+              light.setTranslateX(camera.getTranslateX());
+              light.setTranslateY(camera.getTranslateY());
+              light.setTranslateZ(camera.getTranslateZ());
+
               gameEngine.start();
             }
           }
@@ -334,7 +348,6 @@ public class MainApplication extends Application
     light.setDepthTest(DepthTest.ENABLE);
 
     light.setColor(Color.rgb(255, 255, 255, 1).brighter().brighter().brighter());
-//    light.setScaleZ(250000);
 
     light.setLayoutX(-50); // This sets the light floor distance between you(Player/camera) and the in front of you
     light.setLayoutY(camera.getLayoutY());
@@ -345,13 +358,6 @@ public class MainApplication extends Application
 
     sceneRoot.getChildren().add(light);
 
-    double distanceModifier = 0.0;
-
-    double dx = camera.getLayoutX();
-    double dy = camera.getLayoutY();
-    double roughDistance = dx * dx + dy * dy;
-    distanceModifier = 1.0 - roughDistance / (camera.getFarClip() * camera.getFarClip());
-    if (distanceModifier < 0.0) distanceModifier = 0.0;
 
     setupLevel();
 
@@ -456,11 +462,7 @@ public class MainApplication extends Application
     }
 
     // Add all of the 3D zombie objects
-    for (Zombie zombie : LevelVar.zombieCollection)
-    {
-      sceneRoot.getChildren().add(zombie.zombie3D);
-      zombie.isAlive(true);
-    }
+    placeZombies();
 
     // Create a zombie update timer
     ZTimer zMoves = new ZTimer();
