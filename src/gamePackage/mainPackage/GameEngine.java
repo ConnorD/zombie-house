@@ -146,6 +146,7 @@ public class GameEngine extends AnimationTimer
     main.combatSystem.checkWallCollisionForPlayer(desiredPlayerXPosition, desiredPlayerYPosition, desiredXDisplacement, desiredZDisplacement, percentOfSecond);
 
 
+
     // Calculate camera displacement
     main.cameraXDisplacement = PlayerData.xPosition * GameData.TILE_WIDTH_AND_HEIGHT;
     main.cameraZDisplacement = PlayerData.yPosition * GameData.TILE_WIDTH_AND_HEIGHT;
@@ -243,7 +244,7 @@ public class GameEngine extends AnimationTimer
         zombie3D.setTranslateX(zombie.positionX * GameData.TILE_WIDTH_AND_HEIGHT);
         zombie3D.setTranslateZ(zombie.positionY * GameData.TILE_WIDTH_AND_HEIGHT);
 
-        main.combatSystem.setTargetForZombie(zombie, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
+        main.combatSystem.setTargetForZombie(zombie,main, percentOfSecond, playerDirectionVectorX, playerDirectionVectorY);
 
         //Checking if a Zombie gets killed
         if(!zombie.hasLife())
